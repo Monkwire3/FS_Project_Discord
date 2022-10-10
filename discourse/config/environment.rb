@@ -3,5 +3,6 @@ require_relative "application"
 
 # Initialize the Rails application.
 Rails.application.initialize!
-Jbuilder.key_format camelize: :lower
-Jbuilder.deep_format_keys true
+
+Jbuilder.key_format camelize :lower
+Jbuilder.deef_format_keys true
