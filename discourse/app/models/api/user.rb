@@ -16,7 +16,7 @@ class User < ApplicationRecord
     # validates :session_token, presence: true, uniqueness: true
     validates :password, length: { in: 6..255 }, allow_nil: true
 
-    before_validation :ensure_session_token
+    # before_validation :ensure_session_token
 
     attr_reader :password
 
@@ -45,9 +45,9 @@ class User < ApplicationRecord
         return token
     end
 
-    def ensure_session_token
-        self.session_token ||= generate_unique_session_token
-    end
+    # def ensure_session_token
+    #     self.session_token ||= generate_unique_session_token
+    # end
 
 
 
