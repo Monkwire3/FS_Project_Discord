@@ -13,10 +13,10 @@
 class User < ApplicationRecord
     validates :username, length: { in: 2..32 }, uniqueness: true, format: { without: URI::MailTo::EMAIL_REGEXP }
     validates :email, format:  { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
-    # validates :session_token, presence: true, uniqueness: true
+    validates :session_token, presence: true, uniqueness: true
     validates :password, length: { in: 6..255 }, allow_nil: true
 
-    # before_validation :ensure_session_token
+    before_validation :ensure_session_token
 
     attr_reader :password
 
@@ -35,19 +35,26 @@ class User < ApplicationRecord
         return nil
     end
 
+    def reset_session_token!
+        self.session_token = generate_unique_session_token
+        self.save!
+        return self.session_token
+    end
+
     private
 
     def generate_unique_session_token
         token = SecureRandom.base64
 
-        token = SecureRandom.base64 while User.find_by(session: token)
+        token = SecureRandom.base64 while User.find_by(session_token: token)
+
 
         return token
     end
 
-    # def ensure_session_token
-    #     self.session_token ||= generate_unique_session_token
-    # end
+    def ensure_session_token
+        self.session_token ||= generate_unique_session_token
+    end
 
 
 
