@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     def current_user
-        @current_user ||= User.find_by_credentials(session_token: session[:session_token])
+        @current_user ||= User.find_by(session_token: session[:session_token])
     end
 
     def login(user)
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
     end
 
     def test
-        if params.has_key(:login)
+        if params.has_key?(:login)
             login(User.first)
         elsif params.has_key?(:logout)
             logout
@@ -23,6 +23,7 @@ class ApplicationController < ActionController::API
         if current_user
             render json: { user: current_user.slice('id', 'username', 'session_token') }
         else
+            puts 'else'
             render json: ['No current user']
         end
     end
