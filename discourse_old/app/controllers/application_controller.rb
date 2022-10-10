@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+
     def current_user
         @current_user ||= User.find_by_credentials(session_token: session[:session_token])
     end
@@ -26,14 +27,18 @@ class ApplicationController < ActionController::API
             render json: ['No current user']
         end
     end
-    
 
 
     before_action :snake_case_params
 
     private
 
+    def attach_authenticity_token
+        headers['X-CSRF-Token'] = masked_authenticity_token(session)
+    end
+
     def snake_case_params
     params.deep_transform_keys!(&:underscore)
     end
+
 end
