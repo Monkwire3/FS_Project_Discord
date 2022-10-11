@@ -55,7 +55,7 @@ function LoginFormPage() {
             </div>
         </form>
         <div id='registrationDiv'>
-            <span>Need an account? <a>Register</a></span>
+            <span>Need an account? <a href='/register'>Register</a></span>
 
         </div>
         <button onClick={loginDemoUser}>Log in as demo user</button>

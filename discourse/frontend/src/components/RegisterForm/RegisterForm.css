@@ -1,0 +1,30 @@
+#registerContainer {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    background-color: #373737;
+    color: #b9b9b9;
+    font-family:"ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif; 
+    padding: 32px;
+}
+
+#registerContainer h1 {
+    text-align: center;
+    font-weight: 700;
+    color: #ffff
+}
+
+#registerContainer div span a {
+    color: #02abee;
+    font-size: small;
+    text-decoration: none;
+
+}
+
+#registerContainer div span a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
