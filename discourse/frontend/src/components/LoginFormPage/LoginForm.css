@@ -1,0 +1,51 @@
+body {
+    background-image: url(../../../public/assets/login_page_background_edited.png) ;
+    background-size: cover;
+}
+
+#loginBox {
+    display: flex;
+    flex-direction: column;
+    background-color: #37393f;
+    width: 784px;
+    padding: 32px;
+    font-size: 18px;
+    border-radius: 5px;
+    height: 408px;
+    margin: auto;
+    color: #b9b9b9;
+    justify-content: space-evenly;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input {
+    background-color: #202225;
+    border-radius: 3px;
+    border: none;
+}
+
+button {
+    background-color: #5965f2;
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+    color: #b9b9b9;
+
+}
+
+#barcodeDiv {
+    width: 50%;
+}
