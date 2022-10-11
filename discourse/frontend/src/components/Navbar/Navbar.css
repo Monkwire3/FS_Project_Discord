@@ -1,0 +1,32 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    height: 30px;
+    background-color: #37393f;
+    color: #b9b9b9;
+    width: 100%;
+    border-radius: 5px;
+}
+
+nav button {
+    width: auto;
+    height: auto;
+    background-color: inherit;
+    margin-left: 5px;
+    color: #b9b9b9;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 5px;
+}
+
+nav button a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav button:hover {
+    background-color: #50555f;
+
+}
