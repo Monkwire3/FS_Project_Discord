@@ -39,15 +39,13 @@ function LoginFormPage() {
             <h3>We're so excited to see you again!</h3>
         </div>
         <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
+            
             <div className='inputGroup'>
-                <label>Username or Email </label>
+                <label className={errors.length > 0 ? 'errorFieldName' : ''}>Username or Email <span className='errorMessage'>{errors.length > 0 ? " - Login or password is invalid." : ''}</span> </label>
                 <input type='text' value={credential} onChange={(e) => setCredential(e.target.value)} required></input>
             </div>
             <div className='inputGroup'>
-                <label>Password </label>
+                <label className={errors.length > 0 ? 'errorFieldName' : ''}>Password <span className='errorMessage'>{errors.length > 0 ? " - Login or password is invalid." : ''}</span></label>
                 <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required></input>
             </div>
             <div className='inputGroup'>

@@ -20,20 +20,32 @@ function RegisterFormPage() {
         .then(() => {
             dispatch(sessionActions.login({credential: username, password: password}))})
         .catch(async (res) => {
-            setErrors([res.statusText]);
+            let data;
+            try {
+                data = await res.clone.json();
+            } catch {
+                data = await res.text()
+            }
+            if (data?.errors) {
+                setErrors(JSON.parse(data.errors));
+            } else if (data) {
+                setErrors(JSON.parse(data));
+            } else {
+                setErrors([res.statusText]);
+            }
         })
-        // return dispatch(sessionActions.login({credential: username, password: password}))
-
     }
-
 
     return (
         <div id="registerContainer">
             {sessionUser ? <Redirect to="/" /> : ''}
+            <ul>
+                {errors.message}
+            </ul>
             <h1>Create an account</h1>
             <form onSubmit={handleSubmit}>
                 <div className='inputGroup'>
-                    <label>Email</label>
+                    <label className={(errors.length > 0 && !/\S+@\S+\.\S+/.test(email)) ? 'errorFieldName' : ''}>Email <span className='errorMessage'>{(errors.length > 0 && !/\S+@\S+\.\S+/.test(email)) ? '- Not a well formed email address' : ''}</span></label>
                     <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} required></input>
                 </div>
 

@@ -19,6 +19,12 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :servers_owned,
+    foreign_key: :owner_id,
+    class_name: :Server,
+    inverse_of: :owner
+
+
   attr_reader :password
 
   def self.find_by_credentials(cred, pass)
