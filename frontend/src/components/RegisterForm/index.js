@@ -11,42 +11,14 @@ function RegisterFormPage() {
     const [email, setEmail] =  useState('');;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState('');
-    const [parsedErrors,  setParsedErrors] = useState({email: '', username: '', password: ''});
-
-
-    const parseEmail = () => {
-        if ( errors.length && errors.message.includes('Email')) {
-            if (!/\S+@\S+\.\S+/.test(email)) {
-                return  '- Must be a well-formed email address';
-            } else if (email.lengh === 0) {
-                return  'Email must not be blank'
-            } else if (errors.message.includes('taken')) {
-                return "- Email has already been taken"
-            }
-            return ""
-        }
-    }
-
-    const parseUsername = () => {
-        if (username.length < 3) {
-            return 'Username must be at least 3 character'
-        }
-        return ""
-    }
-
-    const parsePassword = () => {
-        if (password.length < 8) {
-            return 'Password must be at least 8 characters';
-        }
-        return ""
-    }
+    const [errors, setErrors] = useState({});
+    const [dummyVar, setDummyVar] = useState('sadasd')
 
     
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([])
+        setErrors({})
         return dispatch(usersActions.addUserToDatabase({email, username, password}))
         .then(() => {
             dispatch(sessionActions.login({credential: username, password: password}))})
@@ -67,12 +39,12 @@ function RegisterFormPage() {
         })
     }
 
-    return (
+     return (
         <div id="registerContainer">
             {sessionUser ? <Redirect to="/" /> : ''}
             <ul>
-                {errors.message}
-                {parsedErrors.asld}
+                {errors.messages}
+
             </ul>
             <h1>Create an account</h1>
             <form onSubmit={handleSubmit}>
