@@ -16,11 +16,14 @@ function RegisterFormPage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([])
-        dispatch(usersActions.addUserToDatabase({email, username, password}))
+        return dispatch(usersActions.addUserToDatabase({email, username, password}))
+        .then(() => {
+            dispatch(sessionActions.login({credential: username, password: password}))})
         .catch(async (res) => {
             setErrors([res.statusText]);
         })
-        return dispatch(sessionActions.login({credential: username, password: password}))
+        // return dispatch(sessionActions.login({credential: username, password: password}))
+
     }
 
 

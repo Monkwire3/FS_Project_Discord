@@ -1,4 +1,5 @@
 import csrfFetch from "./csrfFetch";
+import { storeCurrentUser } from "./session";
 
 const CREATE_USER = 'users/createUser';
 const DELETE_USER = 'users/c'
@@ -17,6 +18,8 @@ const deleteUser = (userId) => {
     }
 }
 
+
+
 export const addUserToDatabase = (user) => async(dispatch) => {
     const {username, email, password} = user;
     const res = await csrfFetch('/api/users/', {
@@ -29,6 +32,7 @@ export const addUserToDatabase = (user) => async(dispatch) => {
     })
 
     const data = await res.json();
+    storeCurrentUser(data.user)
     dispatch(createUser(data));
 
     return res;
