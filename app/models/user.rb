@@ -25,6 +25,17 @@ class User < ApplicationRecord
     class_name: :Server,
     inverse_of: :owner
 
+  has_many :server_connections,
+    foreign_key: :user_id,
+    class_name: :ServerUser
+    
+  has_many :servers_joined,
+    through: :server_connections,
+    source: :servers
+
+
+
+
 
   attr_reader :password
 

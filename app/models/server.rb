@@ -18,6 +18,18 @@ class Server < ApplicationRecord
         class_name: :User,
         inverse_of: :servers_owned
 
+    
+    
+    has_many :user_connections,
+        foreign_key: :server_id,
+        class_name: :ServerUser
+
+
+    has_many :members,
+        through: :user_connections,
+        source: :users
+
+
 
 
 
