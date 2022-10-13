@@ -48,12 +48,12 @@ function RegisterFormPage() {
             <h1>Create an account</h1>
             <form onSubmit={handleSubmit}>
                 <div className='inputGroup'>
-                    <label >Email {errors.length > 0 ? <span className='errorMessage'> - {errors[0].message.slice(54)}</span> : ''}</label>
+                    <label >Email {errors.length > 0 && errors[0].message.includes('Email') ? <span className='errorMessage'> - {errors[0].message.slice(54)}</span> : ''}</label>
                     <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} required></input>
                 </div>
 
                 <div className='inputGroup'>
-                    <label>Username</label>
+                    <label>Username {errors.length > 0 && errors[0].message.includes('Username') ? <span className='errorMessage'> - {errors[0].message.slice(49) }</span> : ''}</label>
                     <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} required></input>
                 </div>
 
