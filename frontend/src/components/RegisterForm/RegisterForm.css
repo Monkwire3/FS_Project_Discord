@@ -8,12 +8,14 @@
     color: #b9b9b9;
     font-family:"ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif; 
     padding: 32px;
+    border-radius: 5px;
 }
 
 label {
     text-transform: uppercase;
     font-weight: 500;
     font-size: small;
+    margin-bottom: 3px;
 }
 
 #registerContainer h1 {
