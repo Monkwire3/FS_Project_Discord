@@ -42,13 +42,14 @@ export const addServertoDatabase = (server) => async(dispatch) => {
     const res = await csrfFetch('/api/servers', {
         method: 'POST',
         body: JSON.stringify({
-            server_name,
+            server_name: server_name,
             owner
         })
     })
 
     const data = await res.json();
     dispatch(createServer(data))
+
 
     return res
 }
@@ -57,7 +58,9 @@ export const fetchServers = () => async(dispatch) => {
     const res = await csrfFetch('/api/servers');
     const data = await res.json();
 
-    return dispatch(receiveServers(data));
+    dispatch(receiveServers(data));
+
+    return data;
 }
 
 

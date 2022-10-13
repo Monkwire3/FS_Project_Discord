@@ -11,11 +11,10 @@ class Api::ServersController < ApplicationController
     end
 
     def create
-        @server = Server.new(server_name: server_params, owner_id: current_user.id)
+        debugger
+        @server = Server.new(server_name: server_params[:server_name], owner: User.find(current_user.id))
 
-        if @server.save!
-            render 'api/servers/show'
-        else
+        if !@server.save!
             render json: { errors: @server.errors.full_messages }
         end
     end
