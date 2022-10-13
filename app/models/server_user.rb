@@ -10,13 +10,6 @@
 #
 class ServerUser < ApplicationRecord
 
-    # has_many :servers,
-    #     foreign_key: :server_id, 
-    #     class_name: :Server
-    
-    # has_many :users,
-    #     foreign_key: :user_id,
-    #     class_name: :User
 
     belongs_to :servers,
         foreign_key: :server_id, 

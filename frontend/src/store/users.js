@@ -2,7 +2,7 @@ import csrfFetch from "./csrfFetch";
 import { storeCurrentUser } from "./session";
 
 const CREATE_USER = 'users/createUser';
-const DELETE_USER = 'users/c'
+const DELETE_USER = 'users/deleteUser';
 
 const createUser = (user) => {
     return {
