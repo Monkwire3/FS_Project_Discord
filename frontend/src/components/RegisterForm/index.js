@@ -11,14 +11,13 @@ function RegisterFormPage() {
     const [email, setEmail] =  useState('');;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState({});
-    const [dummyVar, setDummyVar] = useState('sadasd')
+    const [errors, setErrors] = useState([]);
 
     
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors({})
+        setErrors([])
         return dispatch(usersActions.addUserToDatabase({email, username, password}))
         .then(() => {
             dispatch(sessionActions.login({credential: username, password: password}))})
@@ -30,9 +29,9 @@ function RegisterFormPage() {
                 data = await res.text()
             }
             if (data?.errors) {
-                setErrors(JSON.parse(data.errors));
+                setErrors([JSON.parse(data.errors)]);
             } else if (data) {
-                setErrors(JSON.parse(data));
+                setErrors([JSON.parse(data)]);
             } else {
                 setErrors([res.statusText]);
             }
@@ -43,13 +42,13 @@ function RegisterFormPage() {
         <div id="registerContainer">
             {sessionUser ? <Redirect to="/" /> : ''}
             <ul>
-                {errors.messages}
+                {errors.message}
 
             </ul>
             <h1>Create an account</h1>
             <form onSubmit={handleSubmit}>
                 <div className='inputGroup'>
-                    <label >Email <span className='errorMessage'>{}</span></label>
+                    <label >Email {errors.length > 0 ? <span className='errorMessage'> - {errors[0].message.slice(54)}</span> : ''}</label>
                     <input type='text' value={email} onChange={(e) => setEmail(e.target.value)} required></input>
                 </div>
 
