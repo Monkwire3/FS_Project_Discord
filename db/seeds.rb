@@ -7,4 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-User.create({ username: 'DemoUser', email: 'Demo@email.com', password: 'password'})
+User.create({ username: 'usr', email: 'user@mail.com', password: 'starwars'})
+
+
+10.times do
+    User.create({ username: Faker::Artist.name, email: "#{Faker::Hipster.word}@mail.com", password: 'password'})
+end
+
+
+10.times do
+    Server.create({server_name: Faker::Hipster.word, owner: User.find(rand(1..10)) })
+end

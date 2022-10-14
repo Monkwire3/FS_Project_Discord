@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import csrfFetch from '../../store/csrfFetch';
 import { deleteServer } from '../../store/servers';
+import './ServerListItem.css';
 
 function ServerIndexItem({server}) {
     
@@ -18,8 +19,8 @@ function ServerIndexItem({server}) {
 
     return (
         <li key={server.id}>
-            {server.id} {server.serverName} - owned by: {server.owner.username} {}
-            <span> {}</span>
+            <span className='serverListItem'>{server.serverName}</span> - owned by: {server.owner.username}
+            <span> {sessionUser.id === server.owner.id? <button onClick={handleClick}>Delete Server </button> : ""}</span>
         </li>
     )
 
