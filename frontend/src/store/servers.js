@@ -48,7 +48,8 @@ export const addServertoDatabase = (server) => async(dispatch) => {
     })
 
     const data = await res.json();
-    dispatch(createServer(data))
+    dispatch(createServer(data.server))
+    // debugger
 
 
     return res
@@ -73,13 +74,14 @@ export const deleteServer = serverId => async dispatch => {
 
 
 const serversReducer = (state = {}, action) => {
+    const nextState = {...state};
     switch (action.type) {
         case CREATE_SERVER:
-            return { ...state, server: action.payload }
+            // nextState[action.payload.id] = action.payload
+            return nextState
         case RECEIVE_SERVERS:
             return {...state, ...action.payload}
         case DELETE_SERVER:
-            const nextState = {...state}
             delete nextState[action.serverId]
             return nextState
         default:

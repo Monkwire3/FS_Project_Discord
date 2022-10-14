@@ -25,7 +25,7 @@ export const storeCSRFToken = (res) => {
 
 export const storeCurrentUser = (user) => {
     if (user) {
-    sessionStorage.setItem('currentUser', JSON.stringify(user))
+        sessionStorage.setItem('currentUser', JSON.stringify(user))
     } else {
         sessionStorage.removeItem('currentUser')
     }
@@ -51,6 +51,7 @@ export const login = (user) => async (dispatch) => {
     });
 
     const data = await res.json();
+    storeCurrentUser(data.user)
     dispatch(setCurrentUser(data.user));
     return res
 }
@@ -60,6 +61,8 @@ export const logout = () => async (dispatch) => {
         method: 'DELETE'
     })
 
+    sessionStorage.removeItem('currentUser')
+    sessionStorage.removeItem('X-CSRF-Token')
     const data = await res.json();
     dispatch(removeCurrentUser());
     return res;
