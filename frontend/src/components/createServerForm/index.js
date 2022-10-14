@@ -41,7 +41,7 @@ function CreateServerForm() {
     return (
         <div id='createServerFormContainer'>
             {sessionUser ? '' : <Redirect to='/register' /> }
-            {submitted ? <Redirect to='/' /> : ''}
+            {submitted ? <Redirect to='/servers' /> : ''}
             <h1>Create Server Form</h1>
             <form onSubmit={handleSubmit}>
                 <div className='inputGroup'>
