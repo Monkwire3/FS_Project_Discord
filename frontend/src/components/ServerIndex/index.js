@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import * as serversActions from '../../store/servers';
+import * as serverActions from '../../store/servers';
 import { useDispatch, useSelector  } from 'react-redux'; 
 import { Redirect } from 'react-router-dom';
 import ServerIndexItem from '../serverIndexItem';
@@ -12,13 +12,16 @@ function ServerIndex() {
     const dispatch = useDispatch();
 
 
-    const servers = useSelector(serversActions.getServers);
+    const servers = useSelector(serverActions.getServers);
 
+    // const [serversState, setServersState] = useState('')
+
+    // if (servers) setServersState(servers)
 
     useEffect(() => {
-        dispatch(serversActions.fetchServers());
+        dispatch(serverActions.fetchServers());
       
-    }, [dispatch])
+    }, [])
 
     const serverListItems = servers.map((server) => <ServerIndexItem server={server}/>)
 
