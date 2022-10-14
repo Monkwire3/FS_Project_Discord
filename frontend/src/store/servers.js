@@ -13,7 +13,7 @@ const createServer = (server) => {
     }
 }
 
-const deleteServer = (serverId) => {
+const removeServer = (serverId) => {
     return {
         type: DELETE_SERVER,
         serverId: serverId
@@ -63,6 +63,14 @@ export const fetchServers = () => async(dispatch) => {
     return data;
 }
 
+export const deleteServer = serverId => async dispatch => {
+    const res = await csrfFetch(`/api/servers/${serverId}`, {
+        method: 'DELETE'
+    })
+
+    dispatch(removeServer(serverId));
+}
+
 
 const serversReducer = (state = {}, action) => {
     switch (action.type) {
@@ -70,6 +78,10 @@ const serversReducer = (state = {}, action) => {
             return { ...state, server: action.payload }
         case RECEIVE_SERVERS:
             return {...state, ...action.payload}
+        case DELETE_SERVER:
+            const nextState = {...state}
+            delete nextState[action.serverId]
+            return nextState
         default:
             return state
     }

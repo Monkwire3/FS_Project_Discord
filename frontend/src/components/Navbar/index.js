@@ -3,6 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './Navbar.css'
+import { Link } from "react-router-dom";
 
 
 function Navbar() {
@@ -24,8 +25,14 @@ function Navbar() {
 
     return (
         <nav>
+            <div id='nav-links'>
+                <Link to='/servers'>Server List</Link>
+                <Link to='/servers/new'>Create Server</Link>
+            </div>
+            <div id='nav-login'>
             <div>{navText}</div>
             {sessionUser ? <button onClick={handleClick}>Log out</button> : <button><a href="/login">Log In</a></button>}
+            </div>
         </nav>
     )
 }
