@@ -27,7 +27,7 @@ function ServerIndex() {
 
     return (
         <div id='serverIndex'>
-            <h1>Server Index</h1>
+            <h1>Servers</h1>
             <ul>{serverListItems}</ul>
             <form></form>
 
