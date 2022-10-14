@@ -14,9 +14,6 @@ function ServerIndex() {
 
     const servers = useSelector(serverActions.getServers);
 
-    // const [serversState, setServersState] = useState('')
-
-    // if (servers) setServersState(servers)
 
     useEffect(() => {
         dispatch(serverActions.fetchServers());

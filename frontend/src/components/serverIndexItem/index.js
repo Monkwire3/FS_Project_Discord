@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import csrfFetch from '../../store/csrfFetch';
-import { deleteServer } from '../../store/servers';
+import { deleteServer, fetchServers } from '../../store/servers';
 import './ServerListItem.css';
 
 function ServerIndexItem({server}) {
@@ -10,8 +10,6 @@ function ServerIndexItem({server}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
-    
-    console.log('server index: ', server)
 
     function handleClick() {
         dispatch(deleteServer(server.id))

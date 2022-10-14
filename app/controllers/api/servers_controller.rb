@@ -24,6 +24,7 @@ class Api::ServersController < ApplicationController
         if @server
             if @server.owner == current_user
                 @server.delete()
+                render json: {message: 'server successfully deleted'}
             end
         else
             render json { errors; @server.errors.full_messages}
