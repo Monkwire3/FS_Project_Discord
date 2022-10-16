@@ -17,13 +17,11 @@ function App() {
       </Route>
       
       <Route path="/">
-        <Navbar />
-      <Route exact path="/servers/new">
-        <CreateServerForm />
-
-      </Route>
-      <Route exact path="/servers">
         <ServerIndex />
+      <Route path="/servers/new">
+        <CreateServerForm />
+      </Route>
+      <Route path="/servers">
       </Route>
       </Route>
     </Switch>
