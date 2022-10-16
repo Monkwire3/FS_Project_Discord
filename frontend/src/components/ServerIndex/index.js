@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import ServerIndexItem from '../serverIndexItem';
 import { useState } from 'react';
 import './ServerIndex.css'
+import { Link } from 'react-router-dom';
 
 
 
@@ -24,8 +25,8 @@ function ServerIndex() {
 
     return (
         <div id='serverIndex'>
-            <h1>Servers</h1>
-            <ul>{serverListItems}</ul>
+            {serverListItems}
+            <div className='serverListItem'><Link to='/servers/new'>+</Link></div>
             <form></form>
 
         </div>

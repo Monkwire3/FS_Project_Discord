@@ -3,23 +3,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import csrfFetch from '../../store/csrfFetch';
 import { deleteServer, fetchServers } from '../../store/servers';
 import './ServerListItem.css';
+import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 function ServerIndexItem({server}) {
     
-
-    const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-
-
-    function handleClick() {
-        dispatch(deleteServer(server.id))
+    function handleClick(e) {
+        console.log(`Server ${e} clicked.`)
     }
 
     return (
-        <li key={server.id}>
-            <span className='serverListItem'>{server.serverName}</span> - owned by: {server.owner.username}
-            <span> {sessionUser.id === server.owner.id? <button onClick={handleClick}>Delete Server </button> : ""}</span>
-        </li>
+        <div className='serverListItem' key={server.id}>
+            <span>{server.serverName.slice(0, 1)}</span>
+        </div>
     )
 
 }
