@@ -13,6 +13,7 @@ function LeftSidebar() {
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    const servers = useSelector(state => state.servers)
     // const channels = useSelector(channelActions.getChannels())
 
 
@@ -27,7 +28,6 @@ function LeftSidebar() {
 
     // const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
 
-    debugger
     return (
         <div id="leftSidebar">
             <div id='channels'>

@@ -1,7 +1,8 @@
 class Api::ChannelsController < ApplicationController
     def index
-        @channels = Channel.where(serverId: params[:serverId]);
-        debugger
+        @channels = Channel.where(server_id: params[:server_id]);
+        puts 'CHANNELS ============================================================'
+        puts @channels
         render 'api/channels/index'
     end
 
