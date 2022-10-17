@@ -14,7 +14,7 @@ function ServerIndexItem({server}) {
     }
 
     return (
-        <Link to={`/channels/2`}>
+        <Link to={`/servers/${server.id}`}>
             <div className='serverListItem' key={server.id}>
             <span>{server.serverName.slice(0, 1)}</span>
         </div>

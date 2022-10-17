@@ -5,7 +5,7 @@ import * as sessionActions from '../../store/session'
 import './LeftSidebar.css'
 import * as channelActions from '../../store/channels';
 import ChannelListItem from '../channelListItem';
-import { getServer } from '../../store/servers';
+import * as serverActions from '../../store/servers';
 
 
 function LeftSidebar() {
@@ -13,26 +13,29 @@ function LeftSidebar() {
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const servers = useSelector(state => state.servers)
-    // const channels = useSelector(channelActions.getChannels())
+    const currentServer = useSelector(serverActions.getServer(id))
+    const channels = useSelector(channelActions.getChannels)
 
 
     useEffect(() => {
-        dispatch(channelActions.fetchChannels())
+        dispatch(channelActions.fetchChannels(id))
+        dispatch(serverActions.fetchServer(id));
     }, [])
+
 
 
     function logout() {
         return dispatch(sessionActions.logout())
     }
 
-    // const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
+    const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
+    debugger
 
     return (
         <div id="leftSidebar">
             <div id='channels'>
-                <div id='channelsHeader'>{id}</div>
-                {/* {channelListItems} */}
+                <div id='channelsHeader'>{currentServer.serverName}</div>
+                {channelListItems}
             </div>
             <div id='userBar'>
                 <div id='nameTag'><div id='userIcon'></div><div id='nameDisplay'>{sessionUser.username}</div></div>
