@@ -16,6 +16,11 @@ function App() {
       </Route>
       <Route path="/register">
         <RegisterFormPage />
+      </Route>  
+      <Route path='/channels/:id'>
+        <ServerIndex />
+        <LeftSidebar />
+        <ServerShow />
       </Route>
       
       <Route path="/">
@@ -25,6 +30,7 @@ function App() {
       <Route path="/servers/new">
         <CreateServerForm />
       </Route>
+
       </Route>
     </Switch>
     </>

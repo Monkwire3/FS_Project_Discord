@@ -57,12 +57,22 @@
 }
 
 
-
-
 #userSettings svg {
     height: 25px;
     width: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+#channelsHeader {
+    height: 48px;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+}
+
+#channelsHeader:hover {
+    background-color: #3c3f45;
+    cursor: pointer;
 }

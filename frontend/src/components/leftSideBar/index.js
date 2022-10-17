@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import * as sessionActions from '../../store/session'
 import './LeftSidebar.css'
 
 
 function LeftSidebar() {
+    const { id } = useParams();
+
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
@@ -15,7 +17,9 @@ function LeftSidebar() {
 
     return (
         <div id="leftSidebar">
-            <div id='channels'></div>
+            <div id='channels'>
+                <div id='channelsHeader'>{id}</div>
+            </div>
             <div id='userBar'>
                 <div id='nameTag'><div id='userIcon'></div><div id='nameDisplay'>{sessionUser.username}</div></div>
                 <div id='userMenus'>
