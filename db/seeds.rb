@@ -15,6 +15,7 @@ User.create({ username: 'usr', email: 'user@mail.com', password: 'starwars'})
 end
 
 
-10.times do
+10.times do |i|
     Server.create({server_name: Faker::Hipster.word, owner: User.find(rand(1..10)) })
+    5.times { Channel.create({channel_name: Faker::Hipster.word, server_id: i}) }
 end
