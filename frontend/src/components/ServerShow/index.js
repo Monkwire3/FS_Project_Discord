@@ -1,4 +1,5 @@
 import React from 'react';
+import './ServerShow.css'
 
 
 
@@ -15,3 +16,5 @@ function ServerShow() {
         </div>
     )
 }
+
+export default ServerShow;
