@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import Navbar from "./components/Navbar";
 import RegisterFormPage from "./components/RegisterForm";
 import ServerIndex from "./components/ServerIndex";
+import ServerShow from "./components/ServerShow";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/">
         <ServerIndex />
         <LeftSidebar />
+        <ServerShow />
       <Route path="/servers/new">
         <CreateServerForm />
       </Route>
