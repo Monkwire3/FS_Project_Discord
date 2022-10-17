@@ -6,32 +6,31 @@ import Navbar from "./components/Navbar";
 import RegisterFormPage from "./components/RegisterForm";
 import ServerIndex from "./components/ServerIndex";
 import ServerShow from "./components/ServerShow";
+import Home from './components/Home'
 
 function App() {
   return (
     <>
     <Switch>
-      <Route path="/login">
+      <Route exact path="/login">
         <LoginFormPage />
       </Route>
-      <Route path="/register">
+      <Route exact path="/register">
         <RegisterFormPage />
       </Route>  
-      <Route path='/channels/:id'>
+      <Route path='/servers/:id'>
         <ServerIndex />
         <LeftSidebar />
         <ServerShow />
       </Route>
       
-      <Route path="/">
-        <ServerIndex />
-        <LeftSidebar />
-        <ServerShow />
+      {/* <Route path="/">
+        <Home />
+      </Route> */}
       <Route path="/servers/new">
         <CreateServerForm />
       </Route>
 
-      </Route>
     </Switch>
     </>
 

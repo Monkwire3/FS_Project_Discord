@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import * as sessionActions from '../../store/session'
 import './LeftSidebar.css'
+import * as channelActions from '../../store/channels';
+import ChannelListItem from '../channelListItem';
+import { getServer } from '../../store/servers';
 
 
 function LeftSidebar() {
@@ -10,15 +13,26 @@ function LeftSidebar() {
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    // const channels = useSelector(channelActions.getChannels())
+
+
+    useEffect(() => {
+        dispatch(channelActions.fetchChannels())
+    }, [])
+
 
     function logout() {
         return dispatch(sessionActions.logout())
     }
 
+    // const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
+
+    debugger
     return (
         <div id="leftSidebar">
             <div id='channels'>
                 <div id='channelsHeader'>{id}</div>
+                {/* {channelListItems} */}
             </div>
             <div id='userBar'>
                 <div id='nameTag'><div id='userIcon'></div><div id='nameDisplay'>{sessionUser.username}</div></div>
