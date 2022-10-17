@@ -30,6 +30,11 @@ class Server < ApplicationRecord
         source: :users
 
 
+    has_many :channels,
+        foreign_key: :server_id,
+        class_name: :Channel
+
+
 
 
 
