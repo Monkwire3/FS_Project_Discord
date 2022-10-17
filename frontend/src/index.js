@@ -10,6 +10,7 @@ import csrfFetch, { restoreCSRF } from './store/csrfFetch';
 import * as sessionActions from './store/session';
 import * as usersActions from './store/users';
 import serversReducer, * as serversActions from './store/servers';
+import channelsReducer, * as channelActions from './store/channels'
 
 
 const store = configureStore();
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
   window.usersActions = usersActions;
   window.serversActions = serversActions;
+  window.channelActions = channelActions;
 }
 
 const renderApplication = () => {

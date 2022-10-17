@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk'
+import channelsReducer from './channels';
 import serversReducer from './servers';
 import sessionReducer from './session';
 import usersReducer from './users';
@@ -9,7 +10,8 @@ import usersReducer from './users';
 const rootReducer = combineReducers({
   session: sessionReducer,
   users: usersReducer,
-  servers: serversReducer
+  servers: serversReducer,
+  channels: channelsReducer
 })
 
 let enhancer;
