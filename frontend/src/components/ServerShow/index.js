@@ -1,10 +1,12 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import './ServerShow.css'
 
 
 
 
 function ServerShow() {
+    const { id } = useParams();
 
     return (
         <div id='serverShowContainer'>
