@@ -64,6 +64,15 @@ export const fetchServers = () => async(dispatch) => {
     return data;
 }
 
+export const fetchServer = (serverId) => async(dispatch) => {
+    const res = await csrfFetch(`/api/servers/${serverId}`);
+    const data = await res.json();
+
+    dispatch(receiverServer(data));
+
+    return data;
+}
+
 export const deleteServer = serverId => async dispatch => {
     const res = await csrfFetch(`/api/servers/${serverId}`, {
         method: 'DELETE'
@@ -81,6 +90,9 @@ const serversReducer = (state = {}, action) => {
             return nextState
         case RECEIVE_SERVERS:
             return {...state, ...action.payload}
+        // case RECEIVE_SERVER:
+        //     nextState['currentServer'] = action.payload;
+        //     return nextState;
         case DELETE_SERVER:
             delete nextState[action.serverId]
             return nextState

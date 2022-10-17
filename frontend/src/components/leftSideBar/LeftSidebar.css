@@ -70,6 +70,13 @@
     height: 48px;
     box-sizing: border-box;
     border-bottom: 1px solid black;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    font-family: Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif;
+
 }
 
 #channelsHeader:hover {
