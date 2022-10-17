@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import CreateServerForm from "./components/createServerForm";
+import LeftSidebar from "./components/leftSideBar";
 import LoginFormPage from "./components/LoginFormPage";
 import Navbar from "./components/Navbar";
 import RegisterFormPage from "./components/RegisterForm";
@@ -18,10 +19,9 @@ function App() {
       
       <Route path="/">
         <ServerIndex />
+        <LeftSidebar />
       <Route path="/servers/new">
         <CreateServerForm />
-      </Route>
-      <Route path="/servers">
       </Route>
       </Route>
     </Switch>

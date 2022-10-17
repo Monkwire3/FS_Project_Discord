@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 function ServerIndex() {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
 
 
     const servers = useSelector(serverActions.getServers);
