@@ -29,12 +29,11 @@ function LeftSidebar() {
     }
 
     const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
-    debugger
 
     return (
         <div id="leftSidebar">
             <div id='channels'>
-                <div id='channelsHeader'>{currentServer.serverName}</div>
+                <div id='channelsHeader'>{currentServer ? currentServer.serverName : ''}</div>
                 {channelListItems}
             </div>
             <div id='userBar'>
