@@ -20,8 +20,11 @@ class Api::ServersController < ApplicationController
     end
 
     def update
-        if @server.update(server_params)
-            render :show
+        @server = Server.find(params[:id])
+        if @server
+            if @server.update(server_params)
+                render :show
+            end
         else
             render json: @server.errors.full_messages, status: 422
         end

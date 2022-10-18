@@ -8,6 +8,7 @@ import ServerIndex from "./components/ServerIndex";
 import ServerShow from "./components/ServerShow";
 import Home from './components/Home'
 import ServerFull from "./components/ServerFull";
+import EditServerForm from "./components/EditServerForm";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
       <Route exact path="/register">
         <RegisterFormPage />
       </Route>  
+      <Route exact path="/servers/:id/edit">
+        <EditServerForm />
+      </Route>
       <Route path="/servers/new">
         <CreateServerForm />
       </Route>
