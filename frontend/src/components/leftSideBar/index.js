@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Redirect, useParams } from 'react-router-dom';
 import * as sessionActions from '../../store/session'
 import './LeftSidebar.css'
 import * as channelActions from '../../store/channels';
@@ -15,20 +15,24 @@ function LeftSidebar() {
     const sessionUser = useSelector(state => state.session.user);
     const currentServer = useSelector(serverActions.getServer(id))
     const channels = useSelector(channelActions.getChannels)
-
-
+    // On mount
     useEffect(() => {
         dispatch(channelActions.fetchChannels(id))
         dispatch(serverActions.fetchServer(id));
     }, [])
+
+    // On currentServer change
+    useEffect(() => {
+        dispatch(channelActions.fetchChannels(id))
+    }, [currentServer])
 
 
 
     function logout() {
         return dispatch(sessionActions.logout())
     }
-
     const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
+
 
     return (
         <div id="leftSidebar">

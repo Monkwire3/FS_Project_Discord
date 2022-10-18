@@ -7,11 +7,13 @@ import RegisterFormPage from "./components/RegisterForm";
 import ServerIndex from "./components/ServerIndex";
 import ServerShow from "./components/ServerShow";
 import Home from './components/Home'
+import ServerFull from "./components/ServerFull";
 
 function App() {
   return (
     <>
     <Switch>
+
       <Route exact path="/login">
         <LoginFormPage />
       </Route>
@@ -19,14 +21,13 @@ function App() {
         <RegisterFormPage />
       </Route>  
       <Route path='/servers/:id'>
-        <ServerIndex />
-        <LeftSidebar />
-        <ServerShow />
+        <ServerFull />
       </Route>
-      
-      {/* <Route path="/">
+      <Route path='/'>
         <Home />
-      </Route> */}
+      </Route>
+       
+
       <Route path="/servers/new">
         <CreateServerForm />
       </Route>
