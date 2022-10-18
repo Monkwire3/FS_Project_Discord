@@ -6,6 +6,7 @@ import './LeftSidebar.css'
 import * as channelActions from '../../store/channels';
 import ChannelListItem from '../channelListItem';
 import * as serverActions from '../../store/servers';
+import { useState } from 'react';
 
 
 function LeftSidebar() {
@@ -26,7 +27,16 @@ function LeftSidebar() {
         dispatch(channelActions.fetchChannels(id))
     }, [currentServer])
 
+    const [dropDownDisplay, setDropDownDisplay] = useState('dropDownMenu hidden');
 
+
+    function handleDropdown() {
+        if (dropDownDisplay === 'none') {
+            setDropDownDisplay(' dropDownMenu');
+        } else {
+            setDropDownDisplay('dropDownMenu hidden');
+        }
+    }
 
     function logout() {
         return dispatch(sessionActions.logout())
@@ -39,7 +49,7 @@ function LeftSidebar() {
             <div id='channels'>
                 <div id='channelsHeader'>
                     <div>{currentServer ? currentServer.serverName : ''}</div>
-                    <div>
+                    <div onClick={handleDropdown} id="dropDownToggle">
                         <svg className='dropIcon' width={18} height={18}>
                             <g fill='none' fill-rule="evenodd">
                             <path d="M0 0h18v18H0"></path>
@@ -47,7 +57,16 @@ function LeftSidebar() {
                             <path stroke="#d8d9da" d="M13.5 4.5l-9 9" stroke-linecap="round"></path>
                             </g>
                         </svg>
+                        <div className={`${dropDownDisplay}`}>
+                        <div className='dropDownItem'>Drop item 1</div>
+                        <div className='dropDownItem'>Drop item 2</div>
                     </div>
+                    </div>
+
+
+
+                    
+           
                 </div>
                 {channelListItems}
             </div>
