@@ -43,7 +43,22 @@ const editServerAction = (server, serverId) => {
     }
 }
 
-export const getServer = serverId => ({servers}) => servers ? servers[serverId] : null;
+// export const getServer = serverId => ({servers}) => servers ? servers[serverId] : null;
+
+
+export const getServer = serverId => ({servers}) => {
+    if (servers) {
+        for (let i = 0; i < Object.values(servers); i++){
+            if (`${Object.values(servers[i]).id}` === `${serverId}`) {
+                debugger
+                return servers[i];
+            }
+        }
+    }
+    return null;
+}
+
+
 export const getServers = ({ servers }) => servers ? Object.values(servers) : [];
 
 export const addServertoDatabase = (server) => async(dispatch) => {
@@ -64,7 +79,6 @@ export const addServertoDatabase = (server) => async(dispatch) => {
 }
 
 export const editServer = (server) => async(dispatch) => {
-    debugger
     const {server_name} = server;
     const res = await csrfFetch(`/api/servers/${server.id}`, {
         method: 'PUT',
@@ -118,6 +132,7 @@ const serversReducer = (state = {}, action) => {
         case DELETE_SERVER:
             delete nextState[action.serverId]
             return nextState
+
         default:
             return state
     }
