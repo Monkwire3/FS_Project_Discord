@@ -15,5 +15,8 @@
   "license": "ISC",
   "engines": {
     "node": "16.x"
+  },
+  "dependencies": {
+    "redux-logger": "^3.0.6"
   }
 }
