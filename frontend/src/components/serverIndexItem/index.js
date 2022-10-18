@@ -7,11 +7,7 @@ import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 function ServerIndexItem({server}) {
-    
-    function handleClick(e) {
-        console.log('clicked server')
-        console.log(`Server ${e} clicked.`)
-    }
+
 
     return (
         <Link to={`/servers/${server.id}`}>

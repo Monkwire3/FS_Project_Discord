@@ -22,8 +22,6 @@ function ServerIndex() {
     }, [])
 
 
-
-
     const serverListItems = servers.map((server) => <ServerIndexItem server={server}/>)
 
     return (

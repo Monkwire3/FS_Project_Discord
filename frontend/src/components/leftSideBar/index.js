@@ -15,12 +15,15 @@ function LeftSidebar() {
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const currentServer = useSelector(serverActions.getServer(id))
+    const servers = useSelector(serverActions.getServers)
     const channels = useSelector(channelActions.getChannels)
+
+    const [currentServer, setCurrentServer] = useState(servers.filter(server => `${server.id}` === id))
+
     // On mount
     useEffect(() => {
-        dispatch(channelActions.fetchChannels(id))
-        dispatch(serverActions.fetchServer(id));
+        dispatch(channelActions.fetchChannels())
+        dispatch(serverActions.fetchServers())
     }, [])
 
     // On currentServer change
@@ -28,8 +31,14 @@ function LeftSidebar() {
         dispatch(channelActions.fetchChannels(id))
     }, [currentServer])
 
+    useEffect(() => {
+        setCurrentServer(servers.filter(server => `${server.id}` === id)[0])
+    }, [id])
+
     const [dropDownDisplay, setDropDownDisplay] = useState(false);
 
+
+    console.log('current server: ', currentServer)
 
     function toggleDropDown() {
         if (dropDownDisplay) {
@@ -52,10 +61,10 @@ function LeftSidebar() {
                     <div>{currentServer ? currentServer.serverName : ''}</div>
                     <div id="dropDownToggle">
                         <svg className='dropIcon' width={18} height={18}>
-                            <g fill='none' fill-rule="evenodd">
+                            <g fill='none' fillRule="evenodd">
                             <path d="M0 0h18v18H0"></path>
-                            <path stroke="#d8d9da" d="M4.5 4.5l9 9" stroke-linecap="round"></path>
-                            <path stroke="#d8d9da" d="M13.5 4.5l-9 9" stroke-linecap="round"></path>
+                            <path stroke="#d8d9da" d="M4.5 4.5l9 9" strokeLinecap="round"></path>
+                            <path stroke="#d8d9da" d="M13.5 4.5l-9 9" strokeLinecap="round"></path>
                             </g>
                         </svg>
                     </div>
