@@ -37,7 +37,18 @@ function LeftSidebar() {
     return (
         <div id="leftSidebar">
             <div id='channels'>
-                <div id='channelsHeader'>{currentServer ? currentServer.serverName : ''}</div>
+                <div id='channelsHeader'>
+                    <div>{currentServer ? currentServer.serverName : ''}</div>
+                    <div>
+                        <svg className='dropIcon' width={18} height={18}>
+                            <g fill='none' fill-rule="evenodd">
+                            <path d="M0 0h18v18H0"></path>
+                            <path stroke="#d8d9da" d="M4.5 4.5l9 9" stroke-linecap="round"></path>
+                            <path stroke="#d8d9da" d="M13.5 4.5l-9 9" stroke-linecap="round"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
                 {channelListItems}
             </div>
             <div id='userBar'>

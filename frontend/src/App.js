@@ -20,17 +20,19 @@ function App() {
       <Route exact path="/register">
         <RegisterFormPage />
       </Route>  
+      <Route path="/servers/new">
+        <CreateServerForm />
+      </Route>
       <Route path='/servers/:id'>
         <ServerFull />
       </Route>
+
+  
       <Route path='/'>
         <Home />
       </Route>
        
 
-      <Route path="/servers/new">
-        <CreateServerForm />
-      </Route>
 
     </Switch>
     </>
