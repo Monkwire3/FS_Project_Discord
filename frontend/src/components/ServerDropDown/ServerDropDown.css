@@ -1,0 +1,46 @@
+#dropDownContainer {
+    position:  fixed;
+    top: 55px;
+    left: 80px;
+
+    height: 280px;
+    width: 220px;
+    background-color: #18191c;
+    color: #b9bbbe;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-top: 6px;
+    padding-left: 8px;
+    border-radius: 4px;
+    
+}
+
+.dropDownItem {
+    height: 18px;
+    line-height: 18px;
+    font-size: 14px;
+    width: 97%;
+}
+
+.dropDownItem:hover {
+    background-color: #4752c4;
+}
+
+.dropDownGroup {
+    border-bottom: 1px solid #b9bbbe;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: auto;
+    flex-grow: 1;
+}
+
+.dropDownGroupEnd {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

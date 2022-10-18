@@ -5,6 +5,7 @@ const CREATE_SERVER = 'servers/createServer';
 const DELETE_SERVER = 'servers/deleteServer';
 const RECEIVE_SERVER = 'servers/receiveServer';
 const RECEIVE_SERVERS = 'servers/recieveServer';
+const EDIT_SERVER = 'servers/editServer';
 
 const createServer = (server) => {
     return {
@@ -34,6 +35,14 @@ const receiverServer = (server) => {
     }
 }
 
+const editServerAction = (server, serverId) => {
+    return {
+        type: EDIT_SERVER,
+        serverId: serverId,
+        payload: server
+    }
+}
+
 export const getServer = serverId => ({servers}) => servers ? servers[serverId] : null;
 export const getServers = ({ servers }) => servers ? Object.values(servers) : [];
 
@@ -49,10 +58,23 @@ export const addServertoDatabase = (server) => async(dispatch) => {
 
     const data = await res.json();
     dispatch(createServer(data.server))
-    // debugger
 
 
     return res
+}
+
+export const editServer = (server) => async(dispatch) => {
+    debugger
+    const {server_name} = server;
+    const res = await csrfFetch(`/api/servers/${server.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            server_name: server_name
+        })
+    })
+
+    const data = await res.json();
+    dispatch(editServerAction(data.server))
 }
 
 export const fetchServers = () => async(dispatch) => {
@@ -90,9 +112,9 @@ const serversReducer = (state = {}, action) => {
             return nextState
         case RECEIVE_SERVERS:
             return {...state, ...action.payload}
-        // case RECEIVE_SERVER:
-        //     nextState['currentServer'] = action.payload;
-        //     return nextState;
+        case EDIT_SERVER:
+            nextState[action.serverId] = action.payload
+            return nextState
         case DELETE_SERVER:
             delete nextState[action.serverId]
             return nextState

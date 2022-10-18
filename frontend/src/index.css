@@ -12,11 +12,3 @@
     color: rgb(243, 134, 136);
 }
 
-.dropDownMenu {
-    position: fixed;
-    background-color: brown;
-}
-
-.hidden {
-    display: none;
-}

@@ -7,6 +7,7 @@ import * as channelActions from '../../store/channels';
 import ChannelListItem from '../channelListItem';
 import * as serverActions from '../../store/servers';
 import { useState } from 'react';
+import ServerDropDown from '../ServerDropDown';
 
 
 function LeftSidebar() {
@@ -27,14 +28,14 @@ function LeftSidebar() {
         dispatch(channelActions.fetchChannels(id))
     }, [currentServer])
 
-    const [dropDownDisplay, setDropDownDisplay] = useState('dropDownMenu hidden');
+    const [dropDownDisplay, setDropDownDisplay] = useState(false);
 
 
-    function handleDropdown() {
-        if (dropDownDisplay === 'none') {
-            setDropDownDisplay(' dropDownMenu');
+    function toggleDropDown() {
+        if (dropDownDisplay) {
+            setDropDownDisplay(false);
         } else {
-            setDropDownDisplay('dropDownMenu hidden');
+            setDropDownDisplay(true);
         }
     }
 
@@ -47,9 +48,9 @@ function LeftSidebar() {
     return (
         <div id="leftSidebar">
             <div id='channels'>
-                <div id='channelsHeader'>
+                <div onClick={toggleDropDown} id='channelsHeader'>
                     <div>{currentServer ? currentServer.serverName : ''}</div>
-                    <div onClick={handleDropdown} id="dropDownToggle">
+                    <div id="dropDownToggle">
                         <svg className='dropIcon' width={18} height={18}>
                             <g fill='none' fill-rule="evenodd">
                             <path d="M0 0h18v18H0"></path>
@@ -57,11 +58,8 @@ function LeftSidebar() {
                             <path stroke="#d8d9da" d="M13.5 4.5l-9 9" stroke-linecap="round"></path>
                             </g>
                         </svg>
-                        <div className={`${dropDownDisplay}`}>
-                        <div className='dropDownItem'>Drop item 1</div>
-                        <div className='dropDownItem'>Drop item 2</div>
                     </div>
-                    </div>
+                    {dropDownDisplay ? <ServerDropDown /> : ''}
 
 
 
