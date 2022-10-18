@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 
 function ServerIndex() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
 
 
     const servers = useSelector(serverActions.getServers);
@@ -27,8 +26,7 @@ function ServerIndex() {
     return (
         <div id='serverIndex'>
             {serverListItems}
-            <div className='serverListItem'><Link to='/servers/new'>+</Link></div>
-            <form></form>
+            <Link to='/servers/new'><div className='serverListItem'>+</div></Link>
 
         </div>
     )
