@@ -40,12 +40,17 @@
     flex-direction: column;
 }
 
-svg {
-    height: 24px;
-    width: 24px;
-}
 
 .createInvite svg {
     height: 13px;
     width: 16px;
+}
+
+svg.plus {
+    height: 15px;
+    width: 15px;
+}
+
+.options {
+    display: flex;
 }

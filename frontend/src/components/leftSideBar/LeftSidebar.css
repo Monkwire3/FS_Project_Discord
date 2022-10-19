@@ -89,3 +89,24 @@
     width: 18px;
 
 }
+
+
+.channelHeaderTextBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 10px;
+    color: #96989d;
+    font-family: Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+.plusSvg {
+    width: 12px;
+    height: 12px;
+}
+
+.plusSvg svg {
+    width: 15px;
+    height: 15px;
+}
