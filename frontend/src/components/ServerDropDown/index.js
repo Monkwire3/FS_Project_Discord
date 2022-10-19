@@ -29,7 +29,7 @@ function ServerDropDown() {
                 <div className="dropDownItem">Spacer</div>
             </div>
             <div className="dropDownGroup">
-                <div className="dropDownItem"><a href={`/servers/${id}/edit`}>Edit Server</a></div>
+               <a href={`/servers/${id}/edit`}> <div className="dropDownItem">Edit Server</div></a>
             </div>
             <div className="dropDownGroupEnd">
                 <div onClick={handleDeleteServer} className="dropDownItem">Delete Server</div>
