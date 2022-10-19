@@ -11,6 +11,7 @@ import * as sessionActions from './store/session';
 import * as usersActions from './store/users';
 import serversReducer, * as serversActions from './store/servers';
 import channelsReducer, * as channelActions from './store/channels'
+import { ModalProvider } from './context/Modal';
 
 
 const store = configureStore();
@@ -36,11 +37,13 @@ const renderApplication = () => {
 
 function Root() {
   return (
+    <ModalProvider>
     <Provider store={store}>
       <BrowserRouter>
       <App />
       </BrowserRouter>
     </Provider>
+    </ModalProvider>
   )
 }
 

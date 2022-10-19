@@ -3,6 +3,7 @@ import { useState } from "react";
 import * as channelActions from '../../store/channels'
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
+import './CreateChannelForm.css'
 
 function CreateChannelForm({server}) {
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ function CreateChannelForm({server}) {
 
 
     return (
-        <form onSu>
+        <form id="createChannelFormContainer" onSubmit={handleSubmit}>
             {submitted ? <Redirect to={`/servers/${server.id}`} /> : ''}
             <div className="inputGroup">
                 <input type='text' value={channelName} onChange={(e) => setChannelName(e.target.value)} required></input>
