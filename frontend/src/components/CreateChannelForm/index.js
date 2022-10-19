@@ -5,17 +5,17 @@ import * as channelActions from '../../store/channels'
 function CreateChannelForm({server}) {
 
 
-    const [channelName, setChannelName] = useState();
+    const [channelName, setChannelName] = useState('');
 
 
-    function handleSubmit() {
-        console.log('submit')
+    function handleSubmit(e) {
+        e.preventDefault()
     }
 
     return (
         <form>
             <div className="inputGroup">
-                <input type='text' value={channelName} onChange={setChannelName((e) => setChannelName(e.target.value))} required></input>
+                <input type='text' value={channelName} onChange={(e) => setChannelName(e.target.value)} required></input>
             </div>
             <div className="inputGroup">
                 <button>Add Channel</button>
@@ -27,3 +27,5 @@ function CreateChannelForm({server}) {
 
 
 }
+
+export default CreateChannelForm;
