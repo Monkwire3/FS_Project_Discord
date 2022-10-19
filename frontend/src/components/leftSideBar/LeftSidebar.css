@@ -110,3 +110,7 @@
     width: 15px;
     height: 15px;
 }
+
+.plusSvg:hover {
+    fill: #ffff;
+}
