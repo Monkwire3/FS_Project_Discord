@@ -6,6 +6,7 @@ import ServerIndexItem from '../serverIndexItem';
 import { useState } from 'react';
 import './ServerIndex.css'
 import { Link } from 'react-router-dom';
+import NewServerFormModal from '../newServerFormModal';
 
 
 
@@ -27,7 +28,8 @@ function ServerIndex() {
     return (
         <div id='serverIndex'>
             {serverListItems}
-            <Link to='/servers/new'><div className='serverListItem'>+</div></Link>
+            <div className='serverIndexItem'><NewServerFormModal /></div>
+            {/* <Link to='/servers/new'><div className='serverListItem'>+</div></Link> */}
 
         </div>
     )
