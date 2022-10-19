@@ -39,7 +39,7 @@ class Api::ServersController < ApplicationController
                 render json: {message: 'server successfully deleted'}
             end
         else
-            render json { errors; @server.errors.full_messages}
+            render json: { errors: @server.errors.full_messages}
         end
     end
 
