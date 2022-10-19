@@ -62,6 +62,8 @@ const channelsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_CHANNELS:
             return {...state, ...action.payload}
+        case CREATE_CHANNEL:
+            return nextState
         default:
             return state;
     }

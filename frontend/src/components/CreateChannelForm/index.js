@@ -17,7 +17,7 @@ function CreateChannelForm({server}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        return dispatch(channelActions.addChannelToDatabase({channel_name: channelName, server_id: server.id}))
+        return dispatch(channelActions.addChannelToDatabase({channel_name: channelName, server_id: server.server.id}))
         .then(setSubmitted(true))
         .catch(async (res) => {
             let data;
@@ -40,7 +40,7 @@ function CreateChannelForm({server}) {
 
     return (
         <form id="createChannelFormContainer" onSubmit={handleSubmit}>
-            {submitted ? <Redirect to={`/servers/${server.id}`} /> : ''}
+            {submitted ? <Redirect to={`/servers/${server.server.id}`} /> : ''}
             <div className="inputGroup">
                 <input type='text' value={channelName} onChange={(e) => setChannelName(e.target.value)} required></input>
             </div>
