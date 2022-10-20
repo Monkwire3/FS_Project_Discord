@@ -36,21 +36,24 @@ function EditChannelForm({onClose, channel}) {
     } 
 
     function handleDeleteChannel(e) {
+        onClose();
         dispatch(channelActions.deleteChannel(channel.id));
     }
 
     return (
         <div id='editChannelFormContainer'>
      <div id='leftChannelForm'>
+         <div id='leftChannelFormNav'>
             <button onClick={handleDeleteChannel}>DeleteChannel</button>
+         </div>
         </div>
         <div id='rightChannelForm'>
         <form id='editChannelForm' onSubmit={handleSubmit}>
             <div className='inputGroup'>
-                <label htmlFor='channelName'></label>
+                <label htmlFor='channelName'>channel name</label>
                 <input id="channelName" value={channelName} onChange={(e) => setChannelName(e.target.value)}></input>
             </div>
-            <div className='inputGroup'>
+            <div className=' inputGroup inputGroupSubmit'>
                 <button>Save Changes</button>
             </div>
         </form>
