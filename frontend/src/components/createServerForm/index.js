@@ -42,19 +42,17 @@ function CreateServerForm() {
         <div id='createServerFormContainer'>
             {sessionUser ? '' : <Redirect to='/register' /> }
             {submitted ? <Redirect to='/servers' /> : ''}
-            <h1>Create Server Form</h1>
+            <div id='createServerHeader'><h2>Create your Server</h2></div>
             <form onSubmit={handleSubmit}>
-                <div className='inputGroup'>
+                <div className='inputGroup' id='serverNameGroup'>
                 <label htmlFor='serverName'>Server Name</label>
                 <input type='text' value={serverName} onChange={(e) => setServerName(e.target.value)} required ></input>
                 </div>
-                <div className='inputGroup'>
+                <div className='inputGroup' id='createServerSubmit'>
+                    <div></div>
                     <button>Create Server</button>
                 </div>
             </form>
-
-
-
 
         </div>
     )

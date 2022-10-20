@@ -1,9 +1,10 @@
 #createServerFormContainer {
-    background-color: #373737;
-    width: 800px;
+    background-color: #ffffff;
+    width: 440px;
+    height: 404px;
     padding: 32px; 
     border-radius: 5px;
-    color: #b9b9b9;
+    color: #2e3339;
     font-family: "ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif;  ;
     display: flex;
     flex-direction: column;
@@ -12,10 +13,43 @@
     position: fixed;
     transform: translate(-50%, -50%);
     left: 50%;
-    top: 50%
+    top: 50%;
+    justify-content: space-between;
+    padding: 0px;
+    padding-top: 32px;
 
 }
 
 form {
+
+    padding-bottom: 0px;
+}
+
+#createServerFormContainer input {
+    background-color: #e3e5e8;
+    width: 90%;
+}
+
+#createServerSubmit {
+    height: 70px;
+    background-color: #f2f3f5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#createServerSubmit button{
+    width: 96px;
+
+}
+
+#serverNameGroup {
+    height: 64px;
+}
+
+.inputGroup {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
