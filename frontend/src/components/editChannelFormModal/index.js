@@ -14,7 +14,7 @@ function EditChannelFormModal({channel}) {
         </div>
         {showModal && (
             <Modal onClose={(e) => setShowModal(false)}>
-                <EditChannelForm  channel={channel}/>
+                <EditChannelForm  onClose={() => setShowModal(false)} channel={channel}/>
             </Modal>
         )}
         </>

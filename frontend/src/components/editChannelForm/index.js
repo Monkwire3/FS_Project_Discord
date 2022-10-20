@@ -6,7 +6,7 @@ import { useState } from 'react';
 import './EditChannelForm.css';
 
 
-function EditChannelForm({channel}) {
+function EditChannelForm({onClose, channel}) {
     const dispatch = useDispatch();
     const [channelName, setChannelName] = useState(channel.name);
     const [errors, setErrors] = useState([]);
@@ -14,7 +14,7 @@ function EditChannelForm({channel}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        debugger
+        onClose()
         return dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
         .then(setSubmitted(true))
         .catch(async (res) => {
