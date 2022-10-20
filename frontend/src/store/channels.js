@@ -72,7 +72,13 @@ export const addChannelToDatabase = (channel) => async(dispatch) => {
     return res
 }
 
-// export const deleteChannel = channelId => async dispatch =
+export const deleteChannel = channelId => async dispatch => {
+    const res = await csrfFetch(`/api/channels/${channelId}`, {
+        method: 'DELETE'
+    })
+
+    dispatch(removeChannel(channelId));
+}
 
 export const editChannel = (channel) => async(dispatch) => {
     const res = await csrfFetch(`/api/channels/${channel.id}`, {
@@ -97,6 +103,8 @@ const channelsReducer = (state = {}, action) => {
         case CREATE_CHANNEL:
             debugger
             return state
+        case DELETE_CHANNEL:
+            return nextState
         default:
             return state;
     }

@@ -36,14 +36,13 @@ function EditChannelForm({channel}) {
     } 
 
     function handleDeleteChannel(e) {
-        // dispatch(channelActions.delte)
-
+        dispatch(channelActions.deleteChannel(channel.id));
     }
 
     return (
         <div id='editChannelFormContainer'>
      <div id='leftChannelForm'>
-            <button>DeleteChannel</button>
+            <button onClick={handleDeleteChannel}>DeleteChannel</button>
         </div>
         <div id='rightChannelForm'>
         <form id='editChannelForm' onSubmit={handleSubmit}>
