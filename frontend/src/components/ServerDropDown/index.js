@@ -1,13 +1,18 @@
 import React from "react";
 import './ServerDropDown.css';
 import * as serverActions from '../../store/servers';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import EditServerFormModal from "../EditServerFormModal";
+import EditServerForm from "../EditServerForm";
 
 
 function ServerDropDown() {
     const dispatch = useDispatch();
     const { id } = useParams();
+    const server = useSelector(serverActions.getServer(id))
+
+
 
 
     function handleDeleteServer() {
@@ -29,7 +34,8 @@ function ServerDropDown() {
                 <div className="dropDownItem">Spacer</div>
             </div>
             <div className="dropDownGroup">
-               <a href={`/servers/${id}/edit`}> <div className="dropDownItem">Edit Server</div></a>
+        
+               <div className="dropDownItem">        <EditServerFormModal server={server} /></div>
             </div>
             <div className="dropDownGroupEnd">
                 <div onClick={handleDeleteServer} className="dropDownItem">Delete Server</div>

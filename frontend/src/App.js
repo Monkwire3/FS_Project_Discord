@@ -22,9 +22,9 @@ function App() {
       <Route exact path="/register">
         <RegisterFormPage />
       </Route>  
-      <Route exact path="/servers/:id/edit">
+      {/* <Route exact path="/servers/:id/edit">
         <EditServerForm />
-      </Route>
+      </Route> */}
       <Route exact path="/channels/new/:channelId">
         <CreateChannelForm />
       </Route>
