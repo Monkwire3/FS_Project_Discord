@@ -1,0 +1,33 @@
+.addServerListItem {
+    font-weight: 600;
+    text-transform: capitalize;
+    height: 48px;
+    width: 48px;
+    padding: 0;
+    margin-bottom: 20px;
+    background-color: #37393f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    line-height: 1.2em;
+    transition: background-color .15s ease-out, color .15s ease-out;
+    border-radius: 25px;
+    transition-property: border-radius;
+    transition-duration: 0.25s;
+    color: #3aa55d;
+
+}
+
+.serverListItem a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.addServerListItem:hover {
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #3aa55d;
+    color: #ffffff;
+}
