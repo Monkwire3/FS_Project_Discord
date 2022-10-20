@@ -7,8 +7,8 @@ import './EditServerForm.css';
 
 
 
-function EditServerForm() {
-    const { id } = useParams();
+function EditServerForm({server}) {
+    const id = 1;
     const dispatch = useDispatch();
     const servers = useSelector(serverActions.getServers);
 
