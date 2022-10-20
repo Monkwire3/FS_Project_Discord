@@ -21,13 +21,12 @@
 }
 
 form {
-
     padding-bottom: 0px;
+    width: 100%;
 }
 
 #createServerFormContainer input {
     background-color: #e3e5e8;
-    width: 90%;
 }
 
 #createServerSubmit {
@@ -36,6 +35,7 @@ form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 0px 32px;
 }
 
 #createServerSubmit button{
@@ -45,11 +45,12 @@ form {
 
 #serverNameGroup {
     height: 64px;
+    padding: 32px
 }
 
 .inputGroup {
-    width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: row;
+    width: auto;
 }
