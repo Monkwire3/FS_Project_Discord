@@ -54,3 +54,15 @@ svg.plus {
 .options {
     display: flex;
 }
+
+.gearSvg {
+    height: 15px;
+    width: 15px;
+    padding: 0px;
+    padding-top: 2px;
+}
+
+.gearSvg path {
+    padding: 0px;
+    margin: 0px;
+}

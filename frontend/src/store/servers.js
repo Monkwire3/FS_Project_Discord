@@ -127,7 +127,7 @@ const serversReducer = (state = {}, action) => {
         case RECEIVE_SERVERS:
             return {...state, ...action.payload}
         case EDIT_SERVER:
-            nextState[action.serverId] = action.payload
+            nextState.filter((server) => server.id === action.serverId)[0] = action.payload
             return nextState
         case DELETE_SERVER:
             delete nextState[action.serverId]
