@@ -20,6 +20,7 @@
     font-family: "ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif; 
     padding-top: 12px;
     overflow: scroll;
+    scrollbar-width: none;
 }
 
 
