@@ -3,8 +3,23 @@ import csrfFetch from "./csrfFetch";
 const RECEIVE_CHANNEL = 'channels/receiveChannel';
 const RECEIVE_CHANNELS = 'channels/receiveChannels';
 const CREATE_CHANNEL = 'channels/createChannel';
+const EDIT_SERVER = 'channels/editChannel';
+const DELETE_CHANNEL = 'channels/deleteChannel';
 
 
+const removeChannel = (channelId) => {
+    return {
+        type: DELETE_CHANNEL,
+        channelId: channelId
+    }
+}
+
+const editChannelAction = (channel) => {
+    return {
+        type: EDIT_SERVER,
+        payload: channel
+    }
+}
 
 const createChannel = (channel) => {
     return {
@@ -50,11 +65,28 @@ export const addChannelToDatabase = (channel) => async(dispatch) => {
         })
     })
 
+
     const data = await res.json();
     dispatch(createChannel(data.channel))
 
     return res
+}
 
+// export const deleteChannel = channelId => async dispatch =
+
+export const editChannel = (channel) => async(dispatch) => {
+    const res = await csrfFetch(`/api/channels/${channel.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            channel_name: channel.channel_name,
+            server_id: channel.serverId
+        })
+    })
+
+    const data = await res.json();
+    dispatch(editChannelAction(data.channel))
+
+    return res;
 }
 
 const channelsReducer = (state = {}, action) => {
@@ -63,7 +95,8 @@ const channelsReducer = (state = {}, action) => {
         case RECEIVE_CHANNELS:
             return {...state, ...action.payload}
         case CREATE_CHANNEL:
-            return nextState
+            debugger
+            return state
         default:
             return state;
     }
