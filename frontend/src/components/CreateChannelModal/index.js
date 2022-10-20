@@ -14,7 +14,7 @@ function CreateChannelFormModal(server) {
             </div>
             {showModal && (
                 <Modal onClose={(e) => setShowModal(false)}>
-                    <CreateChannelForm server={server} />
+                    <CreateChannelForm onClose={() => setShowModal(false)} server={server} />
                 </Modal>
             )}
         </>

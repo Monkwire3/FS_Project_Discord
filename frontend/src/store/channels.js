@@ -43,8 +43,8 @@ const receiveChannels = (channels) => {
 }
 
 
-export const getChannels = ({ channels }) => channels ? Object.values(channels) : [];
-// export const getChannel = channelId => ({channeld}) => channels ? channels[channelId] : null;
+export const getChannels = serverId => ({channels}) => channels ? Object.values(channels).filter((channel) => `${channel.serverId}` === `${serverId}`) : [];
+
 
 export const fetchChannels = (serverId) => async(dispatch) => {
     const res = await csrfFetch(`/api/servers/${serverId}/channels/`);

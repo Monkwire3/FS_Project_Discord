@@ -18,7 +18,7 @@ function LeftSidebar() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     // const servers = useSelector(serverActions.getServers)
-    const channels = useSelector(channelActions.getChannels)
+    const channels = useSelector(channelActions.getChannels(id))
 
     const server = useSelector(serverActions.getServer(id));
 

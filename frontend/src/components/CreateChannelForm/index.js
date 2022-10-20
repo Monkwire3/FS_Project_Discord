@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './CreateChannelForm.css'
 
-function CreateChannelForm({server}) {
+function CreateChannelForm({onClose, server}) {
     const dispatch = useDispatch();
 
 
@@ -17,8 +17,8 @@ function CreateChannelForm({server}) {
 
     function handleSubmit(e) {
         e.preventDefault()
+        onClose()
         return dispatch(channelActions.addChannelToDatabase({channel_name: channelName, server_id: server.server.id}))
-        .then(setSubmitted(true))
         .catch(async (res) => {
             let data;
             try {
