@@ -48,12 +48,7 @@ const editServerAction = (server, serverId) => {
 
 export const getServer = serverId => ({servers}) => {
     if (servers) {
-        for (let i = 0; i < Object.values(servers); i++){
-            if (`${Object.values(servers[i]).id}` === `${serverId}`) {
-                debugger
-                return servers[i];
-            }
-        }
+        return Object.values(servers).filter((server) => `${server.id}` === `${serverId}`)[0]
     }
     return null;
 }

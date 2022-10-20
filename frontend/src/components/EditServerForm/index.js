@@ -8,30 +8,17 @@ import './EditServerForm.css';
 
 
 function EditServerForm({server}) {
-    const id = 1;
     const dispatch = useDispatch();
-    const servers = useSelector(serverActions.getServers);
 
-    const [serverName, setServerName] = useState('');
+    const [serverName, setServerName] = useState(server.serverName);
     const [submitted, setSubmitted] = useState(false)
     const [errors, setErrors] = useState([]);
 
-    useEffect(() => {
-        dispatch(serverActions.fetchServers())
-    }, [])
 
-    useEffect(() => {
-        try {
-            setServerName(servers.filter((server) => `${server.id}` === id)[0].serverName)
-        } catch {
-
-        }
-    }, [servers])
-
-
+    
     function handleSubmit(e) {
         e.preventDefault();
-        return dispatch(serverActions.editServer({server_name: serverName, id: id}))
+        return dispatch(serverActions.editServer({server_name: serverName, id: server.id}))
         .then(setSubmitted(true))
         .catch(async (res) => {
             let data;
@@ -54,8 +41,9 @@ function EditServerForm({server}) {
 
     
     return (
+        <div id='editServerFormContainer'>
         <form id='editServerForm' onSubmit={handleSubmit}>
-            {submitted ? <Redirect to={`/servers/${id}`} /> : ''}
+            {/* {submitted ? <Redirect to={`/servers/${server.id}`} /> : ''} */}
             <div className='inputGroup'>
                 <label htmlFor='serverName'>Server Name</label>
                 <input type='text' value={serverName} onChange={(e) => setServerName(e.target.value)} required></input>
@@ -64,6 +52,7 @@ function EditServerForm({server}) {
                 <button>Submit Changes</button>
             </div>
         </form>
+        </div>
     )
 }
 

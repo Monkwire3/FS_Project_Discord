@@ -10,7 +10,7 @@ function EditServerFormModal({server}) {
         <div className="" onClick={() => setShowModal(true)}>Edit Server</div>
         {showModal && (
             <Modal onClose={(e) => setShowModal(false)}>
-                <EditServerForm server={''} />
+                <EditServerForm server={server} />
             </Modal>
         )}
         </>
