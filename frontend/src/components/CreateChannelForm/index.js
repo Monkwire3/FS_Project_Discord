@@ -41,10 +41,10 @@ function CreateChannelForm({server}) {
     return (
         <form id="createChannelFormContainer" onSubmit={handleSubmit}>
             {submitted ? <Redirect to={`/servers/${server.server.id}`} /> : ''}
-            <div>
+            <div id='createChannelFormHeader'>
                 <h2>Create Channel</h2>
             </div>
-            <div className="inputGroup">
+            <div id="channelNameInputGroup">
                 <label htmlFor="channelName">Channel name</label>
                 <div className="inputWrapper">
                 <svg>
