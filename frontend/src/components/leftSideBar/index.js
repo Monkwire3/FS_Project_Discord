@@ -17,25 +17,26 @@ function LeftSidebar() {
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const servers = useSelector(serverActions.getServers)
+    // const servers = useSelector(serverActions.getServers)
     const channels = useSelector(channelActions.getChannels)
 
-    const [currentServer, setCurrentServer] = useState(servers.filter(server => `${server.id}` === id))
+    const server = useSelector(serverActions.getServer(id));
+
 
     // On mount
     useEffect(() => {
-        dispatch(channelActions.fetchChannels())
-        dispatch(serverActions.fetchServers())
+        dispatch(channelActions.fetchChannels(id))
+        dispatch(serverActions.fetchServer(id))
     }, [])
 
     // On currentServer change
     useEffect(() => {
         dispatch(channelActions.fetchChannels(id))
-    }, [currentServer])
+    }, [server])
 
 
     useEffect(() => {
-        setCurrentServer(servers.filter(server => `${server.id}` === id)[0])
+        serverActions.fetchServer(id)
     }, [id])
 
     // useEffect(() => {
@@ -45,7 +46,7 @@ function LeftSidebar() {
     const [dropDownDisplay, setDropDownDisplay] = useState(false);
 
 
-    console.log('current server: ', currentServer)
+    console.log('current server: ', server)
 
     function toggleDropDown() {
         if (dropDownDisplay) {
@@ -65,7 +66,7 @@ function LeftSidebar() {
         <div id="leftSidebar">
             <div id='channels'>
                 <div onClick={toggleDropDown} id='channelsHeader'>
-                    <div>{currentServer ? currentServer.serverName : ''}</div>
+                    <div>{server ? server.serverName : ''}</div>
                     <div id="dropDownToggle">
                         <svg className='dropIcon' width={18} height={18}>
                             <g fill='none' fillRule="evenodd">
@@ -85,7 +86,7 @@ function LeftSidebar() {
                 <div className='channelHeaderTextBox'>
                     <div>Text channels</div>
                     <div className='plusSvg'>
-                        <CreateChannelFormModal server={currentServer} />
+                        <CreateChannelFormModal server={server} />
                     </div>
                 </div>
 

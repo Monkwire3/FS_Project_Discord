@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './ServerDropDown.css';
 import * as serverActions from '../../store/servers';
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,12 @@ function ServerDropDown() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const server = useSelector(serverActions.getServer(id))
+
+
+
+    useEffect(() => {
+        dispatch(serverActions.fetchServer(id))
+    }, [])
 
 
 
@@ -35,7 +41,8 @@ function ServerDropDown() {
             </div>
             <div className="dropDownGroup">
         
-               <div className="dropDownItem">        <EditServerFormModal server={server} /></div>
+               <div className="dropDownItem">
+                          <EditServerFormModal server={server} /></div>
             </div>
             <div className="dropDownGroupEnd">
                 <div onClick={handleDeleteServer} className="dropDownItem">Delete Server</div>

@@ -57,7 +57,7 @@ export const fetchChannels = (serverId) => async(dispatch) => {
 
 export const addChannelToDatabase = (channel) => async(dispatch) => {
     const {channel_name, server_id} = channel;
-    const res = await csrfFetch(`/api/servers/${server_id}/channels`, {
+    const res = await csrfFetch(`/api/channels/`, {
         method: 'POST',
         body: JSON.stringify({
             channel_name: channel_name,
@@ -101,7 +101,6 @@ const channelsReducer = (state = {}, action) => {
         case RECEIVE_CHANNELS:
             return {...state, ...action.payload}
         case CREATE_CHANNEL:
-            debugger
             return state
         case DELETE_CHANNEL:
             return nextState

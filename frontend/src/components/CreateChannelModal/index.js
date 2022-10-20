@@ -1,7 +1,6 @@
 import { Modal } from '../../context/Modal';
 import React, { useState } from 'react';
 import CreateChannelForm from '../CreateChannelForm';
-import CreateServerForm from '../createServerForm';
 
 function CreateChannelFormModal(server) {
     const [showModal, setShowModal] = useState(false);
