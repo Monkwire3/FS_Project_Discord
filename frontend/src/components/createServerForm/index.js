@@ -17,7 +17,6 @@ function CreateServerForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         return dispatch(serverActions.addServertoDatabase({server_name: serverName}))
- 
         .then(setSubmitted(true))
         .catch(async (res) => {
             let data;
