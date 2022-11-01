@@ -12,12 +12,15 @@ function EditChannelForm({onClose, channel}) {
     const [errors, setErrors] = useState([]);
 
     const [submitted, setSubmitted] = useState(false)
-
+    console.log("before submitted", submitted)
     function handleSubmit(e) {
         e.preventDefault();
         onClose()
-        return dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
-        .then(setSubmitted(true))
+        dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
+        .then(() => {
+            setSubmitted(true)
+            console.log('after submitted: ', submitted)
+        })
 
         .catch(async (res) => {
             let data;

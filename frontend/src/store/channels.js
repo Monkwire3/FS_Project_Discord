@@ -92,7 +92,7 @@ export const editChannel = (channel) => async(dispatch) => {
     const data = await res.json();
 
 
-    dispatch(editChannelAction(data.channel))
+    dispatch(receieveChannel(data.channel))
 
 
     return res;
@@ -110,11 +110,7 @@ const channelsReducer = (state = {}, action) => {
             return state
 
         case RECEIVE_CHANNEL:
-            for (let i = 0; i < Object.values(nextState).length; i++) {
-                if (nextState[i].id === action.payload.id) {
-                    nextState[i] = action.payload;
-                }
-            }
+            nextState[action.payload.id] = action.payload
             return nextState;
 
         case DELETE_CHANNEL:

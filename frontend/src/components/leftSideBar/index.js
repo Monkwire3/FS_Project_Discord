@@ -32,16 +32,14 @@ function LeftSidebar() {
     // On currentServer change
     useEffect(() => {
         dispatch(channelActions.fetchChannels(id))
-    }, [server])
+    }, [channels.length])
 
 
     useEffect(() => {
         serverActions.fetchServer(id)
     }, [id])
 
-    // useEffect(() => {
-    //     setCurrentServer(servers.filter(server => `${server.id}` === id)[0])
-    // }, [id])
+  
 
     const [dropDownDisplay, setDropDownDisplay] = useState(false);
 

@@ -1,5 +1,7 @@
-json.array! (@channels) do |channel|
-    json.serverId channel.server_id
-    json.id channel.id
-    json.name channel.channel_name
+@channels.each do |channel|
+    json.set! channel.id do
+        json.id channel.id
+        json.serverId channel.server_id
+        json.name channel.channel_name
+    end
 end
