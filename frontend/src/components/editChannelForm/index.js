@@ -10,13 +10,24 @@ function EditChannelForm({onClose, channel}) {
     const dispatch = useDispatch();
     const [channelName, setChannelName] = useState(channel.name);
     const [errors, setErrors] = useState([]);
-    const [submitted, setSubmitted] = useState(false)
+    const [submitted, setSubmitted] = useState(true)
+
+    const [trackState, setTrackState] = useState(true)
+
+    console.log('opened editchannelform, track state is: ', trackState)
+
 
     function handleSubmit(e) {
+
         e.preventDefault();
+        setTrackState(false)
+        console.log(`after submittedtrack state is: ${trackState}`)
         onClose()
-        return dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
-        .then(setSubmitted(true))
+        dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
+        // .then(setSubmitted(true))
+        .then(() => {
+            console.log('submiteed: ', submitted)
+        })
         .catch(async (res) => {
             let data;
             try {

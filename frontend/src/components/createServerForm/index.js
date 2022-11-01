@@ -17,6 +17,7 @@ function CreateServerForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         return dispatch(serverActions.addServertoDatabase({server_name: serverName}))
+ 
         .then(setSubmitted(true))
         .catch(async (res) => {
             let data;
@@ -40,8 +41,8 @@ function CreateServerForm() {
 
     return (
         <div id='createServerFormContainer'>
+            {submitted ? <Redirect to='/servers/' /> : ''}
             {sessionUser ? '' : <Redirect to='/register' /> }
-            {submitted ? <Redirect to='/servers' /> : ''}
             <div id='createServerHeader'><h2>Create your Server</h2></div>
             <form onSubmit={handleSubmit}>
                 <div className='inputGroup' id='serverNameGroup'>
