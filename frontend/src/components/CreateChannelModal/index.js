@@ -13,7 +13,7 @@ function CreateChannelFormModal(server) {
                 </svg>
             </div>
             {showModal && (
-                <Modal onClose={(e) => setShowModal(false)}>
+                <Modal onClose={() => setShowModal(false)}>
                     <CreateChannelForm onClose={() => setShowModal(false)} server={server} />
                 </Modal>
             )}

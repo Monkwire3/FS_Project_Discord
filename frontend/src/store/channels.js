@@ -67,7 +67,7 @@ export const addChannelToDatabase = (channel) => async(dispatch) => {
 
 
     const data = await res.json();
-    dispatch(createChannel(data.channel))
+    dispatch(receieveChannel(data.channel))
 
     return res
 }
@@ -107,12 +107,11 @@ const channelsReducer = (state = {}, action) => {
         case RECEIVE_CHANNELS:
             return {...state, ...action.payload}
         case CREATE_CHANNEL:
-            return state
-
+            nextState[action.payload.id] = action.payload
+            return nextState
         case RECEIVE_CHANNEL:
             nextState[action.payload.id] = action.payload
             return nextState;
-
         case DELETE_CHANNEL:
             return nextState
         default:

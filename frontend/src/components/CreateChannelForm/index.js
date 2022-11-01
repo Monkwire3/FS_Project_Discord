@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import * as channelActions from '../../store/channels'
 import { useDispatch } from "react-redux";
@@ -7,18 +7,14 @@ import './CreateChannelForm.css'
 
 function CreateChannelForm({onClose, server}) {
     const dispatch = useDispatch();
-
-
-
     const [channelName, setChannelName] = useState('');
-    const [submitted, setSubmitted] = useState(false)
     const [errors, setErrors] = useState([])
 
 
     function handleSubmit(e) {
         e.preventDefault()
-        onClose()
-        return dispatch(channelActions.addChannelToDatabase({channel_name: channelName, server_id: server.server.id}))
+        dispatch(channelActions.addChannelToDatabase({channel_name: channelName, server_id: server.server.id}))
+        .then(onClose)
         .catch(async (res) => {
             let data;
             try {
@@ -26,7 +22,6 @@ function CreateChannelForm({onClose, server}) {
             } catch {
                 data = await res.text()
             }
-
             if (data?.errors) {
                 setErrors([JSON.parse(data.errors)]);
             } else if (data) {
@@ -35,12 +30,13 @@ function CreateChannelForm({onClose, server}) {
                 setErrors([res.statusText]);
             }
         })
+
+   
     }
 
 
     return (
         <form id="createChannelFormContainer" onSubmit={handleSubmit}>
-            {submitted ? <Redirect to={`/servers/${server.server.id}`} /> : ''}
             <div id='createChannelFormHeader'>
                 <h2>Create Channel</h2>
             </div>
