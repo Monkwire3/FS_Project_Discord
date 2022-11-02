@@ -19,7 +19,6 @@ function LeftSidebar() {
     const sessionUser = useSelector(state => state.session.user);
     // const servers = useSelector(serverActions.getServers)
     const channels = useSelector(channelActions.getChannels(id))
-
     const server = useSelector(serverActions.getServer(id));
 
 
@@ -32,7 +31,7 @@ function LeftSidebar() {
     // On currentServer change
     useEffect(() => {
         dispatch(channelActions.fetchChannels(id))
-    }, [channels.length])
+    })
 
 
     useEffect(() => {
@@ -44,7 +43,6 @@ function LeftSidebar() {
     const [dropDownDisplay, setDropDownDisplay] = useState(false);
 
 
-    console.log('current server: ', server)
 
     function toggleDropDown() {
         if (dropDownDisplay) {
@@ -57,6 +55,8 @@ function LeftSidebar() {
     function logout() {
         return dispatch(sessionActions.logout())
     }
+
+
     const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
 
 
