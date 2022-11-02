@@ -18,8 +18,15 @@ function LeftSidebar() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     // const servers = useSelector(serverActions.getServers)
-    const channels = useSelector(channelActions.getChannels(id))
+    // let channels = Object.values(useSelector(channelActions.getChannels(id)))
+    const channels = useSelector(channelActions.getChannels(id));
     const server = useSelector(serverActions.getServer(id));
+
+    const [updated, setUpdated] = useState(false)
+
+    function update() {
+
+    }
 
 
     // On mount
@@ -30,8 +37,8 @@ function LeftSidebar() {
 
     // On currentServer change
     useEffect(() => {
-        dispatch(channelActions.fetchChannels(id))
-    })
+        // channels = dispatch(channelActions.fetchChannels(id))
+    }, [channels])
 
 
     useEffect(() => {
@@ -57,7 +64,7 @@ function LeftSidebar() {
     }
 
 
-    const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} />)
+    const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} setUpdated={setUpdated} />)
 
 
     return (

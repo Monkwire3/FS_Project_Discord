@@ -60,16 +60,18 @@ export const addChannelToDatabase = (channel) => async(dispatch) => {
     const res = await csrfFetch(`/api/channels/`, {
         method: 'POST',
         body: JSON.stringify({
+            channel: {
             channel_name: channel_name,
             server_id: server_id
+            }
         })
     })
 
 
-    const data = await res.json();
-    dispatch(receieveChannel(data.channel))
 
-    return res
+    const data = await res.json();
+    console.log(data)
+    dispatch(receieveChannel(Object.values(data)[0]))
 }
 
 export const deleteChannel = channelId => async dispatch => {
