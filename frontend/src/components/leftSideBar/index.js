@@ -38,11 +38,12 @@ function LeftSidebar() {
     // On currentServer change
     useEffect(() => {
         // channels = dispatch(channelActions.fetchChannels(id))
-    }, [channels])
+    }, [channels, server])
 
 
     useEffect(() => {
         serverActions.fetchServer(id)
+        dispatch(channelActions.fetchChannels(id))
     }, [id])
 
   
