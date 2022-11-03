@@ -94,7 +94,8 @@ export const editChannel = (channel) => async(dispatch) => {
     const data = await res.json();
 
 
-    dispatch(receieveChannel(data.channel))
+    // dispatch(receieveChannel(data.channel))
+    dispatch(receieveChannel(Object.values(data)[0]))
 
 
     return res;
@@ -115,6 +116,7 @@ const channelsReducer = (state = {}, action) => {
             nextState[action.payload.id] = action.payload
             return nextState;
         case DELETE_CHANNEL:
+            delete nextState[action.channelId]
             return nextState
         default:
             return state;
