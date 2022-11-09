@@ -8,15 +8,10 @@ import '../leftSideBar/LeftSidebar.css';
 function ServerDropDownModal({ serverId }) {
     const [showModal, setShowModal] = useState(false);
 
-    const handleClose = () => {
-        setShowModal(false);
-
-    }
 
     return (
         // <h1>dropdown placeholder </h1>
-        // <div onClick={setShowModal(true)} id='channelsHeader'>
-        <div> // TEMP
+        <div onClick={() => setShowModal(true)} id='channelsHeader'>
             <div>{serverId}</div>
             <div id="dropDownToggle">
                 <svg className='dropIcon' width={18} height={18}>
@@ -28,8 +23,8 @@ function ServerDropDownModal({ serverId }) {
                 </svg>
             </div>
             {showModal && (
-                <Modal onClose={handleClose}>
-                    <ServerDropDown server={serverId} onClose={handleClose} />
+                <Modal onClose={() => setShowModal(false)}>
+                    <ServerDropDown server={serverId} onClose={() => setShowModal(false)} />
                 </Modal>
             )}
 

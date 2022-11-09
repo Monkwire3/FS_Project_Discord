@@ -18,13 +18,10 @@ function LeftSidebar({serverId}) {
     const sessionUser = useSelector(state => state.session.user);
 
 
-    // const servers = useSelector(serverActions.getServers)
-    // let channels = Object.values(useSelector(channelActions.getChannels(id)))
-    // const currentChannel = useSelector(channelActions.getChannel(id))
+  
     const channels = useSelector(channelActions.getChannels(serverId));
     const server = useSelector(serverActions.getServer(serverId));
-    // const [channels, setChannels] = useState([])
-    // const [server, setServer] = useState({})
+
 
 
 
@@ -35,10 +32,10 @@ function LeftSidebar({serverId}) {
     }, [])
 
     // On currentServer change
-    useEffect(() => {
-        // channels = dispatch(channelActions.fetchChannels(id))
+    // useEffect(() => {
+    //     // channels = dispatch(channelActions.fetchChannels(id))
 
-    }, [channels, server])
+    // }, [channels, server])
 
 
     useEffect(() => {
@@ -48,17 +45,17 @@ function LeftSidebar({serverId}) {
 
   
 
-    const [dropDownDisplay, setDropDownDisplay] = useState(false);
+    // const [dropDownDisplay, setDropDownDisplay] = useState(false);
 
 
 
-    function toggleDropDown() {
-        if (dropDownDisplay) {
-            setDropDownDisplay(false);
-        } else {
-            setDropDownDisplay(true);
-        }
-    }
+    // function toggleDropDown() {
+    //     if (dropDownDisplay) {
+    //         setDropDownDisplay(false);
+    //     } else {
+    //         setDropDownDisplay(true);
+    //     }
+    // }
 
     function logout() {
         return dispatch(sessionActions.logout())

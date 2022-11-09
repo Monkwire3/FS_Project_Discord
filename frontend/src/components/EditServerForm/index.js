@@ -11,7 +11,6 @@ function EditServerForm({server}) {
     const dispatch = useDispatch();
 
     const [serverName, setServerName] = useState(server.serverName);
-    const [submitted, setSubmitted] = useState(false)
     const [errors, setErrors] = useState([]);
 
 
@@ -19,7 +18,6 @@ function EditServerForm({server}) {
     function handleSubmit(e) {
         e.preventDefault();
         return dispatch(serverActions.editServer({server_name: serverName, id: server.id}))
-        .then(setSubmitted(true))
         .catch(async (res) => {
             let data;
             try {
@@ -40,9 +38,10 @@ function EditServerForm({server}) {
 
     
     return (
+
+
         <div id='editServerFormContainer'>
         <form id='editServerForm' onSubmit={handleSubmit}>
-            {/* {submitted ? <Redirect to={`/servers/${server.id}`} /> : ''} */}
             <div className='inputGroup'>
                 <label htmlFor='serverName'>Server Name</label>
                 <input type='text' value={serverName} onChange={(e) => setServerName(e.target.value)} required></input>

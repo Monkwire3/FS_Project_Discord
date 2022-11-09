@@ -33,7 +33,10 @@
     width: 164.5px;
     height: 20px;
     margin-left: 3px;
+    color: #96989d;
+    text-decoration: none;
 }
+
 
 #channels {
     display: flex;
