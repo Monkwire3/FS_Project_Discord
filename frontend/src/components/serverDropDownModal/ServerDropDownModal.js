@@ -10,7 +10,7 @@ function ServerDropDownModal({ serverId }) {
 
 
     return (
-        // <h1>dropdown placeholder </h1>
+        <>
         <div onClick={() => setShowModal(true)} id='channelsHeader'>
             <div>{serverId}</div>
             <div id="dropDownToggle">
@@ -22,13 +22,14 @@ function ServerDropDownModal({ serverId }) {
                     </g>
                 </svg>
             </div>
+        </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <ServerDropDown server={serverId} onClose={() => setShowModal(false)} />
                 </Modal>
             )}
 
-        </div>
+        </>
 
     )
 }

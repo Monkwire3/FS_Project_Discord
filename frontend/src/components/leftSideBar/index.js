@@ -45,17 +45,6 @@ function LeftSidebar({serverId}) {
 
   
 
-    // const [dropDownDisplay, setDropDownDisplay] = useState(false);
-
-
-
-    // function toggleDropDown() {
-    //     if (dropDownDisplay) {
-    //         setDropDownDisplay(false);
-    //     } else {
-    //         setDropDownDisplay(true);
-    //     }
-    // }
 
     function logout() {
         return dispatch(sessionActions.logout())
