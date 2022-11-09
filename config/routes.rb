@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :servers, only: [:index, :show, :create, :update, :destroy] do
       resources :channels, only: [:index, :show]
     end
-    resources :channels, only: [:create, :update, :destroy]
+    resources :channels, only: [:show, :create, :update, :destroy]
     resource :session, only: [:show, :create, :destroy]
   end
 

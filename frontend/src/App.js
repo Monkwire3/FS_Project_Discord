@@ -10,6 +10,7 @@ import Home from './components/Home'
 import ServerFull from "./components/ServerFull";
 import EditServerForm from "./components/EditServerForm";
 import CreateChannelForm from "./components/CreateChannelForm";
+import DirectMessagesFull from "./components/DirectMessagesFull";
 
 function App() {
   return (
@@ -22,16 +23,20 @@ function App() {
       <Route exact path="/register">
         <RegisterFormPage />
       </Route>  
-      {/* <Route exact path="/servers/:id/edit">
-        <EditServerForm />
-      </Route> */}
       <Route exact path="/channels/new/:channelId">
         <CreateChannelForm />
       </Route>
       <Route path="/servers/new">
         <CreateServerForm />
       </Route>
-      <Route path='/servers/:id'>
+    
+      <Route exact path='/channels/@me'>
+        <DirectMessagesFull />
+      </Route>
+      <Route path='/channels/:id'>
+        <ServerFull />
+      </Route>
+      <Route path='/servers/:id/'>
         <ServerFull />
       </Route>
 

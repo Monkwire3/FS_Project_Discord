@@ -2,11 +2,10 @@ import { Modal } from '../../context/Modal'
 import React, { useState } from 'react';
 import EditChannelForm from '../editChannelForm';
 
-function EditChannelFormModal({channel, setUpdated}) {
+function EditChannelFormModal({channel}) {
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => {
-        setUpdated(true)
         setShowModal(false)
     }
 

@@ -12,21 +12,21 @@ import CreateChannelForm from '../CreateChannelForm';
 import CreateChannelFormModal from '../CreateChannelModal';
 
 
-function LeftSidebar() {
+function LeftSidebar({currentChannel}) {
     const { id } = useParams();
-
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+
+
     // const servers = useSelector(serverActions.getServers)
     // let channels = Object.values(useSelector(channelActions.getChannels(id)))
-    const channels = useSelector(channelActions.getChannels(id));
-    const server = useSelector(serverActions.getServer(id));
+    // const currentChannel = useSelector(channelActions.getChannel(id))
+    const channels = useSelector(channelActions.getChannels(currentChannel.serverId));
+    const server = useSelector(serverActions.getServer(currentChannel.serverId));
+    // const [channels, setChannels] = useState([])
+    // const [server, setServer] = useState({})
 
-    const [updated, setUpdated] = useState(false)
-
-    function update() {
-
-    }
+    debugger
 
 
     // On mount
@@ -38,12 +38,13 @@ function LeftSidebar() {
     // On currentServer change
     useEffect(() => {
         // channels = dispatch(channelActions.fetchChannels(id))
+
     }, [channels, server])
 
 
     useEffect(() => {
-        serverActions.fetchServer(id)
         dispatch(channelActions.fetchChannels(id))
+        dispatch(serverActions.fetchServer(id))
     }, [id])
 
   
@@ -65,7 +66,7 @@ function LeftSidebar() {
     }
 
 
-    const channelListItems = channels.map((channel) => <ChannelListItem channel={channel} setUpdated={setUpdated} />)
+    const channelListItems =  channels.map((channel) => <ChannelListItem channel={channel} />)
 
 
     return (
