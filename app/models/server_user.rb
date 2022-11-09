@@ -9,8 +9,6 @@
 #  updated_at :datetime         not null
 #
 class ServerUser < ApplicationRecord
-
-
     belongs_to :servers,
         foreign_key: :server_id, 
         class_name: :Server

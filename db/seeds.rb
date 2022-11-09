@@ -7,15 +7,30 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
+puts "Creating demo user"
 User.create({ username: 'usr', email: 'user@mail.com', password: 'starwars'})
+puts "Created demo user"
 
 
-10.times do
+puts "Creating more users"
+100.times do
     User.create({ username: Faker::Artist.name, email: "#{Faker::Hipster.word}@mail.com", password: 'password'})
 end
+puts "Created #{User.all.length} new users"
 
 
+puts "Creating servers"
 10.times do |i|
-    Server.create({server_name: Faker::Hipster.word, owner: User.find(rand(1..10)) })
-    5.times { Channel.create({channel_name: Faker::Hipster.word, server_id: i}) }
+    Server.create({server_name: Faker::Hipster.word, owner: User.find(rand(1...10))})
+    puts "Created server #{i + 1}"
+
+    puts "Creating member list for server #{i + 1}"
+    10.times do
+        Server.find(i + 1).members.push(User.find(rand(1...20)))
+    end
+    puts "Added #{Server.find(i + 1).members.length} members to server #{i + 1}"
+
+    puts "Creating channels for server #{i} "
+    5.times { Channel.create({channel_name: Faker::Hipster.word, server_id: i + 1}) }
 end
+puts "Created #{Server.all.length} servers"
