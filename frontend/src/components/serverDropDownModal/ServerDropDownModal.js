@@ -25,7 +25,7 @@ function ServerDropDownModal({ serverId }) {
         </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <ServerDropDown server={serverId} onClose={() => setShowModal(false)} />
+                    <ServerDropDown onClose={() => setShowModal(false)} serverId={serverId} setShowModal={setShowModal} />
                 </Modal>
             )}
 

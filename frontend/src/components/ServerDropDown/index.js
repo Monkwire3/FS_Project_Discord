@@ -7,10 +7,11 @@ import EditServerFormModal from "../EditServerFormModal";
 import EditServerForm from "../EditServerForm";
 
 
-function ServerDropDown({server}) {
+function ServerDropDown({serverId, setShowModal, onClose}) {
     const dispatch = useDispatch();
-    const { id } = useParams();
-    // const server = useSelector(serverActions.getServer(id))
+    const id = serverId
+    const server = useSelector(serverActions.getServer(id))
+
 
 
 
@@ -42,7 +43,7 @@ function ServerDropDown({server}) {
             <div className="dropDownGroup">
         
                <div className="dropDownItem">
-                          <EditServerFormModal server={server} /></div>
+                    <EditServerFormModal server={server} /></div>
             </div>
             <div className="dropDownGroupEnd">
                 <div onClick={handleDeleteServer} className="dropDownItem">Delete Server</div>
