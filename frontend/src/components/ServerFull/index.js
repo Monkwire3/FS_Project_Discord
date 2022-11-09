@@ -16,6 +16,7 @@ function ServerFull() {
     const { id } = useParams();
     const currentChannel = useSelector(state => state.channels)[id];
 
+
     useEffect(() => {
         dispatch(fetchChannel(id));
     }, [])
