@@ -11,7 +11,7 @@ function Home() {
 
     return (
         <><h1>home</h1>
-        {sessionUser ? <Redirect to='/servers/@me' /> : <Redirect to='/login' />}</>
+        {sessionUser ? <Redirect to='/channels/@me' /> : <Redirect to='/login' />}</>
     )
 
 }

@@ -28,7 +28,7 @@ const createChannel = (channel) => {
     }
 }
 
-const receieveChannel = (channel) => {
+const receiveChannel = (channel) => {
     return {
         type: RECEIVE_CHANNEL,
         payload: channel
@@ -44,6 +44,7 @@ const receiveChannels = (channels) => {
 
 
 export const getChannels = serverId => ({channels}) => channels ? Object.values(channels).filter((channel) => `${channel.serverId}` === `${serverId}`) : [];
+export const getChannel = channelId => ({channels}) => channels ? channels[channelId]: null;
 
 
 export const fetchChannels = (serverId) => async(dispatch) => {
@@ -52,8 +53,19 @@ export const fetchChannels = (serverId) => async(dispatch) => {
 
     dispatch(receiveChannels(data));
 
+
     return data;
 }
+
+export const fetchChannel = (channelId) => async(dispatch) => {
+    const res = await csrfFetch(`/api/channels/${channelId}`);
+    const data = await res.json();
+
+    dispatch(receiveChannel(data));
+
+    return data;
+}
+
 
 export const addChannelToDatabase = (channel) => async(dispatch) => {
     const {channel_name, server_id} = channel;
@@ -71,7 +83,7 @@ export const addChannelToDatabase = (channel) => async(dispatch) => {
 
     const data = await res.json();
     console.log(data)
-    dispatch(receieveChannel(Object.values(data)[0]))
+    dispatch(receiveChannel(Object.values(data)[0]))
 }
 
 export const deleteChannel = channelId => async dispatch => {
@@ -95,7 +107,7 @@ export const editChannel = (channel) => async(dispatch) => {
 
 
     // dispatch(receieveChannel(data.channel))
-    dispatch(receieveChannel(Object.values(data)[0]))
+    dispatch(receiveChannel(Object.values(data)[0]))
 
 
     return res;
