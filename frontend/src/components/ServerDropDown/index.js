@@ -7,10 +7,10 @@ import EditServerFormModal from "../EditServerFormModal";
 import EditServerForm from "../EditServerForm";
 
 
-function ServerDropDown() {
+function ServerDropDown({server}) {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const server = useSelector(serverActions.getServer(id))
+    // const server = useSelector(serverActions.getServer(id))
 
 
 

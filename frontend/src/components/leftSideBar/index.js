@@ -10,6 +10,7 @@ import { useState } from 'react';
 import ServerDropDown from '../ServerDropDown';
 import CreateChannelForm from '../CreateChannelForm';
 import CreateChannelFormModal from '../CreateChannelModal';
+import ServerDropDownModal from '../serverDropDownModal/ServerDropDownModal';
 
 
 function LeftSidebar({serverId}) {
@@ -81,7 +82,8 @@ function LeftSidebar({serverId}) {
                             </g>
                         </svg>
                     </div>
-                    {dropDownDisplay ? <ServerDropDown /> : ''}
+                    <ServerDropDownModal server={server}/>
+                    {/* {dropDownDisplay ? <ServerDropDown /> : ''} */}
 
 
 
