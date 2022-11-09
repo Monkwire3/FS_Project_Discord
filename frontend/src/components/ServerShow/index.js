@@ -10,17 +10,16 @@ import { useDispatch } from 'react-redux';
 function ServerShow() {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const channel = useSelector(state => state.channels.currentChanne);
+    const channel = useSelector(state => state.channels)[id];
 
     useEffect(() => {
         dispatch(channelActions.fetchChannel(id))
         
-    })
+    }, [])
     useEffect(() => {
         dispatch(channelActions.fetchChannel(id))
     }, [id])
 
-    debugger
 
     return (
         <div id='serverShowContainer'>

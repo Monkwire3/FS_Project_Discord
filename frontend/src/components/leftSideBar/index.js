@@ -26,7 +26,6 @@ function LeftSidebar({currentChannel}) {
     // const [channels, setChannels] = useState([])
     // const [server, setServer] = useState({})
 
-    debugger
 
 
     // On mount

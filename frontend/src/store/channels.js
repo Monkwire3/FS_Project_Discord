@@ -125,7 +125,7 @@ const channelsReducer = (state = {}, action) => {
             nextState[action.payload.id] = action.payload
             return nextState
         case RECEIVE_CHANNEL:
-            nextState[action.payload.id] = action.payload
+            nextState[Object.values(action.payload)[0].id] = action.payload
             return nextState;
         case DELETE_CHANNEL:
             delete nextState[action.channelId]
