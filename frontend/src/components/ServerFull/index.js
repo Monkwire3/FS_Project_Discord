@@ -37,7 +37,7 @@ function ServerFull() {
     return (
         <>
         <ServerIndex />
-        {currentChannel ? <LeftSidebar currentChannel={currentChannel} /> : '' }
+        {currentChannel ? <LeftSidebar serverId={currentChannel.serverId} /> : '' }
         <ServerShow />
         </>
     )

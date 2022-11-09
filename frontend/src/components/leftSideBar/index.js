@@ -12,8 +12,7 @@ import CreateChannelForm from '../CreateChannelForm';
 import CreateChannelFormModal from '../CreateChannelModal';
 
 
-function LeftSidebar({currentChannel}) {
-    const { id } = useParams();
+function LeftSidebar({serverId}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
@@ -21,8 +20,8 @@ function LeftSidebar({currentChannel}) {
     // const servers = useSelector(serverActions.getServers)
     // let channels = Object.values(useSelector(channelActions.getChannels(id)))
     // const currentChannel = useSelector(channelActions.getChannel(id))
-    const channels = useSelector(channelActions.getChannels(currentChannel.serverId));
-    const server = useSelector(serverActions.getServer(currentChannel.serverId));
+    const channels = useSelector(channelActions.getChannels(serverId));
+    const server = useSelector(serverActions.getServer(serverId));
     // const [channels, setChannels] = useState([])
     // const [server, setServer] = useState({})
 
@@ -30,8 +29,8 @@ function LeftSidebar({currentChannel}) {
 
     // On mount
     useEffect(() => {
-        dispatch(channelActions.fetchChannels(id))
-        dispatch(serverActions.fetchServer(id))
+        dispatch(channelActions.fetchChannels(serverId))
+        dispatch(serverActions.fetchServer(serverId))
     }, [])
 
     // On currentServer change
@@ -42,9 +41,9 @@ function LeftSidebar({currentChannel}) {
 
 
     useEffect(() => {
-        dispatch(channelActions.fetchChannels(id))
-        dispatch(serverActions.fetchServer(id))
-    }, [id])
+        dispatch(channelActions.fetchChannels(serverId))
+        dispatch(serverActions.fetchServer(serverId))
+    }, [serverId])
 
   
 
