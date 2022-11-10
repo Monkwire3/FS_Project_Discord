@@ -15,8 +15,7 @@
     border-radius: 25px;
     transition-property: border-radius;
     transition-duration: 0.25s;
-    color: #3aa55d;
-
+    fill: #3aa55d;
 }
 
 .serverListItem a {
@@ -29,5 +28,8 @@
     border-radius: 8px;
     cursor: pointer;
     background-color: #3aa55d;
-    color: #ffffff;
+}
+
+.addServerListItem:hover path {
+    fill: #ffffff;
 }
