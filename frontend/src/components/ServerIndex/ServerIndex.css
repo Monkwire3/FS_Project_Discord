@@ -28,3 +28,15 @@
     text-decoration: none;
     color: inherit;
 }
+
+#join-server-button {
+    fill: #3aa55d;
+}
+
+#join-server-button:hover {
+    background-color: #3aa55d;
+}
+
+#join-server-button:hover path {
+    fill: #ffffff;
+}

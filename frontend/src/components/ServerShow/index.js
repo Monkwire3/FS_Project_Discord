@@ -4,22 +4,22 @@ import { useParams } from 'react-router-dom';
 import * as channelActions from '../../store/channels';
 import './ServerShow.css'
 import { useDispatch } from 'react-redux';
-import ServerMembersList from '../ChannelMembersList';
+import ServerMembersList from '../ServerMembersList';
 
 
 
 function ServerShow({serverId}) {
     const dispatch = useDispatch();
-    const { channelId } = useParams();
-    const channel = useSelector(state => state.channels)[channelId];
+    const { id } = useParams();
+    const channel = useSelector(state => state.channels)[id];
 
     useEffect(() => {
-        dispatch(channelActions.fetchChannel(channelId))
+        dispatch(channelActions.fetchChannel(id))
     }, [])
 
     useEffect(() => {
-        dispatch(channelActions.fetchChannel(channelId))
-    }, [channelId])
+        dispatch(channelActions.fetchChannel(id))
+    }, [id])
 
 
 

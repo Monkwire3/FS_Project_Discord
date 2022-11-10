@@ -1,0 +1,5 @@
+#join-server-form-container {
+    z-index: 1;
+    background-color: cadetblue;
+    position: fixed;
+}

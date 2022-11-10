@@ -13,7 +13,7 @@ function ServerMembersList({serverId}) {
     }, [])
 
 
-    const serverMembers = server.members.map((member) => <li>{member.username}</li>);
+    const serverMembers = server ? server.members.map((member) => <li>{member.username}</li>) : ''
 
     return (
         <>
