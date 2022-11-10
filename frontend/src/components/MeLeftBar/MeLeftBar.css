@@ -1,0 +1,12 @@
+#me-left-bar-container {
+    background-color: #303136;
+    width: 240px;
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 72px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}

@@ -28,3 +28,7 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
+#join-server-button {
+    height: 48px;
+}
