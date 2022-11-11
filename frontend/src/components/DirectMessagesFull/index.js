@@ -1,3 +1,4 @@
+import DirectMessagesMain from "../DirectMessagesMain";
 import MeLeftBar from "../MeLeftBar";
 import ServerIndex from "../ServerIndex";
 
@@ -7,6 +8,7 @@ function DirectMessagesFull() {
         <>
         <ServerIndex />
         <MeLeftBar />
+        <DirectMessagesMain />
         </>
     )
 }
