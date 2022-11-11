@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_17_130942) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_11_001235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_130942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["server_id"], name: "index_channels_on_server_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.bigint "requester_id", null: false
+    t.bigint "requestee_id", null: false
+    t.boolean "accepted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requestee_id"], name: "index_friends_on_requestee_id"
+    t.index ["requester_id"], name: "index_friends_on_requester_id"
   end
 
   create_table "server_users", force: :cascade do |t|
@@ -52,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_130942) do
   end
 
   add_foreign_key "channels", "servers"
+  add_foreign_key "friends", "users", column: "requestee_id"
+  add_foreign_key "friends", "users", column: "requester_id"
   add_foreign_key "server_users", "servers"
   add_foreign_key "server_users", "users"
   add_foreign_key "servers", "users", column: "owner_id"

@@ -32,6 +32,14 @@ class User < ApplicationRecord
   has_many :servers_joined,
     through: :server_connections,
     source: :servers
+  
+  has_many :sent_friend_requests,
+    through: :friends,
+    source: :requester
+  
+  has_many :received_friend_requests,
+    through: :friends,
+    source: :requestee
 
 
 
@@ -58,6 +66,10 @@ def reset_session_token!
     self.session_token = generate_unique_session_token
     self.save!
     return self.session_token
+end
+
+def friends
+  return Friend.where(requestee_id: self.id, accepted: true).or(Friend.where(requester_id: self.id, accepted: true))
 end
 
 private

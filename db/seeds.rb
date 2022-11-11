@@ -18,6 +18,10 @@ puts "Creating more users"
 end
 puts "Created #{User.all.length} new users"
 
+10.times do |i|
+    Friend.create({requester_id: 1, requestee_id: i + 1, accepted: true})
+end
+
 
 puts "Creating servers"
 10.times do |i|
