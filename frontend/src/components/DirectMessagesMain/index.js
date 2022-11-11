@@ -1,7 +1,10 @@
 function DirectMessagesMain() {
 
     return (
-        <h3>DirectMessagesMain Placeholder</h3>
+        <div id='direct-messages-main'>
+            placeholder text
+
+        </div>
     )
 }
 

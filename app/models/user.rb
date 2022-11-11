@@ -69,7 +69,12 @@ def reset_session_token!
 end
 
 def friends
-  return Friend.where(requestee_id: self.id, accepted: true).or(Friend.where(requester_id: self.id, accepted: true))
+  # return Friend.where(requestee_id: self.id, accepted: true).or(Friend.where(requester_id: self.id, accepted: true))
+  # return User.find(Friend.where(requestee_id: self.id, accepted: true).pluck(:requester_id))
+  friends = User.find(Friend.where(requester_id: self.id, accepted: true).pluck(:requestee_id))
+  friends += User.find(Friend.where(requestee_id: self.id, accepted: true).pluck(:requester_id))
+  return friends 
+  # User.find(Friend.where(requester_id: self.id, accepted: true).pluck(:requestee_id)
 end
 
 private
