@@ -1,8 +1,13 @@
+import './ServerMemberListItem.css';
 function ServerMemberListItem({member}) {
-    debugger
 
     return (
-        <li className="server-member-list-item"></li>
+        <div className="server-member-list-item">
+                <div className='icon'>
+
+                </div>
+                {member.username}
+        </div>
     )
 
 }

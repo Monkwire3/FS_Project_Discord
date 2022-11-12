@@ -1,0 +1,22 @@
+.server-member-list-item {
+    height: 42px;
+    color: #96989d;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    border-radius: 4px;
+    padding: 0 5px;
+}
+
+.server-member-list-item:hover {
+    background-color: #42464d;
+    cursor: pointer;
+}
+
+.icon {
+    height: 32px;
+    width: 32px;
+    background-color: royalblue;
+    border-radius: 50%;
+    margin-right: 10px;
+}

@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchChannel, getChannel } from "../../store/channels";
 import { fetchServer, getServer } from "../../store/servers";
+import ServerMemberListItem from "../ServerMemberListItem";
+import './ServerMembersList.css';
 
 
 function ServerMembersList({serverId}) {
@@ -13,13 +15,12 @@ function ServerMembersList({serverId}) {
     }, [])
 
 
-    const serverMembers = server ? server.members.map((member) => <li>{member.username}</li>) : ''
+    const serverMembers = server ? server.members.map((member) => <ServerMemberListItem member ={member} />) : ''
 
     return (
-        <>
-        <h3>Members: </h3>
-        <ul>{serverMembers}</ul>
-        </>
+        <div id='server-members-list-container'>
+        {serverMembers}
+        </div>
 
     )
 }
