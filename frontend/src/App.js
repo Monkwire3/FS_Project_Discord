@@ -16,7 +16,6 @@ function App() {
   return (
     <>
     <Switch>
-
       <Route exact path="/login">
         <LoginFormPage />
       </Route>
@@ -29,8 +28,7 @@ function App() {
       <Route path="/servers/new">
         <CreateServerForm />
       </Route>
-    
-      <Route exact path='/channels/@me'>
+      <Route path='/channels/@me/:chatId?'>
         <DirectMessagesFull />
       </Route>
       <Route path='/channels/:id'>
