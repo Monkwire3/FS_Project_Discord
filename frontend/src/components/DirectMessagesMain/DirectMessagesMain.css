@@ -1,9 +1,77 @@
 #direct-messages-main {
-    background-color: red;
+    background-color: #37393f;
     position: fixed;
     top: 0;
     left: 312px;
     z-index: 1;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#direct-messages-header {
+    height: 48px;
+    width: calc(100% - 321px);
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+#direct-messages-header-left {
+    display: flex;
+    flex-direction: row;
+}
+
+#direct-messages-header-left div {
+    display: flex;
+    flex-direction: row;
+}
+
+#friends-icon {
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: space-between;
+    align-items: center;
+}
+
+#friends-icon svg {
+    margin-right: 5px;
+}
+
+#friends-list-options {
+    width: 408px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#direct-messages-header-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#direct-messages-header-right .icon-group {
+    margin: 0px 10px;
+}
+
+#direct-messages-header-right .icon-group:first-child {
+    border-right: 1px solid grey;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#direct-messages-header-right .icon-group:last-child {
+    display: flex;
+    align-items: center;
+}
+
+
+#direct-messages-header-right .icon-group:last-child svg {
+    margin: 2.5px;
 }
