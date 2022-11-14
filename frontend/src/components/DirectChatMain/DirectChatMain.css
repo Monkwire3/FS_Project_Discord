@@ -1,0 +1,6 @@
+#direct-messages-header {
+    position: fixed;
+    width: 100%;
+    height: 48px;
+    background-color: yellow;
+}

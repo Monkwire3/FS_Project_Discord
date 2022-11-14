@@ -18,7 +18,6 @@ function FriendsList() {
 
     const deselect = (e) => {
         for (let child of e.currentTarget.children) {
-            debugger
             child.className = 'friends-list-option'
         }
     }

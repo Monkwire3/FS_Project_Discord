@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import DirectChatMain from '../DirectChatMain';
 import FriendsList from '../FriendsList';
 import './DirectMessagesMain.css';
 
@@ -6,16 +7,20 @@ import './DirectMessagesMain.css';
 function DirectMessagesMain() {
     const { chatId } = useParams();
 
-    if ( !chatId ) {
+    if (chatId) {
         return (
             <div id='direct-messages-main'>
-                <FriendsList />
+                <DirectChatMain chatId={chatId} />
             </div>
         )
+
     }
 
+
     return (
-        <></>
+        <div id='direct-messages-main'>
+            <FriendsList />
+        </div>
     )
 }
 
