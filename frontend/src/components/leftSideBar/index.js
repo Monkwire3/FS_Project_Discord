@@ -31,13 +31,6 @@ function LeftSidebar({serverId}) {
         dispatch(serverActions.fetchServer(serverId))
     }, [])
 
-    // On currentServer change
-    // useEffect(() => {
-    //     // channels = dispatch(channelActions.fetchChannels(id))
-
-    // }, [channels, server])
-
-
     useEffect(() => {
         dispatch(channelActions.fetchChannels(serverId))
         dispatch(serverActions.fetchServer(serverId))
@@ -57,7 +50,6 @@ function LeftSidebar({serverId}) {
     return (
         <div id="leftSidebar">
             <div id='channels'>
-                {/* {server ? <ServerDropDownModal server={server}/> : '' } */}
                 <ServerDropDownModal serverId={serverId} />
                 
                 <div className='channelHeaderTextBox'>

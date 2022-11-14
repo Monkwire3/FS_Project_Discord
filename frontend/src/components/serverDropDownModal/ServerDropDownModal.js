@@ -1,18 +1,29 @@
 import { Modal } from '../../context/Modal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ServerDropDown from '../ServerDropDown';
 import '../leftSideBar/LeftSidebar.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchServer, getServer } from '../../store/servers';
 
 
 
 function ServerDropDownModal({ serverId }) {
+    const dispatch = useDispatch();
+    const server = useSelector(getServer(serverId));
+
+    useEffect(() => {
+        dispatch(fetchServer(serverId));
+    }, []);
+
+
+
     const [showModal, setShowModal] = useState(false);
 
 
     return (
         <>
         <div onClick={() => setShowModal(true)} id='channelsHeader'>
-            <div>{serverId}</div>
+            <div>{server.serverName}</div>
             <div id="dropDownToggle">
                 <svg className='dropIcon' width={18} height={18}>
                     <g fill='none' fillRule="evenodd">

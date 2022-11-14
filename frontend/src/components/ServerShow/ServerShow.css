@@ -16,6 +16,15 @@
     border-bottom: 1px solid black;
     box-sizing: border-box;
     position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #ffff
+}
+
+
+#serverTop svg {
+    margin: 0px 5px;
 }
 
 #serverBottom {

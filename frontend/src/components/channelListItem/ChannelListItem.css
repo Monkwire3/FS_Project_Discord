@@ -5,6 +5,7 @@
 
 .channelListItem {
     display: flex;
+    flex-direction: row;
     width: 215.5px;
     height: 32px;
     align-items: center;
@@ -14,7 +15,12 @@
     margin: 8px;
     color: #96989d;
     font-family: Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    
+}
+
+.channelListItem a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .channelListItem:hover {
