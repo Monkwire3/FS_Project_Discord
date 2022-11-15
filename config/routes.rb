@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable"
 
   post '/api/test', to: 'application#test'
+  # post '/api/users/:user_id/chats/', to 'chats#create'
 
   namespace :api, defaults: { format: :json } do
+    resources :chats, only: [:create]
     resources :users, only: [:index, :show, :create, :destroy]
     resources :servers, only: [:index, :show, :create, :update, :destroy] do
       resources :channels, only: [:index, :show]

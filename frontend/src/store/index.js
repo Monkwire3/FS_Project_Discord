@@ -5,13 +5,15 @@ import channelsReducer from './channels';
 import serversReducer from './servers';
 import sessionReducer from './session';
 import usersReducer from './users';
+import chatsReducer from './chat';
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   users: usersReducer,
   servers: serversReducer,
-  channels: channelsReducer
+  channels: channelsReducer,
+  chats: chatsReducer
 })
 
 let enhancer;

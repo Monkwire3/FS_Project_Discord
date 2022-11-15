@@ -40,6 +40,18 @@ class User < ApplicationRecord
   has_many :received_friend_requests,
     through: :friends,
     source: :requestee
+    
+  has_many :messages,
+    foreign_key: :sender_id,
+    class_name: :Message
+
+  has_many :user_chat_joins,
+    foreign_key: :user_id,
+    class_name: :UserChatJoin
+  
+  has_many :chats,
+    through: :user_chat_joins,
+    source: :chat
 
 
 

@@ -19,4 +19,10 @@ class Chat < ApplicationRecord
     has_many :messages,
         foreign_key: :chat_id,
         class_name: :Message
+
+    def self.new_chat(params)
+        chat = Chat.create!(title: params[:title])
+        ChatsChannel.broadcast_to("chat_#{chat.id}")
+        return chat
+    end
 end
