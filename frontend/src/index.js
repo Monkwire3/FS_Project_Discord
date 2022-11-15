@@ -12,7 +12,7 @@ import * as usersActions from './store/users';
 import serversReducer, * as serversActions from './store/servers';
 import channelsReducer, * as channelActions from './store/channels'
 import { ModalProvider } from './context/Modal';
-import actioncable from 'actioncable';
+import actionCable from 'actioncable';
 
 
 const store = configureStore();
@@ -36,7 +36,7 @@ const renderApplication = () => {
 }
 
 const CableApp = {}
-CableApp.cable = ActionCable.createConsumer('ws://localhost:3000/cable')
+CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
 
 function Root() {
   return (

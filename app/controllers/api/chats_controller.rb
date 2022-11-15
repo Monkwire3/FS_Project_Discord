@@ -4,4 +4,14 @@ class Api::ChatsController < ApplicationController
         # Add code so that the creator is automatically added to the chat
         render :show
     end
+
+    def show
+        @chat = Chat.find(params[:chat_id])
+        render :show
+    end
+
+    def index
+        @chats = current_user.chats
+        render :index
+    end
 end
