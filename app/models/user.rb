@@ -77,6 +77,20 @@ def friends
   # User.find(Friend.where(requester_id: self.id, accepted: true).pluck(:requestee_id)
 end
 
+has_many :user_chat_joins,
+  foreign_key: :user_id,
+  class_name: :UserChatJoin
+
+has_many :chats,
+  through: :user_chat_joins,
+  source: :chat
+
+has_many :messages,
+  foreign_key: :sender_id,
+  class_name: :Message,
+  inverse_of: :sender
+
+
 private
 
 def generate_unique_session_token

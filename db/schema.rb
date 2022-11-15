@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_11_001235) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_15_155444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_001235) do
     t.index ["server_id"], name: "index_channels_on_server_id"
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friends", force: :cascade do |t|
     t.bigint "requester_id", null: false
     t.bigint "requestee_id", null: false
@@ -30,6 +36,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_001235) do
     t.datetime "updated_at", null: false
     t.index ["requestee_id"], name: "index_friends_on_requestee_id"
     t.index ["requester_id"], name: "index_friends_on_requester_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "sender_id"
+    t.bigint "chat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "server_users", force: :cascade do |t|
@@ -49,6 +65,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_001235) do
     t.index ["owner_id"], name: "index_servers_on_owner_id"
   end
 
+  create_table "user_chat_joins", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "chat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_user_chat_joins_on_chat_id"
+    t.index ["user_id"], name: "index_user_chat_joins_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "username", null: false
@@ -64,7 +89,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_11_001235) do
   add_foreign_key "channels", "servers"
   add_foreign_key "friends", "users", column: "requestee_id"
   add_foreign_key "friends", "users", column: "requester_id"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "server_users", "servers"
   add_foreign_key "server_users", "users"
   add_foreign_key "servers", "users", column: "owner_id"
+  add_foreign_key "user_chat_joins", "chats"
+  add_foreign_key "user_chat_joins", "users"
 end
