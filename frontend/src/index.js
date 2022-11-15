@@ -12,6 +12,7 @@ import * as usersActions from './store/users';
 import serversReducer, * as serversActions from './store/servers';
 import channelsReducer, * as channelActions from './store/channels'
 import { ModalProvider } from './context/Modal';
+import actioncable from 'actioncable';
 
 
 const store = configureStore();
@@ -34,13 +35,15 @@ const renderApplication = () => {
   );
 }
 
+const CableApp = {}
+CableApp.cable = ActionCable.createConsumer('ws://localhost:3000/cable')
 
 function Root() {
   return (
     <ModalProvider>
     <Provider store={store}>
       <BrowserRouter>
-      <App />
+      <App cable={CableApp.cable}/>
       </BrowserRouter>
     </Provider>
     </ModalProvider>

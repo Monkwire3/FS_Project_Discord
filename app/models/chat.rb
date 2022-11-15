@@ -12,8 +12,8 @@ class Chat < ApplicationRecord
         foreign_key: :chat_id,
         class_name: :UserChatJoin
     
-    has_many :users,
-        though: :user_chat_joins,
+    has_many :members,
+        through: :user_chat_joins,
         source: :user
     
     has_many :messages,

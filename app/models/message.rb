@@ -20,4 +20,11 @@ class Message < ApplicationRecord
         foreign_key: :chat_id,
         class_name: :Chat
             
+
+    def self.new_message(params)
+        chat = Chat.find(params[:chat_id])
+        message = Message.create!(sender_id: params[:sender_id], chat_id: params[:chat_id], body: params[:body])
+        ActionCable.server.broadcast("chat_#{params[:chat_id]}", message)
+        return message
+    end
 end
