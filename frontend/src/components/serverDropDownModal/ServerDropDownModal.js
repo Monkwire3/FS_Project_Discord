@@ -23,7 +23,7 @@ function ServerDropDownModal({ serverId }) {
     return (
         <>
         <div onClick={() => setShowModal(true)} id='channelsHeader'>
-            <div>{server.serverName}</div>
+            <div>{server ? server.serverName : ''}</div>
             <div id="dropDownToggle">
                 <svg className='dropIcon' width={18} height={18}>
                     <g fill='none' fillRule="evenodd">
