@@ -42,6 +42,7 @@ export const createChat = (chat) => async(dispatch) => {
 }
 
 export const createMessage = (message) => async(dispatch) => {
+    debugger
     const res = await csrfFetch(`/api/messages`, {
         method: 'POST',
         body: JSON.stringify({
