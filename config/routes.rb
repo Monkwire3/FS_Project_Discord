@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # post '/api/users/:user_id/chats/', to 'chats#create'
 
   namespace :api, defaults: { format: :json } do
-    resources :chats, only: [:create]
+    resources :messages, only: [:create]
+    resources :chats, only: [:create, :index, :show]
     resources :users, only: [:index, :show, :create, :destroy]
     resources :servers, only: [:index, :show, :create, :update, :destroy] do
       resources :channels, only: [:index, :show]

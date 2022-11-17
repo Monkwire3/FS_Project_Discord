@@ -1,5 +1,4 @@
 import csrfFetch from "./csrfFetch";
-import { storeCurrentUser } from "./session";
 
 const CREATE_SERVER = 'servers/createServer';
 const DELETE_SERVER = 'servers/deleteServer';
