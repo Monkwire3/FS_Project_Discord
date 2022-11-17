@@ -1,6 +1,5 @@
 class Api::ChatsController < ApplicationController
     def create
-        debugger
         @chat = Chat.new_chat(params)
         # Add code so that the creator is automatically added to the chat
         render :show
@@ -12,7 +11,6 @@ class Api::ChatsController < ApplicationController
     end
 
     def index
-        debugger
         @chats = current_user.chats
         render :index
     end

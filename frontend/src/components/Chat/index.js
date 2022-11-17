@@ -15,8 +15,7 @@ function Chat({chatId}) {
         debugger
     }
 
-    const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender_id}</div>) : 'messages loading';
-    debugger
+    const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
 
     return (
         <div id='chat'>

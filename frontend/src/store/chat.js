@@ -24,7 +24,6 @@ export const fetchChat = (chatId) => async(dispatch) => {
     const data = await res.json();
 
     dispatch(receiveChat(data));
-
     return res;
 }
 
@@ -63,7 +62,6 @@ const chatsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_CHAT:
-            debugger
             return {...action.payload}
         case RECEIVE_MESSAGE:
             return nextState;
