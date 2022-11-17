@@ -2,7 +2,7 @@ import Chat from '../Chat';
 import './DirectChatMain.css';
 
 
-function DirectChatMain({chatId}) {
+function DirectChatMain({chatId, cable}) {
     return (
         <>
         <div id='direct-messages-header'>
@@ -44,7 +44,7 @@ function DirectChatMain({chatId}) {
                 </svg>
             </div>
         </div>
-        <Chat chatId={chatId}/>
+        <Chat chatId={chatId} cable={cable} />
         </>
     )
 }

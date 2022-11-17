@@ -4,12 +4,12 @@ import ServerIndex from "../ServerIndex";
 import './DirectMessagesFull.css'
 
 
-function DirectMessagesFull() {
+function DirectMessagesFull({cable}) {
     return (
         <>
         <ServerIndex />
         <MeLeftBar />
-        <DirectMessagesMain />
+        <DirectMessagesMain cable={cable} />
         </>
     )
 }

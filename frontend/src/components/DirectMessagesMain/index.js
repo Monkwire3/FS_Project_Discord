@@ -4,13 +4,13 @@ import FriendsList from '../FriendsList';
 import './DirectMessagesMain.css';
 
 
-function DirectMessagesMain() {
+function DirectMessagesMain({cable}) {
     const { chatId } = useParams();
 
     if (chatId) {
         return (
             <div id='direct-messages-main'>
-                <DirectChatMain chatId={chatId} />
+                <DirectChatMain chatId={chatId} cable={cable}/>
             </div>
         )
 

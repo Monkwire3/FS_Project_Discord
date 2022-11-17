@@ -12,7 +12,7 @@ import EditServerForm from "./components/EditServerForm";
 import CreateChannelForm from "./components/CreateChannelForm";
 import DirectMessagesFull from "./components/DirectMessagesFull";
 
-function App() {
+function App({cable}) {
   return (
     <>
     <Switch>
@@ -29,7 +29,7 @@ function App() {
         <CreateServerForm />
       </Route>
       <Route path='/channels/@me/:chatId?'>
-        <DirectMessagesFull />
+        <DirectMessagesFull cable={cable}/>
       </Route>
       <Route path='/channels/:id'>
         <ServerFull />
