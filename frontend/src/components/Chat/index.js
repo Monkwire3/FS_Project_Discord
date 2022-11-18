@@ -16,7 +16,6 @@ function Chat({ chatId, cable }) {
     }, [])
 
     useEffect(() => {
-        debugger
     }, [cable.subscriptions, chatId, setMessageHistory, messageHistory])
 
     useEffect(() => {
@@ -45,7 +44,7 @@ function Chat({ chatId, cable }) {
     const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
 
 
-    const historicalMessages = messageHistory.map((m) => <div>messageHistory: {m.body} - {m.sender.username}</div>)
+    const historicalMessages = messageHistory.map((m) => <div>messageHistory: {m.body} - {m.senderId}</div>)
 
     return (
         <div id='chat'>
