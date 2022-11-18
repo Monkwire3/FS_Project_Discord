@@ -9,6 +9,7 @@ function Chat({ chatId, cable }) {
     const [messageHistory, setMessageHistory] = useState([]);
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
+    console.log(cable.subscriptions)
 
     useEffect(() => {
         dispatch(fetchChat(chatId));
@@ -16,13 +17,13 @@ function Chat({ chatId, cable }) {
 
     useEffect(() => {
         debugger
-    }, [cable, chatId, setMessageHistory, messageHistory])
+    }, [cable.subscriptions, chatId, setMessageHistory, messageHistory])
 
     useEffect(() => {
         cable.subscriptions.create(
             {
                 channel: 'ChatsChannel',
-                user_id: sessionUser.id,
+                // user_id: sessionUser.id,
                 chat_id: chatId
             },
             {
@@ -35,11 +36,14 @@ function Chat({ chatId, cable }) {
 
     }, [cable.subscriptions, chatId, setMessageHistory, messageHistory])
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId }))
+        setOutgoingMessage("")
     }
 
     const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
+
 
     const historicalMessages = messageHistory.map((m) => <div>messageHistory: {m.body} - {m.sender.username}</div>)
 
