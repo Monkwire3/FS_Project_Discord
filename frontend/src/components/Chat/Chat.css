@@ -10,6 +10,7 @@
 #chat-messages-container {
     height: calc(100% - 68px);
     background-color: cadetblue;
+    overflow: scroll;
 }
 
 #chat-input-container {
