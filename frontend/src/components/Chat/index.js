@@ -9,26 +9,32 @@ function Chat({ chatId, cable }) {
     const [messageHistory, setMessageHistory] = useState([]);
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
-    console.log(cable.subscriptions)
+    const [messages, setMessages] = useState([]);
+
+    // const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
 
     useEffect(() => {
         dispatch(fetchChat(chatId));
+        setMessageHistory(chat.messages);
     }, [])
 
     useEffect(() => {
+        Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
+
+
+        
     }, [cable.subscriptions, chatId, setMessageHistory, messageHistory])
 
     useEffect(() => {
         cable.subscriptions.create(
             {
                 channel: 'ChatsChannel',
-                // user_id: sessionUser.id,
+                user_id: sessionUser.id,
                 chat_id: chatId
             },
             {
                 received: (message) => {
-                    setMessageHistory([...messages, message])
-
+                    messageHistory.length > 0 ? setMessageHistory([...messageHistory, message]) : setMessageHistory([message]);
                 }
             }
         )
@@ -41,10 +47,10 @@ function Chat({ chatId, cable }) {
         setOutgoingMessage("")
     }
 
-    const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
 
 
-    const historicalMessages = messageHistory.map((m) => <div>messageHistory: {m.body} - {m.senderId}</div>)
+    const historicalMessages = messageHistory ? messageHistory.map((m) => <div>{m.body} - {m.sender_id}</div>) : 'messages loading'
+    console.log(historicalMessages)
 
     return (
         <div id='chat'>

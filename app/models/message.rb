@@ -26,5 +26,6 @@ class Message < ApplicationRecord
         message = Message.create!(sender_id: params[:sender_id], chat_id: params[:chat_id], body: params[:body])
         ActionCable.server.broadcast("chat_#{params[:chat_id]}", message)
         return message
+
     end
 end
