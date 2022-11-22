@@ -12,10 +12,12 @@ function Chat({ chatId, cable }) {
     const [messages, setMessages] = useState([]);
 
     // const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
+    const bottomDiv = document.querySelector("#bottom-div");
 
     useEffect(() => {
         dispatch(fetchChat(chatId));
         setMessageHistory(chat.messages);
+
     }, [])
 
     useEffect(() => {
@@ -23,7 +25,7 @@ function Chat({ chatId, cable }) {
 
 
         
-    }, [cable.subscriptions, chatId, setMessageHistory, messageHistory])
+    }, [cable.subscriptions, chatId, setMessageHistory, messageHistory, setOutgoingMessage])
 
     useEffect(() => {
         cable.subscriptions.create(
@@ -34,7 +36,8 @@ function Chat({ chatId, cable }) {
             },
             {
                 received: (message) => {
-                    messageHistory.length > 0 ? setMessageHistory([...messageHistory, message]) : setMessageHistory([message]);
+                    messageHistory ? setMessageHistory([...messageHistory, message]) : setMessageHistory([message]);
+                    bottomDiv.scrollIntoView();
                 }
             }
         )
@@ -50,17 +53,17 @@ function Chat({ chatId, cable }) {
 
 
     const historicalMessages = messageHistory ? messageHistory.map((m) => <div>{m.body} - {m.sender_id}</div>) : 'messages loading'
-    console.log(historicalMessages)
 
     return (
         <div id='chat'>
             <div id='chat-messages-container'>
                 {messages}
                 {historicalMessages}
+                <div id='bottom-div'></div>
             </div>
             <div id='chat-input-container'>
                 <form onSubmit={handleSubmit}>
-                    <input type='text' onChange={(e) => setOutgoingMessage(e.target.value)}></input>
+                    <input type='text' value={outgoingMessage} onChange={(e) => setOutgoingMessage(e.target.value)}></input>
                 </form>
             </div>
         </div>
