@@ -20,7 +20,7 @@ function MeLeftBar() {
                 </div>
             </div>
             <div id='userBar'>
-                <div id='nameTag'><div id='userIcon'></div><div id='nameDisplay'>{sessionUser.username}</div></div>
+                <div id='nameTag'><div id='userIcon'></div><div id='nameDisplay'>{sessionUser ? sessionUser.username : ""}</div></div>
                 <div id='userMenus'>
                     <div id='userSettings' onClick={logout}>
                         <svg aria-hidden='true' role='img'>

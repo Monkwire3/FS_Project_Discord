@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 function FriendsList() {
-    const friends = useSelector(state => state.session.user.friends);
+    const sessionUser = useSelector(state => state.session.user)
+    const friends = sessionUser ? sessionUser.friends : []
     let [friendSelection, setFriendSelection] = useState('online')
 
     useEffect(() => {
