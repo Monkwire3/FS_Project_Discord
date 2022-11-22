@@ -12,7 +12,6 @@ function Chat({ chatId, cable }) {
     const [messages, setMessages] = useState([]);
 
     // const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
-    const bottomDiv = document.querySelector("#bottom-div");
 
     useEffect(() => {
         dispatch(fetchChat(chatId));
@@ -37,7 +36,7 @@ function Chat({ chatId, cable }) {
             {
                 received: (message) => {
                     messageHistory ? setMessageHistory([...messageHistory, message]) : setMessageHistory([message]);
-                    bottomDiv.scrollIntoView();
+                    document.querySelector('#bottom-div').scrollIntoView();
                 }
             }
         )
@@ -46,26 +45,41 @@ function Chat({ chatId, cable }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId }))
         setOutgoingMessage("")
+        for (let i = 0; i < chat.members.length; i++) {
+            if (chat.members[i].id === sessionUser.id) {
+                dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId }))
+            }
+        }
     }
 
 
 
-    const historicalMessages = messageHistory ? messageHistory.map((m) => <div>{m.body} - {m.sender_id}</div>) : 'messages loading'
+    let historicalMessages = messageHistory ? messageHistory.map((m) => <div>{m.body} - {m.sender_id}</div>) : 'messages loading'
 
+    if (chat.members) {
+        for (let i = 0; i < chat.members.length; i++) {
+            if (chat.members[i].id === sessionUser.id) {
+                return (
+                    <div id='chat'>
+                        <div id='chat-messages-container'>
+                            {messages}
+                            {historicalMessages}
+                            <div id='bottom-div'></div>
+                        </div>
+                        <div id='chat-input-container'>
+                            <form onSubmit={handleSubmit}>
+                                <input type='text' value={outgoingMessage} onChange={(e) => setOutgoingMessage(e.target.value)}></input>
+                            </form>
+                        </div>
+                    </div>
+                )
+            }
+        }
+    }
     return (
         <div id='chat'>
-            <div id='chat-messages-container'>
-                {messages}
-                {historicalMessages}
-                <div id='bottom-div'></div>
-            </div>
-            <div id='chat-input-container'>
-                <form onSubmit={handleSubmit}>
-                    <input type='text' value={outgoingMessage} onChange={(e) => setOutgoingMessage(e.target.value)}></input>
-                </form>
-            </div>
+            Either this chat does not exist, or you are not a member
         </div>
     )
 }
