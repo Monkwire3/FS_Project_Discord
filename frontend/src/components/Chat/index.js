@@ -23,6 +23,7 @@ function Chat({ chatId, cable }) {
         Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
 
 
+
         
     }, [cable.subscriptions, chatId, setMessageHistory, messageHistory, setOutgoingMessage])
 
@@ -40,6 +41,8 @@ function Chat({ chatId, cable }) {
                 }
             }
         )
+
+
 
     }, [cable.subscriptions, chatId, setMessageHistory, messageHistory])
 
