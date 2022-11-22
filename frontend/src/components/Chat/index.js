@@ -16,13 +16,14 @@ function Chat({ chatId, cable }) {
     useEffect(() => {
         dispatch(fetchChat(chatId));
         setMessageHistory(chat.messages);
+        console.log('on load cable ', cable)
 
     }, [])
 
     useEffect(() => {
         Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
 
-
+        console.log('cable: ', cable)
 
         
     }, [cable.subscriptions, chatId, setMessageHistory, messageHistory, setOutgoingMessage])
@@ -41,10 +42,19 @@ function Chat({ chatId, cable }) {
                 }
             }
         )
+        console.log('above return: ', cable.subscriptions)
+
+        return () => {
+            if (cable.subscriptions) {
+                let ws = cable.connection.webSocket;
+                ws.onClose();
+            }
+        }
 
 
 
-    }, [cable.subscriptions, chatId, setMessageHistory, messageHistory])
+    }, [])
+    //[cable.subscriptions, chatId, setMessageHistory, messageHistory] 
 
     const handleSubmit = (e) => {
         e.preventDefault();
