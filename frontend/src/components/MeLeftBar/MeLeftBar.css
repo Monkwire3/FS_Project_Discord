@@ -10,3 +10,17 @@
     justify-content: space-between;
     flex-direction: column;
 }
+
+#me-left-bar-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    height: 48px;
+    width: 100%;
+}
+#me-left-bar-search-container input {
+    height: 28px;
+    width: 220px;
+
+}

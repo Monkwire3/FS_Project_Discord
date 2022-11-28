@@ -6,7 +6,7 @@ import './Chat.css';
 function Chat({ chatId, cable }) {
     const dispatch = useDispatch();
     const chat = useSelector(state => state.chats);
-    const [messageHistory, setMessageHistory] = useState([]);
+    const oldMessages = useSelector(state => state.chats.messages);
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
     const [messages, setMessages] = useState([]);
@@ -15,18 +15,18 @@ function Chat({ chatId, cable }) {
 
     useEffect(() => {
         dispatch(fetchChat(chatId));
-        setMessageHistory(chat.messages);
         console.log('on load cable ', cable)
+        console.log('on load messageHistory: ', oldMessages)
 
     }, [])
 
     useEffect(() => {
-        Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
-
+        // Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
+        // messages.length > 0 ? setMessages([...messages]) : setMessages([]);
         console.log('cable: ', cable)
 
         
-    }, [cable.subscriptions, chatId, setMessageHistory, messageHistory, setOutgoingMessage])
+    }, [cable.subscriptions, chatId, oldMessages, setOutgoingMessage])
 
     useEffect(() => {
         cable.subscriptions.create(
@@ -37,7 +37,8 @@ function Chat({ chatId, cable }) {
             },
             {
                 received: (message) => {
-                    messageHistory ? setMessageHistory([...messageHistory, message]) : setMessageHistory([message]);
+                    oldMessages.push(message)
+                    messages.length > 0 ? setMessages([...messages, <div className='message'>{message.body} -</div>]) : setMessages([<div className='message'>{message.body} -{message.sender_id}</div>]);
                     document.querySelector('#bottom-div').scrollIntoView();
                 }
             }
@@ -47,7 +48,7 @@ function Chat({ chatId, cable }) {
         return () => {
             if (cable.subscriptions) {
                 let ws = cable.connection.webSocket;
-                ws.onClose();
+                ws.onclose();
             }
         }
 
@@ -68,7 +69,7 @@ function Chat({ chatId, cable }) {
 
 
 
-    let historicalMessages = messageHistory ? messageHistory.map((m) => <div>{m.body} - {m.sender_id}</div>) : 'messages loading'
+    const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : ''
 
     if (chat.members) {
         for (let i = 0; i < chat.members.length; i++) {
@@ -76,8 +77,8 @@ function Chat({ chatId, cable }) {
                 return (
                     <div id='chat'>
                         <div id='chat-messages-container'>
-                            {messages}
-                            {historicalMessages}
+                            {oldMessagesFormatted}
+                            {/* {messages}  */}
                             <div id='bottom-div'></div>
                         </div>
                         <div id='chat-input-container'>
