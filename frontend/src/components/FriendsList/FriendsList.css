@@ -1,3 +1,28 @@
 .selected {
     background-color: blue;
 }
+
+.friends-list-index-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid #43454d;
+    margin: 0px 20px 0px 30px;
+    height: 61px;
+    align-items: center;
+}
+
+.friends-list-index-item .icon-group {
+    display: flex;
+    flex-direction: row;
+    width: 82px;
+    justify-content: space-between;
+}
+
+.friends-list-index-item .icon {
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #303136;
+}

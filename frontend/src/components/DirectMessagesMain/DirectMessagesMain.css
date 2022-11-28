@@ -4,7 +4,7 @@
     top: 0;
     left: 312px;
     z-index: 1;
-    width: 100%;
+    width: calc(100% - 312px);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -74,4 +74,12 @@
 
 #direct-messages-header-right .icon-group:last-child svg {
     margin: 2.5px;
+}
+
+#friends-list {
+    position: fixed;
+    top: 48px;
+    height: calc(100% - 48px);
+    width: calc(100% - 312px);
+    overflow-y: scroll;
 }

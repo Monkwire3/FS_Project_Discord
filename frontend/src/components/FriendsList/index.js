@@ -1,6 +1,7 @@
 import './FriendsList.css';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import FriendsListIndexItem from './FriendsListIndexItem';
 
 function FriendsList() {
     const sessionUser = useSelector(state => state.session.user)
@@ -24,7 +25,8 @@ function FriendsList() {
     }
 
 
-    const friendsList = friends.map((friend) => <div className='friends-list-item'>{friend.username}</div>)
+    const friendsList = friends.map((friend) => <FriendsListIndexItem friend={friend} />)
+
     return (
         <>
         <div id='direct-messages-header'>
