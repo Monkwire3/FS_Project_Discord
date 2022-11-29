@@ -11,7 +11,6 @@ function Chat({ chatId, cable }) {
     const sessionUser = useSelector(state => state.session.user);
     const [messages, setMessages] = useState([]);
 
-    // const messages = Object.values(chat).length > 0 ? chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : 'messages loading';
 
     useEffect(() => {
         dispatch(fetchChat(chatId));
@@ -20,13 +19,14 @@ function Chat({ chatId, cable }) {
 
     }, [])
 
-    useEffect(() => {
-        // Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
-        // messages.length > 0 ? setMessages([...messages]) : setMessages([]);
-        console.log('cable: ', cable)
+d   // useEffect(() => {
+    //     Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
+    //     // messages.length > 0 ? setMessages([...messages]) : setMessages([]);
+    //     console.log('cable: ', cable)
 
         
-    }, [cable.subscriptions, chatId, oldMessages, setOutgoingMessage])
+    // }, [cable.subscriptions, chatId, oldMessages, setOutgoingMessage])
+    const liveMessages = [];
 
     useEffect(() => {
         cable.subscriptions.create(
@@ -37,7 +37,6 @@ function Chat({ chatId, cable }) {
             },
             {
                 received: (message) => {
-                    oldMessages.push(message)
                     messages.length > 0 ? setMessages([...messages, <div className='message'>{message.body} -</div>]) : setMessages([<div className='message'>{message.body} -{message.sender_id}</div>]);
                     document.querySelector('#bottom-div').scrollIntoView();
                 }
@@ -78,7 +77,7 @@ function Chat({ chatId, cable }) {
                     <div id='chat'>
                         <div id='chat-messages-container'>
                             {oldMessagesFormatted}
-                            {/* {messages}  */}
+                            {messages} 
                             <div id='bottom-div'></div>
                         </div>
                         <div id='chat-input-container'>

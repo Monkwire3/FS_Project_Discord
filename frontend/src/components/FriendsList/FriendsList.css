@@ -8,8 +8,10 @@
     justify-content: space-between;
     border-top: 1px solid #43454d;
     margin: 0px 20px 0px 30px;
+    padding: 0px 6px;
     height: 61px;
     align-items: center;
+    border-radius: 4px;
 }
 
 .friends-list-index-item .icon-group {
@@ -25,4 +27,14 @@
     justify-content: center;
     align-items: center;
     background-color: #303136;
+}
+
+.friends-list-index-item:hover {
+    background-color: #41444b;
+    cursor: pointer;
+}
+
+.friends-list-index-item:hover .icon {
+    background-color: #1f2225;
+    fill: #b9bbbe;
 }

@@ -36,7 +36,8 @@ const renderApplication = () => {
 }
 
 const CableApp = {}
-CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
+// This is the problem
+CableApp.cable = actionCable.createConsumer('ws://localhost:5001/cable')
 
 function Root() {
   return (
