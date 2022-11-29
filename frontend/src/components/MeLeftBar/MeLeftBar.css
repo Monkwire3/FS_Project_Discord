@@ -15,12 +15,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4px;
+    padding: 4px 0px;
     height: 48px;
     width: 100%;
 }
 #me-left-bar-search-container input {
     height: 28px;
     width: 220px;
+    padding: 0;
 
 }

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './MeLeftBar.css';
+import Link from 'react'
 import * as sessionActions from '../../store/session';
 
 function MeLeftBar() {
@@ -10,6 +11,9 @@ function MeLeftBar() {
         return dispatch(sessionActions.logout());
     }
 
+    const directMessages = sessionUser.chats.map((chat) => <Link to={`/${chat.id}`}><div className='direct-messages-index-item'>{chat.title}</div></Link>)
+    console.log('directmessages: ', directMessages)
+
     return (
         <div id='me-left-bar-container'>
             <div id='me-left-bar-search-container'>
@@ -17,6 +21,7 @@ function MeLeftBar() {
             </div>
             <div id='me-left-bar-middle-container'>
                 <div id='me-left-bar-direct-messages'>
+                    {/* {directMessages} */}
                 </div>
             </div>
             <div id='userBar'>

@@ -19,7 +19,7 @@ function Chat({ chatId, cable }) {
 
     }, [])
 
-d   // useEffect(() => {
+   // useEffect(() => {
     //     Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
     //     // messages.length > 0 ? setMessages([...messages]) : setMessages([]);
     //     console.log('cable: ', cable)
