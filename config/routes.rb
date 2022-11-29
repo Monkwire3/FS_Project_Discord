@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   post '/api/test', to: 'application#test'
   # post '/api/users/:user_id/chats/', to 'chats#create'
 
+  post '/api/friends' to 'users#send_friend_request'
+  patch '/api/friends/:id' to 'users#accept_friend_request'
+  delete '/api/friends/:id' to 'users/#remove_friend'
+
   namespace :api, defaults: { format: :json } do
     resources :messages, only: [:create]
     resources :chats, only: [:create, :index, :show]

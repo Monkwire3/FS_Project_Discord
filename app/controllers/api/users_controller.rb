@@ -22,6 +22,10 @@ class Api::UsersController < ApplicationController
   end
 
   def remove_friend
+    @friend = Friend.find(params[:id])
+    if @friend
+      @friend.delete
+    end
 
   end
 
