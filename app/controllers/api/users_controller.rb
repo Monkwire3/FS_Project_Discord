@@ -12,6 +12,19 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def send_friend_request
+    @request = Friend.new(requester_id: params[:requesterId], requestee_id: params[:requestee_id])
+  end
+
+  def accept_friend_request
+    @request = Friend.find(params[:id])
+    @request.accepted = True
+  end
+
+  def remove_friend
+
+  end
+
 
   private
 
