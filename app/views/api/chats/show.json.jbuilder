@@ -6,6 +6,8 @@ json.messages do
     json.body message.body
     json.chat_id message.chat_id
     json.sender message.sender
+    json.created_at message.created_at
+    json.updated_at message.updated_at
 end
 end
 json.members @chat.members

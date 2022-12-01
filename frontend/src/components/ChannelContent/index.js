@@ -23,10 +23,9 @@ function ChannelContent() {
     }, [sendMessage])
 
 
-    const messages = channel ? channel.messages.map((m) => <Message message={m} />) : '';
+    const messages = channel.messages ? channel.messages.map((m) => <Message message={m} />) : '';
 
 
-    debugger
     return (
         <>
         <div id='chat-box'>{messages}</div>
