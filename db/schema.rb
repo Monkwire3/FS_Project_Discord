@@ -42,8 +42,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_155444) do
     t.text "body", null: false
     t.bigint "sender_id"
     t.bigint "chat_id"
+    t.bigint "channel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_messages_on_channel_id"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
@@ -89,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_15_155444) do
   add_foreign_key "channels", "servers"
   add_foreign_key "friends", "users", column: "requestee_id"
   add_foreign_key "friends", "users", column: "requester_id"
+  add_foreign_key "messages", "channels"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "server_users", "servers"

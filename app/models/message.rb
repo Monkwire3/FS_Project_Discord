@@ -6,6 +6,7 @@
 #  body       :text             not null
 #  sender_id  :bigint
 #  chat_id    :bigint
+#  channel_id :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -19,6 +20,8 @@ class Message < ApplicationRecord
     belongs_to :chat,
         foreign_key: :chat_id,
         class_name: :Chat
+    
+
             
 
     def self.new_message(params)
