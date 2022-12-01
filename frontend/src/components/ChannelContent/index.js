@@ -1,9 +1,13 @@
 import './ChannelContent.css';
+import { useParams } from 'react-router-dom';
 
 function ChannelContent() {
+    const channelId = useParams();
+    console.log('channelId: ', channelId);
+
 
     const sendMessage = (e) => {
-        e.prevenDefault();
+        e.preventDefault();
         console.log('sendMessage function')
     }
 

@@ -6,8 +6,12 @@
 
 #input-container {
     height: 68px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 #input-container input {
     width: 95%;
+    padding: 0px;
 }
