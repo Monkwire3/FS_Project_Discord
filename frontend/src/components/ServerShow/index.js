@@ -5,6 +5,7 @@ import * as channelActions from '../../store/channels';
 import './ServerShow.css'
 import { useDispatch } from 'react-redux';
 import ServerMembersList from '../ServerMembersList';
+import ChannelContent from '../ChannelContent';
 
 
 
@@ -31,7 +32,7 @@ function ServerShow({serverId}) {
                 </svg>
                 {channel ? channel.name : 'channel name unnavailable'}</div>
             <div id='serverBottom'>
-                <div id='serverLeft'></div>
+                <div id='serverLeft'><ChannelContent /></div>
                 <div id='serverRight'>
                     <ServerMembersList serverId={serverId} />
                 </div>
