@@ -153,7 +153,6 @@ const channelsReducer = (state = {}, action) => {
             delete nextState[action.channelId]
             return nextState
         case ADD_CHANNEL_MESSAGE:
-            debugger
             nextState[action.message.channel_id].messages.push(action.message)
             return nextState;
         default:
