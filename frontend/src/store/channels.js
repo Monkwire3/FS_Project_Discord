@@ -3,9 +3,17 @@ import csrfFetch from "./csrfFetch";
 const RECEIVE_CHANNEL = 'channels/receiveChannel';
 const RECEIVE_CHANNELS = 'channels/receiveChannels';
 const CREATE_CHANNEL = 'channels/createChannel';
-const EDIT_SERVER = 'channels/editChannel';
+const EDIT_CHANNEL = 'channels/editChannel';
 const DELETE_CHANNEL = 'channels/deleteChannel';
+const ADD_CHANNEL_MESSAGE = 'channels/addMessage';
 
+
+const addMessageToChannel = (message) => {
+    return {
+        type: ADD_CHANNEL_MESSAGE,
+        message: message
+    }
+}
 
 const removeChannel = (channelId) => {
     return {
@@ -16,7 +24,7 @@ const removeChannel = (channelId) => {
 
 const editChannelAction = (channel) => {
     return {
-        type: EDIT_SERVER,
+        type: EDIT_CHANNEL,
         payload: channel
     }
 }
@@ -45,6 +53,21 @@ const receiveChannels = (channels) => {
 
 export const getChannels = serverId => ({channels}) => channels ? Object.values(channels).filter((channel) => `${channel.serverId}` === `${serverId}`) : [];
 export const getChannel = channelId => ({channels}) => channels ? channels[channelId]: null;
+
+export const createChannelMessage = (message) => async (dispatch) => {
+    const res = await csrfFetch(`/api/messages/`, {
+        method: 'POST',
+        body: JSON.stringify ({
+            body: message.body,
+            sender_id: message.sender_id,
+            channel_id: message.channel_id
+        })
+    })
+
+    const data = await res.json();
+
+    dispatch(addMessageToChannel(Object.values(data)[0]));
+}
 
 
 export const fetchChannels = (serverId) => async(dispatch) => {
@@ -82,7 +105,6 @@ export const addChannelToDatabase = (channel) => async(dispatch) => {
 
 
     const data = await res.json();
-    console.log(data)
     dispatch(receiveChannel(Object.values(data)[0]))
 }
 
@@ -130,6 +152,9 @@ const channelsReducer = (state = {}, action) => {
         case DELETE_CHANNEL:
             delete nextState[action.channelId]
             return nextState
+        case ADD_CHANNEL_MESSAGE:
+            nextState[action.channelId].messages.push(action.message)
+            return nextState;
         default:
             return state;
     }
