@@ -1,6 +1,8 @@
 .selected {
-    background-color: blue;
+    color: #fff;
+    background-color: #444951;
 }
+
 
 .friends-list-index-item {
     display: flex;
@@ -12,6 +14,7 @@
     height: 61px;
     align-items: center;
     border-radius: 4px;
+    color: #fff;
 }
 
 .friends-list-index-item .icon-group {
@@ -37,4 +40,24 @@
 .friends-list-index-item:hover .icon {
     background-color: #1f2225;
     fill: #b9bbbe;
+}
+
+#direct-messages-header {
+    color: #ffff;
+}
+
+#friends-list-options div {
+    color: #babbbe;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+#friends-list-options div:hover {
+    background-color: #444951;
+    cursor: pointer;
+}
+
+.selected:hover {
+    background-color: #40444b;
+    cursor: default;
 }

@@ -9,18 +9,18 @@ function FriendsList() {
     let [friendSelection, setFriendSelection] = useState('online')
 
     useEffect(() => {
+        applySelectionClasses();
 
-    }, [setFriendSelection])
+    }, [friendSelection, setFriendSelection])
 
-    const selectFriendShow = (e) => {
-        e.stopPropagation();
-        setFriendSelection(e.target.textContent.toLowerCase())
-        e.target.className = "friends-list-option selected"
-    }
-
-    const deselect = (e) => {
-        for (let child of e.currentTarget.children) {
-            child.className = 'friends-list-option'
+    const applySelectionClasses = () => {
+        console.log('in apply selection classes')
+        for (let child of document.querySelector('#friends-list-options').children) {
+            if (child.textContent.toLowerCase() === friendSelection) {
+                child.className = 'selected'
+            } else {
+                child.className = '';
+            }
         }
     }
 
@@ -39,11 +39,11 @@ function FriendsList() {
                 </svg>
                 <div>Friends</div>
             </div>
-            <div id='friends-list-options' onClick={deselect}>
-                <div onClick={selectFriendShow}>Online</div>
-                <div onClick={selectFriendShow}>All</div>
-                <div onClick={selectFriendShow}>Pending</div>
-                <div onClick={selectFriendShow}>Blocked</div>
+            <div id='friends-list-options'>
+                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Online</div>
+                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>All</div>
+                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Pending</div>
+                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Blocked</div>
                 <div>Add Friend</div>
             </div>
         </div>
