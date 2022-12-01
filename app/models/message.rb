@@ -32,12 +32,11 @@ class Message < ApplicationRecord
     def self.new_message(params)
         if params[:chat_id] != nil
             chat = Chat.find(params[:chat_id])
-            message = Message.create!(sender_id: params[:sender_id], chat_id: params[:chat_id], body: params[:body])
+            message = Message.create!(sender_id: params[:sender_id], chat_id: params[:chat_id], body: params[:body], channel_id: 1)
             ActionCable.server.broadcast("chat_#{params[:chat_id]}", message)
         else
-            debugger
             channel = Channel.find(params[:channel_id])
-            message = Message.create!(sender_id: params[:sender_id], channel_id: params[:channel_id], body: params[:body])
+            message = Message.create!(sender_id: params[:sender_id], channel_id: params[:channel_id], body: params[:body], chat_id: 1)
             # ActionCable.server.broadcast("channel_#{params[:channel_id]}", message)
         end
         return message
