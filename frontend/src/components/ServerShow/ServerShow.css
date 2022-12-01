@@ -40,6 +40,8 @@
     right: 240px;
     width: auto;
     left: 312px;
+    display: flex;
+    flex-direction: column;
 }
 
 #serverRight {
