@@ -1,14 +1,20 @@
 import './ChannelContent.css';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createChannelMessage } from '../../store/channels';
+import { useState } from 'react';
 
 function ChannelContent() {
     const channelId = useParams();
-    console.log('channelId: ', channelId);
+    const dispatch = useDispatch();
+    const [messageBody, setMessageBody] = useState('')
+    const sessionUser = useSelector(store => store.session.user);
+
 
 
     const sendMessage = (e) => {
         e.preventDefault();
-        console.log('sendMessage function')
+        dispatch(createChannelMessage({body: messageBody, sender_id: sessionUser.id, channel_id: channelId.id}))
     }
 
     return (
@@ -16,7 +22,7 @@ function ChannelContent() {
         <div id='chat-box'></div>
         <div id='input-container'>
             <form onSubmit={sendMessage}>
-                <input type='text'></input>
+                <input type='text' value={messageBody} onChange={(e) => setMessageBody(e.target.value)}></input>
             </form>
         </div>
         </>
