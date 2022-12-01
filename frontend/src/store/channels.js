@@ -66,7 +66,7 @@ export const createChannelMessage = (message) => async (dispatch) => {
 
     const data = await res.json();
 
-    dispatch(addMessageToChannel(Object.values(data)[0]));
+    dispatch(addMessageToChannel(data));
 }
 
 
@@ -153,7 +153,8 @@ const channelsReducer = (state = {}, action) => {
             delete nextState[action.channelId]
             return nextState
         case ADD_CHANNEL_MESSAGE:
-            nextState[action.channelId].messages.push(action.message)
+            debugger
+            nextState[action.message.channel_id].messages.push(action.message)
             return nextState;
         default:
             return state;

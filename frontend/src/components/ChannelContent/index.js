@@ -14,6 +14,7 @@ function ChannelContent() {
 
     const sendMessage = (e) => {
         e.preventDefault();
+        debugger
         dispatch(createChannelMessage({body: messageBody, sender_id: sessionUser.id, channel_id: channelId.id}))
     }
 
