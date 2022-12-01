@@ -21,6 +21,10 @@ class Message < ApplicationRecord
         foreign_key: :chat_id,
         class_name: :Chat
     
+    belongs_to :channel,
+        foreign_key: :channel_id,
+        class_name: :Channel
+    
 
             
 
