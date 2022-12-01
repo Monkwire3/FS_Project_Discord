@@ -1,0 +1,13 @@
+#chat-box {
+    left: 312px;
+    top: 48px;
+    height: calc(100% - 116px);
+}
+
+#input-container {
+    height: 68px;
+}
+
+#input-container input {
+    width: 95%;
+}

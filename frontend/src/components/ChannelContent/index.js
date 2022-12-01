@@ -2,8 +2,20 @@ import './ChannelContent.css';
 
 function ChannelContent() {
 
+    const sendMessage = (e) => {
+        e.prevenDefault();
+        console.log('sendMessage function')
+    }
+
     return (
-        <h1>Channel Content placeholder</h1>
+        <>
+        <div id='chat-box'></div>
+        <div id='input-container'>
+            <form onSubmit={sendMessage}>
+                <input type='text'></input>
+            </form>
+        </div>
+        </>
     )
 
 }
