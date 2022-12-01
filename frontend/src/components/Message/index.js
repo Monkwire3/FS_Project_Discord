@@ -3,8 +3,6 @@ import './Message.css';
 
 
 function Message({message}) {
-    const sessionUser = useSelector(store => store.session.user);
-
     return (
         <div className='message'>
             <div className='message-top'><div className='message-username'>{message.sender.username}</div><div className='message-timestamp'></div></div>
