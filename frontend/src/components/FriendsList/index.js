@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import FriendsListIndexItem from './FriendsListIndexItem';
 import { fetchAllUsers } from '../../store/users';
+import AddFriendIndexItem from '../AddFriendIndexItem';
 
 function FriendsList() {
     const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function FriendsList() {
 
     const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
 
-    const usersList = allUsers.length > 0 ? allUsers.map((u) => <div className='add-friend-list-item'>{u.username}</div>) : 'loading...';
+    const usersList = allUsers ? allUsers.map((u) => <AddFriendIndexItem user={u} />) : 'loading...';
     
 
     return (

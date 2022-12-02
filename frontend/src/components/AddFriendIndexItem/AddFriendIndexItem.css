@@ -1,0 +1,35 @@
+.add-friend-index-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    color: #fff;
+    border-radius: 4px;
+    align-items: center;
+    margin: auto;
+    margin-top: 17px;
+    padding: 4px 15px;
+}
+
+.add-friend-index-item button {
+    margin: 0px;
+    height: 95%;
+}
+
+.add-friend-index-item:hover {
+    background-color: #42464d;
+}
+
+.add-friend-index-item div:first-child{
+    display: flex;
+    flex-direction: column;
+}
+
+.add-friend-index-item div:first-child div:first-child {
+    font-weight: 700;
+}
+
+.add-friend-index-item div:first-child div:last-child {
+    font-weight: 400;
+    color: #babbbe;
+}
