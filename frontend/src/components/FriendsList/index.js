@@ -27,6 +27,9 @@ function FriendsList() {
 
     const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
 
+    const usersList = 'users list placeholder'
+    
+
     return (
         <>
         <div id='direct-messages-header'>
@@ -72,7 +75,8 @@ function FriendsList() {
             <div id='friends-list-main'>
                 <div></div>
                 <div>
-                    {friends ? friendsList : ''}
+                    {friends && friendSelection === 'all' ? friendsList : ''}
+                    {friendSelection === 'addfriend' ? usersList : ''}
                 </div>
             </div>
         </div>
