@@ -32,10 +32,29 @@ function FriendsList() {
         }
     }
 
+    let friendsList;
+    switch (friendSelection) {
+        case 'online':
+            friendsList = 'online'
+            break
+        case 'all':
+            friendsList = 'all'
+            // friendsList = friends.map((friend) => <FriendsListIndexItem friend={friend} />)
+            break
+        case 'pending':
+            friendsList = 'incoming requests';
+            break
+        default:
+            console.log('default switch case, ', friendSelection)
+            console.log(friendSelection === 'all')
+            friendsList = 'default';
+    }
 
-    const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
+    // const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
 
     const usersList = allUsers ? allUsers.map((u) => <AddFriendIndexItem user={u} />) : 'loading...';
+
+    console.log('friendSelection: ', friendSelection);
     
 
     return (
@@ -51,11 +70,11 @@ function FriendsList() {
                 <div>Friends</div>
             </div>
             <div id='friends-list-options'>
-                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Online</div>
-                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>All</div>
-                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Pending</div>
-                <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Blocked</div>
-                <div onClick={(e) => setFriendSelection('addfriend')}>Add Friend</div>
+                <div onClick={() => setFriendSelection('online')}>Online</div>
+                <div onClick={() => setFriendSelection('all')}>All</div>
+                <div onClick={() => setFriendSelection('pending')}>Pending</div>
+                <div onClick={() => setFriendSelection('blocked')}>Blocked</div>
+                <div onClick={() => setFriendSelection('addfriend')}>Add Friend</div>
             </div>
         </div>
         <div id='direct-messages-header-right'>
@@ -83,7 +102,7 @@ function FriendsList() {
             <div id='friends-list-main'>
                 <div></div>
                 <div>
-                    {friends && friendSelection === 'all' ? friendsList : ''}
+                    {friendsList}
                     {friendSelection === 'addfriend' ? usersList : ''}
                 </div>
             </div>
