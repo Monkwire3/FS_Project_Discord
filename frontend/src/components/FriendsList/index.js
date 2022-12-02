@@ -1,12 +1,19 @@
 import './FriendsList.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import FriendsListIndexItem from './FriendsListIndexItem';
+import { fetchAllUsers } from '../../store/users';
 
 function FriendsList() {
+    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
+    const allUsers = useSelector(state => state.users.users);
     const friends = sessionUser ? sessionUser.friends : []
     let [friendSelection, setFriendSelection] = useState('online')
+
+    useEffect(() => {
+        dispatch(fetchAllUsers())
+    }, [])
 
     useEffect(() => {
         applySelectionClasses();
@@ -27,7 +34,7 @@ function FriendsList() {
 
     const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
 
-    const usersList = 'users list placeholder'
+    const usersList = allUsers.length > 0 ? allUsers.map((u) => <div className='add-friend-list-item'>{u.username}</div>) : 'loading...';
     
 
     return (
@@ -47,7 +54,7 @@ function FriendsList() {
                 <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>All</div>
                 <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Pending</div>
                 <div onClick={(e) => setFriendSelection(e.target.textContent.toLowerCase())}>Blocked</div>
-                <div>Add Friend</div>
+                <div onClick={(e) => setFriendSelection('addfriend')}>Add Friend</div>
             </div>
         </div>
         <div id='direct-messages-header-right'>
