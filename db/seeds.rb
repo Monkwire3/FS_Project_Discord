@@ -31,8 +31,8 @@ puts "Created #{User.all.length} new users."
 
 
 puts "Making friends"
-10.times do |i|
-    Friend.create({requester_id: 2, requestee_id: i + 2, accepted: true})
+20.times do
+    Friend.create({requester_id: User.find(rand(2..10)), requestee_id: User.find(rand(2..10)), accepted: true})
 end
 puts "Created #{Friend.all.length} new friendships."
 
