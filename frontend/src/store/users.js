@@ -63,12 +63,12 @@ export const fetchAllUsers = () => async(dispatch) => {
     return data;
 }
 
-export const sendFriendRequest = ({request}) => async(dispatch) => {
+export const sendFriendRequest = ({requester_id, requestee_id}) => async(dispatch) => {
     const res = await csrfFetch('/api/friends/', {
     method: 'POST',
     body: JSON.stringify({
-        requester_id: request.requester_id,
-        requestee_id: request.requestee_id
+        requester_id: requester_id,
+        requestee_id: requestee_id
         })
     })
 
