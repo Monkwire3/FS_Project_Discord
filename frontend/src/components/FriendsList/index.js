@@ -25,7 +25,7 @@ function FriendsList() {
     }
 
 
-    const friendsList = friends.map((friend) => <FriendsListIndexItem friend={friend} />)
+    const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
 
     return (
         <>

@@ -3,6 +3,14 @@ import { storeCurrentUser } from "./session";
 
 const CREATE_USER = 'users/createUser';
 const DELETE_USER = 'users/deleteUser';
+const RECIEVE_USERS = 'users/recieveUsers';
+
+const recieveUsers = (users) => {
+    return {
+        type: RECIEVE_USERS,
+        payload: users
+    }
+}
 
 const createUser = (user) => {
     return {
@@ -38,8 +46,19 @@ export const addUserToDatabase = (user) => async(dispatch) => {
     return res;
 }
 
+export const fetchAllUsers = () => async(dispatch) => {
+    const res = await csrfFetch('/api/users');
+    const data = await res.json();
+
+    dispatch(recieveUsers(data));
+
+    return data;
+}
+
 const usersReducer = (state = {}, action) => {
     switch (action.type) {
+        case RECIEVE_USERS:
+            return {...state, users: action.payload}
         case CREATE_USER:
             return {...state, user: action.payload}
         default:
