@@ -1,6 +1,7 @@
 
 
 function FriendsListIndexItem({friend}) {
+    console.log('friendslistindexitem loaded, friend: ', friend)
     return (
         <div className="friends-list-index-item">
             <div>{friend.username}</div>

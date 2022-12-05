@@ -81,12 +81,9 @@ def reset_session_token!
 end
 
 def friends
-  # return Friend.where(requestee_id: self.id, accepted: true).or(Friend.where(requester_id: self.id, accepted: true))
-  # return User.find(Friend.where(requestee_id: self.id, accepted: true).pluck(:requester_id))
   friends = User.find(Friend.where(requester_id: self.id, accepted: true).pluck(:requestee_id))
   friends += User.find(Friend.where(requestee_id: self.id, accepted: true).pluck(:requester_id))
   return friends 
-  # User.find(Friend.where(requester_id: self.id, accepted: true).pluck(:requestee_id)
 end
 
 has_many :user_chat_joins,
@@ -101,6 +98,8 @@ has_many :messages,
   foreign_key: :sender_id,
   class_name: :Message,
   inverse_of: :sender
+
+
 
 
 private

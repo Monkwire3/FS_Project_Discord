@@ -9,7 +9,7 @@ function FriendsList() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = useSelector(state => state.users.users);
-    const friends = sessionUser ? sessionUser.friends : []
+    const friends = useSelector(state => state.session.user.friends)
     let [friendSelection, setFriendSelection] = useState('online')
 
     useEffect(() => {
@@ -38,8 +38,8 @@ function FriendsList() {
             friendsList = 'online'
             break
         case 'all':
-            friendsList = 'all'
-            // friendsList = friends.map((friend) => <FriendsListIndexItem friend={friend} />)
+            console.log('all', friends)
+            friendsList = friends.map((friend) => <FriendsListIndexItem friend={friend} />)
             break
         case 'pending':
             friendsList = 'incoming requests';
@@ -47,7 +47,7 @@ function FriendsList() {
         default:
             console.log('default switch case, ', friendSelection)
             console.log(friendSelection === 'all')
-            friendsList = 'default';
+            friendsList = '';
     }
 
     // const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
