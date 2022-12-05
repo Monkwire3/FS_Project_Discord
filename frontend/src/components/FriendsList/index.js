@@ -9,7 +9,8 @@ function FriendsList() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = useSelector(state => state.users.users);
-    const friends = useSelector(state => state.session.user.friends)
+    // const friends = useSelector(state => state.session.user.friends)
+    const friends = sessionUser ? sessionUser.friends : '';
     let [friendSelection, setFriendSelection] = useState('online')
 
     useEffect(() => {
