@@ -73,6 +73,10 @@
     margin-right: 20px;
     border-top: 1px solid #43454d;
     height: 61px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 } 
 
 
@@ -80,4 +84,39 @@
     display: flex;
     flex-direction: column;
     color: #fff;
+}
+
+.friend-request-list-item .request-description {
+    color: rgb(188, 188, 188);
+    font-weight: 400;
+}
+
+
+.request-button {
+    fill: #b9bbbe;
+    background-color: #2f3136;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+
+
+.cancel-request-button:hover {
+    fill: red;
+    cursor: pointer;
+}
+
+.accept-request-button:hover {
+    fill: green;
+    cursor: pointer;
+}
+
+.friend-request-list-item .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
