@@ -19,6 +19,7 @@ const receiveChat = (chat) => {
 }
 
 
+
 export const fetchChat = (chatId) => async(dispatch) => {
     
     const res = await csrfFetch(`/api/chats/${chatId}`);
