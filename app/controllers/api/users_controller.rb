@@ -19,7 +19,6 @@ class Api::UsersController < ApplicationController
 
   def send_friend_request
     @request = Friend.new(requester_id: params[:requester_id], requestee_id: params[:requestee_id])
-    debugger
     @request.save!
   end
 
