@@ -3,6 +3,7 @@ import csrfFetch from "./csrfFetch";
 const RECEIVE_CHAT = 'chats/receiveChat';
 const RECEIVE_MESSAGE = 'chats/receieveMessage'
 
+
 const receiveMessage = (message) => {
     return {
         type: RECEIVE_MESSAGE,
@@ -32,7 +33,8 @@ export const createChat = (chat) => async(dispatch) => {
         method: 'POST',
         body: JSON.stringify({
             chat: {
-                title: chat.title
+                title: chat.title,
+                members: [chat.members]
             }
         })
     })
