@@ -4,13 +4,12 @@ import { useEffect, useState } from 'react';
 import FriendsListIndexItem from './FriendsListIndexItem';
 import { fetchAllUsers } from '../../store/users';
 import AddFriendIndexItem from '../AddFriendIndexItem';
+import PendingRequestItem from './PendingRequestItem';
 
 function FriendsList() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = useSelector(state => state.users.users);
-    // const friends = useSelector(state => state.session.user.friends)
-    const friends = sessionUser ? sessionUser.friends : '';
     let [friendSelection, setFriendSelection] = useState('online')
 
     useEffect(() => {
@@ -39,11 +38,14 @@ function FriendsList() {
             friendsList = 'online'
             break
         case 'all':
-            console.log('all', friends)
-            friendsList = friends.map((friend) => <FriendsListIndexItem friend={friend} />)
+            friendsList = sessionUser.friends.map((friend) => <FriendsListIndexItem friend={friend} />)
             break
         case 'pending':
-            friendsList = 'incoming requests';
+            const incommingRequests = sessionUser.receivedFriendRequests.map((req) => <PendingRequestItem request={req} incomming={true}/>)
+            const outgoingRequests = sessionUser.sentFriendRequests.map((req) => <PendingRequestItem request={req} incomming={false}/>)
+            friendsList = [];
+            friendsList.push(incommingRequests);
+            friendsList.push(outgoingRequests);
             break
         default:
             console.log('default switch case, ', friendSelection)
