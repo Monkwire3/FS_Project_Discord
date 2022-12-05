@@ -86,6 +86,14 @@ def friends
   return friends 
 end
 
+def sent_friend_requests
+  return User.find(Friend.where(requester_id: self.id, accepted: false).pluck(:requestee_id))
+end
+
+def received_friend_requests
+  return User.find(Friend.where(requestee_id: self.id, accepted: false).pluck(:requester_id))
+end
+
 has_many :user_chat_joins,
   foreign_key: :user_id,
   class_name: :UserChatJoin
