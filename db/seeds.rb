@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts "Creating dummy user"
-User.create({username: 'dummy_user', email: 'dummy_user_email', password: 'iamadummy'})
+User.create({username: 'dummy_user', email: 'dummy_user_email@mail.com', password: 'iamadummy'})
 puts "Created user: #{User.first}."
 puts "Creating dummy server."
 Server.create({server_name: 'dummy server', owner: User.first})

@@ -1,7 +1,7 @@
 class Api::ServersController < ApplicationController
 
     def index
-        @servers = Server.all
+        @servers = Server.all.select{|server| server.members.include?(current_user)}
         render 'api/servers/index'
     end
 
