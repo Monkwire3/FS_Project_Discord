@@ -61,3 +61,23 @@
     background-color: #40444b;
     cursor: default;
 }
+
+.friend-request-list-item .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.friend-request-list-item {
+    margin-left: 30px;
+    margin-right: 20px;
+    border-top: 1px solid #43454d;
+    height: 61px;
+} 
+
+
+.friend-request-list-item .request-content {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}

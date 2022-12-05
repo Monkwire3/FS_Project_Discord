@@ -41,8 +41,8 @@ function FriendsList() {
             friendsList = sessionUser.friends.map((friend) => <FriendsListIndexItem friend={friend} />)
             break
         case 'pending':
-            const incommingRequests = sessionUser.receivedFriendRequests.map((req) => <PendingRequestItem request={req} incomming={true}/>)
-            const outgoingRequests = sessionUser.sentFriendRequests.map((req) => <PendingRequestItem request={req} incomming={false}/>)
+            const incommingRequests = sessionUser.receivedFriendRequests.map((req) => <PendingRequestItem request={req} incoming={true}/>)
+            const outgoingRequests = sessionUser.sentFriendRequests.map((req) => <PendingRequestItem request={req} incoming={false}/>)
             friendsList = [];
             friendsList.push(incommingRequests);
             friendsList.push(outgoingRequests);

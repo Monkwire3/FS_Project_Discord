@@ -1,9 +1,10 @@
 
 
-function PendingRequestItem({request, incomming}) {
+function PendingRequestItem({request, incoming}) {
+    console.log('request item', request)
 
     return (
-        <div>Pending request item placeholder, {incomming ? 'true' : 'false'}</div>
+        <div className="friend-request-list-item"><div className="left"><div className="icon"></div><div className="request-content"><div>{request.username}</div><div>{incoming ? 'Incoming' : 'Outgoing'} Friend Request</div></div></div></div>
     )
 }
 
