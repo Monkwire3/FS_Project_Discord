@@ -18,6 +18,13 @@ class Friend < ApplicationRecord
     belongs_to :requestee,
         foreign_key: :requester_id,
         class_name: :User
+    
+
+
+    def self.accept_request
+        self.accepted = true
+        return true
+    end
 
 
     

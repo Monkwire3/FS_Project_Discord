@@ -23,8 +23,9 @@ class Api::UsersController < ApplicationController
   end
 
   def accept_friend_request
-    @request = Friend.find(params[:id])
-    @request.accepted = True
+    @request = Friend.where(requestee_id: params[:requestee_id], requester_id: params[:requester_id])[0]
+    @request.update(accepted: true)
+    debugger
   end
 
   def remove_friend

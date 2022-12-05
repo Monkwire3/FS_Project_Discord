@@ -5,6 +5,7 @@ const CREATE_USER = 'users/createUser';
 const DELETE_USER = 'users/deleteUser';
 const RECIEVE_USERS = 'users/recieveUsers';
 const SEND_FRIEND_REQUEST = 'users/sendFriendRequest';
+const ACCEPT_FRIEND_REQUEST = 'users/acceptFriendRequest';
 
 const requestFriend = (request) => {
     return {
@@ -32,6 +33,14 @@ const deleteUser = (userId) => {
         type: DELETE_USER,
         userId: userId
     }
+}
+
+const acceptRequest = (request) => {
+    return {
+        type: ACCEPT_FRIEND_REQUEST,
+        payload: request
+    }
+
 }
 
 
@@ -74,6 +83,21 @@ export const sendFriendRequest = ({requester_id, requestee_id}) => async(dispatc
 
     const data = await res.json();
     dispatch(requestFriend(data));
+
+    return data;
+}
+
+export const acceptFriendRequest = ({requester_id, requestee_id}) => async(dispatch) => {
+    const res = await csrfFetch(`/api/friends/`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+        requestee_id: requestee_id,
+        requester_id: requester_id
+    })
+    })
+
+    const data = await res.json();
+    dispatch(acceptFriendRequest(data));
 
     return data;
 }
