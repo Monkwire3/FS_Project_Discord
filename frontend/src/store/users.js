@@ -6,6 +6,14 @@ const DELETE_USER = 'users/deleteUser';
 const RECIEVE_USERS = 'users/recieveUsers';
 const SEND_FRIEND_REQUEST = 'users/sendFriendRequest';
 const ACCEPT_FRIEND_REQUEST = 'users/acceptFriendRequest';
+const REMOVE_FRIEND = 'users/removeFriend';
+
+const removeFriendAction = (friend) => {
+    return {
+        type: REMOVE_FRIEND,
+        payload: friend
+    }
+}
 
 const requestFriend = (request) => {
     return {
@@ -99,6 +107,20 @@ export const acceptFriendRequest = ({requester_id, requestee_id}) => async(dispa
     const data = await res.json();
     dispatch(acceptFriendRequest(data));
 
+    return data;
+}
+
+export const removeFriend = ({id_a, id_b}) => async(dispatch) => {
+    const res = await csrfFetch(`/api/friends/`, {
+        method: 'DELETE',
+        body: JSON.stringify({
+            id_a: id_a,
+            id_b: id_b
+        })
+    })
+
+    const data = await res.json();
+    dispatch(removeFriendAction);
     return data;
 }
 

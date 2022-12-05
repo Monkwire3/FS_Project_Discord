@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   post '/api/friends', to: 'api/users#send_friend_request'
   patch '/api/friends/', to: 'api/users#accept_friend_request'
-  delete '/api/friends/:id', to: 'api/users#remove_friend'
+  delete '/api/friends/', to: 'api/users#remove_friend'
 
   namespace :api, defaults: { format: :json } do
     resources :messages, only: [:create]

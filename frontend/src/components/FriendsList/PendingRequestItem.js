@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { acceptFriendRequest } from "../../store/users";
+import { acceptFriendRequest, removeFriend } from "../../store/users";
 
 
 function PendingRequestItem({request, incoming}) {
@@ -8,7 +8,7 @@ function PendingRequestItem({request, incoming}) {
 
 
     const cancelRequest = () => {
-        console.log('cancelRequest not yet implemented')
+        dispatch(removeFriend({id_a: sessionUser.id, id_b: request.id}));
     }
 
     const acceptRequest = () => {
