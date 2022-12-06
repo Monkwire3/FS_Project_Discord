@@ -1,9 +1,15 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { createChat } from '../../store/chat';
 
 function FriendsListIndexItem({friend}) {
+    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
     const openDirectMessage = () => {
+        let chat = dispatch(createChat);
+        debugger
+
+
         console.log('open direct message function');
     }
 

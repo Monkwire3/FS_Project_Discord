@@ -1,6 +1,7 @@
 class Api::ChatsController < ApplicationController
     def create
-        @chat = Chat.new_chat(params)
+        @chat = Chat.where(members: params[:members]);
+        @chat = Chat.new_chat(params) if !@chat
         render :show
     end
 

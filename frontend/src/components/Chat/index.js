@@ -59,20 +59,14 @@ function Chat({ chatId, cable }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setOutgoingMessage("")
-        for (let i = 0; i < chat.members.length; i++) {
-            if (chat.members[i].id === sessionUser.id) {
-                dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId }))
-            }
-        }
+        dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId }))
     }
 
 
 
     const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : ''
 
-    if (chat.members) {
-        for (let i = 0; i < chat.members.length; i++) {
-            if (chat.members[i].id === sessionUser.id) {
+
                 return (
                     <div id='chat'>
                         <div id='chat-messages-container'>
@@ -87,14 +81,8 @@ function Chat({ chatId, cable }) {
                         </div>
                     </div>
                 )
-            }
-        }
-    }
-    return (
-        <div id='chat'>
-            Either this chat does not exist, or you are not a member
-        </div>
-    )
+    
+
 }
 
 export default Chat;
