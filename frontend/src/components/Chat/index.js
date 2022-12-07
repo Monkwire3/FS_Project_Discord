@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createMessage, fetchChat } from '../../store/chat';
 import './Chat.css';
+import Message from '../Message';
 
 function Chat({ chatId, cable }) {
     const dispatch = useDispatch();
@@ -64,7 +65,7 @@ function Chat({ chatId, cable }) {
 
 
 
-    const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>) : ''
+    const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : ''
 
 
                 return (

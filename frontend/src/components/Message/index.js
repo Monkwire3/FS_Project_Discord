@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import './Message.css';
 
 
-function Message({message}) {
+function Message({ message }) {
     const sessionUser = useSelector(state => state.session.user);
 
     return (
@@ -16,12 +16,12 @@ function Message({message}) {
                 </div>
             </div>
             <div className='message-right'>
-            <div className='message-top'><div className='message-username'>{message.sender ? message.sender.username : message.sender_id === sessionUser.id ? sessionUser.username : ''}</div><div className='message-timestamp'></div></div>
-            <div className='message-bottom'>
-                <div className='message-body'>{message.body}</div>
-                <div className='message-edited-tag'>{message.created_at != message.updated_at ? '(edited)' : ''}
+                <div className='message-top'><div className='message-username'>{message.sender ? message.sender.username : message.sender_id === sessionUser.id ? sessionUser.username : ''}</div><div className='message-timestamp'></div></div>
+                <div className='message-bottom'>
+                    <div className='message-body'>{message.body}</div>
+                    <div className='message-edited-tag'>{message.created_at != message.updated_at ? '(edited)' : ''}
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     )
