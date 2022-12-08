@@ -1,3 +1,4 @@
+json.id @chat.id
 json.title @chat.title
 # json.messages json.messages
 json.messages do

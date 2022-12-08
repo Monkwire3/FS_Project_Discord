@@ -35,13 +35,15 @@ export const createChat = (chat) => async(dispatch) => {
         body: JSON.stringify({
             chat: {
                 title: chat.title,
-                members: [chat.members]
+                user_1: chat.user_1,
+                user_2: chat.user_2
             }
         })
     })
 
     const data = await res.json()
     dispatch(receiveChat(data));
+    return data;
 }
 
 export const createMessage = (message) => async(dispatch) => {

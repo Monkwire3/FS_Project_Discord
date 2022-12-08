@@ -21,8 +21,8 @@ class Chat < ApplicationRecord
         class_name: :Message
 
     def self.new_chat(params)
-        chat = Chat.create!(title: params[:title], members: params[:members])
-        ChatsChannel.broadcast_to("chat_#{chat.id}")
+        chat = Chat.create!(title: params[:title])
+        # ChatsChannel.broadcast_to("chat_#{chat.id}")
         return chat
     end
 end
