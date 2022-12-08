@@ -5,6 +5,7 @@ import FriendsListIndexItem from './FriendsListIndexItem';
 import { fetchAllUsers } from '../../store/users';
 import AddFriendIndexItem from '../AddFriendIndexItem';
 import PendingRequestItem from './PendingRequestItem';
+import { Redirect } from 'react-router-dom';
 
 function FriendsList() {
     const dispatch = useDispatch();

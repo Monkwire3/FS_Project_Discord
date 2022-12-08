@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createChat } from '../../store/chat';
 import { Redirect } from "react-router-dom";
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 function FriendsListIndexItem({friend}) {
     const dispatch = useDispatch();
@@ -10,11 +11,8 @@ function FriendsListIndexItem({friend}) {
 
 
 
-
     const openDirectMessage = () => {
-        debugger
         dispatch(createChat({title: `${friend.username}, ${sessionUser.username}`, user_1: sessionUser.id, user_2: friend.id}));
-        debugger
     }
 
 
