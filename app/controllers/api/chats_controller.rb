@@ -5,7 +5,6 @@ class Api::ChatsController < ApplicationController
 
         @chat = Chat.create!({title: chat_params[:title]})
 
-        debugger
         UserChatJoin.create!({user_id: chat_params[:user_1], chat_id: @chat.id})
         UserChatJoin.create!({user_id: chat_params[:user_2], chat_id: @chat.id})
 
