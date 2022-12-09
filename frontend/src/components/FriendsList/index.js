@@ -11,7 +11,7 @@ function FriendsList() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = useSelector(state => state.users.users);
-    let [friendSelection, setFriendSelection] = useState('online')
+    let [friendSelection, setFriendSelection] = useState('all')
 
     useEffect(() => {
         dispatch(fetchAllUsers())

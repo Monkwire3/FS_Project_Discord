@@ -15,6 +15,14 @@ function FriendsListIndexItem({friend}) {
 
  
     const openDirectMessage = async () => {
+
+        for (let i = 0; i < sessionUser.chats.length; i++) {
+            if ((sessionUser.chats[i].title = `${friend.username}, ${sessionUser.username}`) || (sessionUser.chats[i].title = `${sessionUser.username}, ${friend.username}`)) {
+                history.push(`@me/${sessionUser.chats[i].id}`)
+                return
+            }
+        }
+
         const res = await dispatch(createChat({title: `${friend.username}, ${sessionUser.username}`, user_1: sessionUser.id, user_2: friend.id}))
 
         history.push(`@me/${res.id}`)
