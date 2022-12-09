@@ -7,6 +7,7 @@ const RECIEVE_USERS = 'users/recieveUsers';
 const SEND_FRIEND_REQUEST = 'users/sendFriendRequest';
 const ACCEPT_FRIEND_REQUEST = 'users/acceptFriendRequest';
 const REMOVE_FRIEND = 'users/removeFriend';
+const REMOVE_CHAT = 'users/removeChat';
 
 const removeFriendAction = (friend) => {
     return {
@@ -49,6 +50,13 @@ const acceptRequest = (request) => {
         payload: request
     }
 
+}
+
+const removeChat = (chatId) => {
+    return {
+        type: REMOVE_CHAT,
+        payload: chatId
+    }
 }
 
 
@@ -120,8 +128,16 @@ export const removeFriend = ({id_a, id_b}) => async(dispatch) => {
     })
 
     const data = await res.json();
-    dispatch(removeFriendAction);
+    dispatch(removeFriendAction(data));
     return data;
+}
+
+export const deleteChat = chatId => async dispatch => {
+    const res = await csrfFetch(`/api/chats/${chatId}`, {
+        method: 'DELETE'
+    })
+
+    dispatch(removeChat(chatId));
 }
 
 const usersReducer = (state = {}, action) => {
