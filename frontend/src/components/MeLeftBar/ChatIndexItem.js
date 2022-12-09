@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 
 function ChatIndexItem({ chat }) {
 
+    const handleDelete = () => {
+
+    }
+
+
+
     return (
         <a href={`/channels/@me/${chat.id}`}>
             <div className="chat-index-item">

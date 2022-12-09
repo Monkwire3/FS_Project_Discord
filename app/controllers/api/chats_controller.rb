@@ -21,6 +21,16 @@ class Api::ChatsController < ApplicationController
         render :index
     end
 
+    def destroy
+        @chat = Chat.find(params[:id])
+        if @chat
+            @chat.delete()
+            render json: {message: 'chat successfully deleted'}
+        else
+            render json: { errors: @chat.errors.full_messages}
+        end
+    end
+
     def chat_params
         params.require(:chat).permit(:title, :user_1, :user_2)
     end

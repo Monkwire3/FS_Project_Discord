@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :messages, only: [:create]
-    resources :chats, only: [:create, :index, :show]
+    resources :chats, only: [:create, :index, :show, :destroy]
     resources :users, only: [:index, :show, :create, :destroy]
     resources :servers, only: [:index, :show, :create, :update, :destroy] do
       resources :channels, only: [:index, :show]
