@@ -47,10 +47,38 @@
     text-decoration: none;
     padding: 0px 8px; 
     border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chat-index-item-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
 }
 
 .chat-index-item:hover {
     background-color: #3d3f46;
     cursor: pointer;
+}
+
+.chat-index-x {
+    display: none;
+    height: 21px;
+}
+
+.chat-index-x svg {
+    height: 24px;
+}
+
+.chat-index-x path:hover {
+    fill: #cacbcf;
+}
+
+.chat-index-item:hover > .chat-index-x {
+    display: block;
 }
 
