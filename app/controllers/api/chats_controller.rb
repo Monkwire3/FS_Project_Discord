@@ -22,10 +22,9 @@ class Api::ChatsController < ApplicationController
     end
 
     def destroy
-        debugger
         @chat = Chat.find(params[:id])
         if @chat
-            @chat.delete()
+            @chat.destroy()
             render json: {message: 'chat successfully deleted'}
         else
             render json: { errors: @chat.errors.full_messages}

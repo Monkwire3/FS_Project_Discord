@@ -7,7 +7,7 @@ function ChatIndexItem({ chat }) {
 
     const handleDelete = (e) => {
         e.stopPropagation();
-        dispatch(deleteChat({chatId: chat.id}))
+        dispatch(deleteChat(chat.id))
     }
 
 

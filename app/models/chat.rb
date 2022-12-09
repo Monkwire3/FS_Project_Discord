@@ -10,15 +10,18 @@
 class Chat < ApplicationRecord
     has_many :user_chat_joins,
         foreign_key: :chat_id,
-        class_name: :UserChatJoin
+        class_name: :UserChatJoin,
+        dependent: :destroy
     
     has_many :members,
         through: :user_chat_joins,
-        source: :user
+        source: :user,
+        dependent: :destroy
     
     has_many :messages,
         foreign_key: :chat_id,
-        class_name: :Message
+        class_name: :Message,
+        dependent: :destroy
 
     def self.new_chat(params)
         chat = Chat.create!(title: params[:title])
