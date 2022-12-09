@@ -25,14 +25,32 @@
     padding: 0;
 }
 
+#me-left-bar-middle-container {
+    height: 100%;
+}
+
+#me-left-bar-direct-messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
 .chat-index-item {
+    width: 193px;
     height: 42px;
     color: #babbbe;
     text-decoration: none;
     font-style: none;
+    display: flex;
+    text-decoration: none;
+    padding: 0px 8px; 
+    border-radius: 4px;
 }
 
-.chat-index-item a {
-    text-decoration: none;
-    color: #babbbe;
+.chat-index-item:hover {
+    background-color: #3d3f46;
+    cursor: pointer;
 }
+
