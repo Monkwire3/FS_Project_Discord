@@ -1,19 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './MeLeftBar.css';
-import Link from 'react'
+import Link, { useEffect } from 'react'
 import * as sessionActions from '../../store/session';
 import { Redirect } from 'react-router-dom';
+import ChatIndexItem from './ChatIndexItem';
 
 function MeLeftBar() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
+    useEffect(() => {
+    }, [])
+
     const logout = () =>  {
         return dispatch(sessionActions.logout());
     }
 
-    const directMessages = sessionUser ? sessionUser.chats.map((chat) => <Link to={`/${chat.id}`}><div className='direct-messages-index-item'>{chat.title}</div></Link>) : '';
-    console.log('directmessages: ', directMessages)
+
+    const directMessages = sessionUser ? sessionUser.chats.map((chat) => <ChatIndexItem chat={chat} />) : '';
+
+
 
     return (
         <div id='me-left-bar-container'>
@@ -22,7 +28,7 @@ function MeLeftBar() {
             </div>
             <div id='me-left-bar-middle-container'>
                 <div id='me-left-bar-direct-messages'>
-                    {/* {directMessages} */}
+                    {directMessages}
                 </div>
             </div>
             <div id='userBar'>

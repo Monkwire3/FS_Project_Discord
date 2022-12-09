@@ -17,14 +17,10 @@ function FriendsListIndexItem({friend}) {
     const openDirectMessage = async () => {
         const res = await dispatch(createChat({title: `${friend.username}, ${sessionUser.username}`, user_1: sessionUser.id, user_2: friend.id}))
 
-
         history.push(`@me/${res.id}`)
-
-        console.log('resid ', res.id)
 
         return res
     }
-
 
 
   

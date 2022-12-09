@@ -23,5 +23,16 @@
     height: 28px;
     width: 220px;
     padding: 0;
+}
 
+.chat-index-item {
+    height: 42px;
+    color: #babbbe;
+    text-decoration: none;
+    font-style: none;
+}
+
+.chat-index-item a {
+    text-decoration: none;
+    color: #babbbe;
 }
