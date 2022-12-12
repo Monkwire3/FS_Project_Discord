@@ -11,6 +11,20 @@ function Chat({ chatId, cable }) {
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
     const [messages, setMessages] = useState([]);
+    let oldMessagesFormatted;
+
+    oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : '';
+    
+
+    const update = () => {
+        oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : '';
+
+        
+    }
+
+    useEffect(() => {
+
+    }, [update])
 
     useEffect(() => {
         dispatch(fetchChat(chatId));
@@ -42,6 +56,7 @@ function Chat({ chatId, cable }) {
             },
             {
                 received: (message) => {
+                    update();
                     messages.length > 0 ? setMessages([...messages, <Message message={message} />]) : setMessages([<Message  message={message} />]);
                     document.querySelector('#bottom-div').scrollIntoView();
                 }
@@ -69,7 +84,6 @@ function Chat({ chatId, cable }) {
 
 
 
-    const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : ''
 
 
                 return (
