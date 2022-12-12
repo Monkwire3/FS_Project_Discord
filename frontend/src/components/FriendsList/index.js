@@ -13,9 +13,15 @@ function FriendsList() {
     const allUsers = useSelector(state => state.users.users);
     let [friendSelection, setFriendSelection] = useState('all')
 
+
+
+    useEffect(() => {
+
+    }, [setFriendSelection])
+
     useEffect(() => {
         dispatch(fetchAllUsers())
-    }, [])
+    }, [friendSelection])
 
     useEffect(() => {
         applySelectionClasses();
@@ -58,7 +64,6 @@ function FriendsList() {
 
     const usersList = allUsers ? allUsers.map((u) => <AddFriendIndexItem user={u} />) : 'loading...';
 
-    console.log('friendSelection: ', friendSelection);
     
 
     return (

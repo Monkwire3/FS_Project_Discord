@@ -12,13 +12,18 @@ function Chat({ chatId, cable }) {
     const sessionUser = useSelector(state => state.session.user);
     const [messages, setMessages] = useState([]);
 
-
     useEffect(() => {
         dispatch(fetchChat(chatId));
         console.log('on load cable ', cable)
         console.log('on load messageHistory: ', oldMessages)
 
     }, [])
+
+
+    useEffect(() => {
+        console.log('messages', messages)
+
+    }, [messages])
 
    // useEffect(() => {
     //     Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
@@ -27,7 +32,6 @@ function Chat({ chatId, cable }) {
 
         
     // }, [cable.subscriptions, chatId, oldMessages, setOutgoingMessage])
-    const liveMessages = [];
 
     useEffect(() => {
         cable.subscriptions.create(

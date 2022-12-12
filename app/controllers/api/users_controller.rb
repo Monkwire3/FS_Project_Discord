@@ -20,6 +20,8 @@ class Api::UsersController < ApplicationController
   def send_friend_request
     @request = Friend.new(requester_id: params[:requester_id], requestee_id: params[:requestee_id])
     @request.save!
+    @user = User.find(params[:requester_id])
+    render :show
   end
 
   def accept_friend_request

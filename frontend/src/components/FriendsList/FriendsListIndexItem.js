@@ -11,6 +11,9 @@ function FriendsListIndexItem({friend}) {
 
     const history = useHistory();
 
+    useEffect(() => {
+
+    }, [])
 
 
  

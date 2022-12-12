@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { acceptFriendRequest, removeFriend } from "../../store/users";
 
@@ -5,6 +6,8 @@ import { acceptFriendRequest, removeFriend } from "../../store/users";
 function PendingRequestItem({request, incoming}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+
+    
 
 
     const cancelRequest = () => {
@@ -14,7 +17,6 @@ function PendingRequestItem({request, incoming}) {
     const acceptRequest = () => {
         dispatch(acceptFriendRequest({requester_id: request.id, requestee_id: sessionUser.id }));
     }
-
 
     return (
         <div className="friend-request-list-item"><div className="left"><div className="icon"></div><div className="request-content"><div>{request.username}</div><div className="request-description">{incoming ? 'Incoming' : 'Outgoing'} Friend Request</div></div></div>
