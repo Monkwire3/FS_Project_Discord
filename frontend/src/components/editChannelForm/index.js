@@ -1,43 +1,46 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import * as channelActions from '../../store/channels'
 import { useState } from 'react';
 import './EditChannelForm.css';
 
 
-function EditChannelForm({onClose, channel}) {
+function EditChannelForm({onClose, channel, server}) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [channelName, setChannelName] = useState(channel.name);
     const [errors, setErrors] = useState([]);
 
     const [submitted, setSubmitted] = useState(false)
+
     console.log("before submitted", submitted)
     function handleSubmit(e) {
         e.preventDefault();
-        onClose()
+        // onClose()
+        history.push(`${server.channels[0].id}`)
         dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
-        .then(() => {
-            setSubmitted(true)
-            console.log('after submitted: ', submitted)
-        })
+        // .then(() => {
+        //     setSubmitted(true)
+        //     console.log('after submitted: ', submitted)
+        // })
 
-        .catch(async (res) => {
-            let data;
-            try {
-                data = await res.clone.json();
-            } catch {
-                data = await res.text()
-            }
+        // .catch(async (res) => {
+        //     let data;
+        //     try {
+        //         data = await res.clone.json();
+        //     } catch {
+        //         data = await res.text()
+        //     }
 
-            if (data?.errors) {
-                setErrors([JSON.parse(data.errors)]);
-            } else if (data) {
-                setErrors([JSON.parse(data)]);
-            } else {
-                setErrors([res.statusText]);
-            }
-        })
+        //     if (data?.errors) {
+        //         setErrors([JSON.parse(data.errors)]);
+        //     } else if (data) {
+        //         setErrors([JSON.parse(data)]);
+        //     } else {
+        //         setErrors([res.statusText]);
+        //     }
+        // })
     } 
 
     function handleDeleteChannel(e) {

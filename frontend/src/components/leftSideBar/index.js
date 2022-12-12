@@ -46,7 +46,7 @@ function LeftSidebar({serverId}) {
     }
 
 
-    const channelListItems =  channels.map((channel) => <ChannelListItem channel={channel} />)
+    const channelListItems =  channels.map((channel) => <ChannelListItem channel={channel} server={server}/>)
 
 
     return (

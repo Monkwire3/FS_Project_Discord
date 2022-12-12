@@ -23,7 +23,8 @@ class User < ApplicationRecord
   has_many :servers_owned,
     foreign_key: :owner_id,
     class_name: :Server,
-    inverse_of: :owner
+    inverse_of: :owner,
+    dependent: :destroy
 
   has_many :server_connections,
     foreign_key: :user_id,

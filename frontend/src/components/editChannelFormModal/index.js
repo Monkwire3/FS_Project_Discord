@@ -2,7 +2,7 @@ import { Modal } from '../../context/Modal'
 import React, { useState } from 'react';
 import EditChannelForm from '../editChannelForm';
 
-function EditChannelFormModal({channel}) {
+function EditChannelFormModal({channel, server}) {
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => {
@@ -18,7 +18,7 @@ function EditChannelFormModal({channel}) {
         </div>
         {showModal && (
             <Modal onClose={handleClose}>
-                <EditChannelForm  onClose={handleClose} channel={channel}/>
+                <EditChannelForm  onClose={handleClose} channel={channel} server={server}/>
             </Modal>
         )}
         </>

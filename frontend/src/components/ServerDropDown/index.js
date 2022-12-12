@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import './ServerDropDown.css';
 import * as serverActions from '../../store/servers';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import EditServerFormModal from "../EditServerFormModal";
 import EditServerForm from "../EditServerForm";
 import CreateChannelFormModal from "../CreateChannelModal";
@@ -13,6 +13,7 @@ function ServerDropDown({serverId, setShowModal, onClose}) {
     const dispatch = useDispatch();
     const id = serverId
     const server = useSelector(serverActions.getServer(id))
+    const history = useHistory();
 
 
 
@@ -26,6 +27,7 @@ function ServerDropDown({serverId, setShowModal, onClose}) {
 
     function handleDeleteServer() {
         dispatch(serverActions.deleteServer(id))
+        history.push(`@me`)
     }
 
 
