@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import EditServerFormModal from "../EditServerFormModal";
 import EditServerForm from "../EditServerForm";
+import CreateChannelFormModal from "../CreateChannelModal";
+import { flushSync } from "react-dom";
 
 
 function ServerDropDown({serverId, setShowModal, onClose}) {
@@ -30,18 +32,13 @@ function ServerDropDown({serverId, setShowModal, onClose}) {
     return (
         <div id='dropDownContainer'>
             <div className="dropDownGroup">
-                <div className="dropDownItem">Spacer</div>
-                <div className="dropDownItem">Add Channel</div>
+                <CreateChannelFormModal server={server} menuItem={true} />
             </div>
             <div className="dropDownGroup">
-                <div className="dropDownItem">Spacer</div>
             </div>
             <div className="dropDownGroup">
-                <div className="dropDownItem">Spacer</div>
-                <div className="dropDownItem">Spacer</div>
             </div>
             <div className="dropDownGroup">
-        
                <div className="dropDownItem">
                     <EditServerFormModal server={server} /></div>
             </div>
