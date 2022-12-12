@@ -6,47 +6,22 @@ import Message from '../Message';
 
 function Chat({ chatId, cable }) {
     const dispatch = useDispatch();
-    const chat = useSelector(state => state.chats);
     const oldMessages = useSelector(state => state.chats.messages);
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
-    const [messages, setMessages] = useState([]);
-    let oldMessagesFormatted;
-
-    oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : '';
     
 
-    const update = () => {
-        oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : '';
+    // Store messages sent and recieved through websockets
+    const [messages, setMessages] = useState([]);
 
-        
-    }
 
-    useEffect(() => {
-
-    }, [update])
-
+    // Load messages from database
     useEffect(() => {
         dispatch(fetchChat(chatId));
-        console.log('on load cable ', cable)
-        console.log('on load messageHistory: ', oldMessages)
-
     }, [])
 
 
-    useEffect(() => {
-        console.log('messages', messages)
-
-    }, [messages])
-
-   // useEffect(() => {
-    //     Object.values(chat).length > 0 ? setMessages(chat.messages.map((message) => <div className='message'>{message.body} -{message.sender.username}</div>)) : setMessages('messages loading')
-    //     // messages.length > 0 ? setMessages([...messages]) : setMessages([]);
-    //     console.log('cable: ', cable)
-
-        
-    // }, [cable.subscriptions, chatId, oldMessages, setOutgoingMessage])
-
+    // Listen on websocket
     useEffect(() => {
         cable.subscriptions.create(
             {
@@ -57,12 +32,11 @@ function Chat({ chatId, cable }) {
             {
                 received: (message) => {
                     update();
-                    messages.length > 0 ? setMessages([...messages, <Message message={message} />]) : setMessages([<Message  message={message} />]);
+                    messages.length > 0 ? setMessages([...messages, <Message message={message} />]) : setMessages([<Message message={message} />]);
                     document.querySelector('#bottom-div').scrollIntoView();
                 }
             }
         )
-        console.log('above return: ', cable.subscriptions)
 
         return () => {
             if (cable.subscriptions) {
@@ -74,8 +48,9 @@ function Chat({ chatId, cable }) {
 
 
     }, [])
-    //[cable.subscriptions, chatId, setMessageHistory, messageHistory] 
 
+
+    // Send message
     const handleSubmit = (e) => {
         e.preventDefault();
         setOutgoingMessage("")
@@ -83,24 +58,24 @@ function Chat({ chatId, cable }) {
     }
 
 
+    // Format messages from database
+    const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : '';
 
+    return (
+        <div id='chat'>
+            <div id='chat-messages-container'>
+                {oldMessagesFormatted}
+                {messages}
+                <div id='bottom-div'></div>
+            </div>
+            <div id='chat-input-container'>
+                <form onSubmit={handleSubmit}>
+                    <input type='text' value={outgoingMessage} onChange={(e) => setOutgoingMessage(e.target.value)}></input>
+                </form>
+            </div>
+        </div>
+    )
 
-
-                return (
-                    <div id='chat'>
-                        <div id='chat-messages-container'>
-                            {oldMessagesFormatted}
-                            {messages} 
-                            <div id='bottom-div'></div>
-                        </div>
-                        <div id='chat-input-container'>
-                            <form onSubmit={handleSubmit}>
-                                <input type='text' value={outgoingMessage} onChange={(e) => setOutgoingMessage(e.target.value)}></input>
-                            </form>
-                        </div>
-                    </div>
-                )
-    
 
 }
 
