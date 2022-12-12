@@ -1,10 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/session';
 import './UserSettings.css';
 
 
 function UserSettings({onClose}) {
+    const dispatch = useDispatch();
 
-    const logout = () => {
-        debugger;
+    const removeUser = () => {
+        dispatch(logout())
+        
     }
 
 
@@ -12,7 +16,7 @@ function UserSettings({onClose}) {
     return (
         <div id='user-settings-container'>
             <div id='user-settings-left'>
-                <div onClick={logout}>Logout</div>
+                <button onClick={removeUser}>Log Out</button>
             </div>
             <div id='user-settings-right'>
                 <div></div>
