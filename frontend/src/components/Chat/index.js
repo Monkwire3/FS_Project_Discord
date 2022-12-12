@@ -38,7 +38,7 @@ function Chat({ chatId, cable }) {
             },
             {
                 received: (message) => {
-                    messages.length > 0 ? setMessages([...messages, <div className='message'>{message.body} -</div>]) : setMessages([<div className='message'>{message.body} -{message.sender_id}</div>]);
+                    messages.length > 0 ? setMessages([...messages, <Message message={message} />]) : setMessages([<Message  message={message} />]);
                     document.querySelector('#bottom-div').scrollIntoView();
                 }
             }
