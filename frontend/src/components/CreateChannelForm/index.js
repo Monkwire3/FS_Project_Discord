@@ -12,8 +12,9 @@ function CreateChannelForm({onClose, server}) {
 
 
     function handleSubmit(e) {
+        debugger
         e.preventDefault()
-        dispatch(channelActions.addChannelToDatabase({channel_name: channelName, server_id: server.server.id}))
+        dispatch(channelActions.addChannelToDatabase({channel_name: channelName, server_id: server.id}))
         .then(onClose)
         .catch(async (res) => {
             let data;
