@@ -4,6 +4,7 @@ const CREATE_SERVER = 'servers/createServer';
 const DELETE_SERVER = 'servers/deleteServer';
 const RECEIVE_SERVER = 'servers/receiveServer';
 const RECEIVE_SERVERS = 'servers/recieveServer';
+const RECEIVE_UNDISCOVERED_SERVERS = 'servers/recieveUndiscoveredServer';
 const EDIT_SERVER = 'servers/editServer';
 
 const createServer = (server) => {
@@ -23,6 +24,13 @@ const removeServer = (serverId) => {
 const receiveServers = (servers) => {
     return {
         type: RECEIVE_SERVERS,
+        payload: servers
+    }
+}
+
+const receiveUndiscoveredServers = (servers) => {
+    return {
+        type: RECEIVE_UNDISCOVERED_SERVERS,
         payload: servers
     }
 }
@@ -111,6 +119,16 @@ export const deleteServer = serverId => async dispatch => {
     dispatch(removeServer(serverId));
 }
 
+export const fetchUndiscovered = () => async dispatch => {
+    const res = await csrfFetch(`/api/servers/undiscovered`)
+
+    const data = await res.json();
+
+    dispatch(receiveUndiscoveredServers(data));
+
+    return data;
+}
+
 
 const serversReducer = (state = {}, action) => {
     const nextState = {...state};
@@ -119,7 +137,11 @@ const serversReducer = (state = {}, action) => {
             // nextState[action.payload.id] = action.payload
             return nextState
         case RECEIVE_SERVERS:
-            return {...state, ...action.payload}
+            nextState['discovered'] = [...action.payload]
+            return nextState;
+        case RECEIVE_UNDISCOVERED_SERVERS:
+            nextState['undiscovered'] = [...action.payload]
+            return nextState;
         case EDIT_SERVER:
             nextState.filter((server) => server.id === action.serverId)[0] = action.payload
             return nextState

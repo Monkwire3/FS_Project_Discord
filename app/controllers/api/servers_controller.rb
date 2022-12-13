@@ -19,6 +19,11 @@ class Api::ServersController < ApplicationController
         end
     end
 
+    def undiscovered
+        @servers = Server.all.select{|server| !server.members.include?(current_user)}
+        render 'api/servers/index'
+    end
+
     def update
         @server = Server.find(params[:id])
         if @server

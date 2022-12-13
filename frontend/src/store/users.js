@@ -98,6 +98,7 @@ export const sendFriendRequest = ({requester_id, requestee_id}) => async(dispatc
     })
 
     const data = await res.json();
+    console.log('sendFriendRequest data: ', data)
     dispatch(requestFriend(data));
 
     return data;

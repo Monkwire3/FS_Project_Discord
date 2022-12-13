@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   patch '/api/friends/', to: 'api/users#accept_friend_request'
   delete '/api/friends/', to: 'api/users#remove_friend'
 
+  get '/api/servers/undiscovered', to: 'api/servers#undiscovered';
+
   namespace :api, defaults: { format: :json } do
     resources :messages, only: [:create]
     resources :chats, only: [:create, :index, :show, :destroy]
