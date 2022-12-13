@@ -9,11 +9,16 @@ function Chat({ chatId, cable }) {
     const oldMessages = useSelector(state => state.chats.messages);
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
+    const chat = useSelector(state => state.chats)
     
 
     // Store messages sent and recieved through websockets
     const [messages, setMessages] = useState([]);
 
+
+    useEffect(() => {
+
+    }, [chat])
 
     // Load messages from database
     useEffect(() => {
