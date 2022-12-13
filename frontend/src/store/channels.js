@@ -105,7 +105,7 @@ export const addChannelToDatabase = (channel) => async(dispatch) => {
 
 
     const data = await res.json();
-    dispatch(receiveChannel(Object.values(data)[0]))
+    dispatch(receiveChannel(data))
 }
 
 export const deleteChannel = channelId => async dispatch => {
