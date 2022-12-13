@@ -6,41 +6,16 @@ import { useState } from 'react';
 import './EditChannelForm.css';
 
 
-function EditChannelForm({onClose, channel, server}) {
+function EditChannelForm({onClose, channel, server, onChange}) {
     const dispatch = useDispatch();
-    const history = useHistory();
     const [channelName, setChannelName] = useState(channel.name);
-    const [errors, setErrors] = useState([]);
 
-    const [submitted, setSubmitted] = useState(false)
 
-    console.log("before submitted", submitted)
     function handleSubmit(e) {
-        e.preventDefault();
-        // onClose()
-        history.push(`${server.channels[0].id}`)
         dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
-        // .then(() => {
-        //     setSubmitted(true)
-        //     console.log('after submitted: ', submitted)
-        // })
-
-        // .catch(async (res) => {
-        //     let data;
-        //     try {
-        //         data = await res.clone.json();
-        //     } catch {
-        //         data = await res.text()
-        //     }
-
-        //     if (data?.errors) {
-        //         setErrors([JSON.parse(data.errors)]);
-        //     } else if (data) {
-        //         setErrors([JSON.parse(data)]);
-        //     } else {
-        //         setErrors([res.statusText]);
-        //     }
-        // })
+        onClose();
+        onChange(true);
+   
     } 
 
     function handleDeleteChannel(e) {
@@ -56,15 +31,15 @@ function EditChannelForm({onClose, channel, server}) {
          </div>
         </div>
         <div id='rightChannelForm'>
-        <form id='editChannelForm' onSubmit={handleSubmit}>
+        <div id='editChannelForm'>
             <div className='inputGroup'>
                 <label htmlFor='channelName'>channel name</label>
                 <input id="channelName" value={channelName} onChange={(e) => setChannelName(e.target.value)}></input>
             </div>
             <div className=' inputGroup inputGroupSubmit'>
-                <button>Save Changes</button>
+                <button onClick={handleSubmit}>Save Changes</button>
             </div>
-        </form>
+        </div>
         <div onClick={onClose} id="closeButton">
             <div id="closeButtonCircle">
             <svg id="closeButtonSvg">

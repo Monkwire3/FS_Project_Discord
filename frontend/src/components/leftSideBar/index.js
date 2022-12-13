@@ -18,13 +18,9 @@ import UserSettingsModal from '../UserSettingsModal';
 function LeftSidebar({serverId}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-
-
-  
     const channels = useSelector(channelActions.getChannels(serverId));
+    const [channelsChanged, setChannelsChanged] = useState(false);
     const server = useSelector(serverActions.getServer(serverId));
-
-
 
 
     // On mount
@@ -38,6 +34,10 @@ function LeftSidebar({serverId}) {
         dispatch(serverActions.fetchServer(serverId))
     }, [serverId])
 
+    useEffect(() => {
+
+    }, [channels, channelsChanged, setChannelsChanged])
+
   
 
 
@@ -46,7 +46,7 @@ function LeftSidebar({serverId}) {
     }
 
 
-    const channelListItems =  channels.map((channel) => <ChannelListItem channel={channel} server={server}/>)
+    const channelListItems =  channels.map((channel) => <ChannelListItem onChange={setChannelsChanged} channel={channel} server={server}/>)
 
 
     return (

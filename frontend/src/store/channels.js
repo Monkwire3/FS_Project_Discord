@@ -129,7 +129,7 @@ export const editChannel = (channel) => async(dispatch) => {
 
 
     // dispatch(receieveChannel(data.channel))
-    dispatch(receiveChannel(Object.values(data)[0]))
+    dispatch(receiveChannel(data))
 
 
     return res;
