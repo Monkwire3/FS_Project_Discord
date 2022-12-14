@@ -35,7 +35,7 @@ class Api::ChannelsController < ApplicationController
     def destroy
         @channel = Channel.find(params[:id])
         if @channel
-            @channel.delete()
+            @channel.destroy
             render json: { message: 'server successfully deleted'}
         else
             render json: { errors: @channel.errors.full_messages }

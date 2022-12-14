@@ -15,7 +15,7 @@ function ServerIndex() {
 
 
     // const servers = useSelector(serverActions.getServers);
-    const servers = useSelector(state => state.servers.discovered);
+    const servers = useSelector(state => state.servers);
 
 
     useEffect(() => {
@@ -24,7 +24,8 @@ function ServerIndex() {
     }, [])
 
 
-    const serverListItems = servers.map((server) => <ServerIndexItem server={server} />)
+    debugger
+    const serverListItems = servers.discovered ? servers.discovered.map((server) => <ServerIndexItem server={server} />) : ''
 
     return (
         <div id='serverIndex'>
