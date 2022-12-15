@@ -1,61 +1,37 @@
 import csrfFetch from "./csrfFetch";
 import { storeCurrentUser } from "./session";
 
-const CREATE_USER = 'users/createUser';
-const DELETE_USER = 'users/deleteUser';
 const RECIEVE_USERS = 'users/recieveUsers';
-const SEND_FRIEND_REQUEST = 'users/sendFriendRequest';
-const ACCEPT_FRIEND_REQUEST = 'users/acceptFriendRequest';
-const REMOVE_FRIEND = 'users/removeFriend';
-const REMOVE_CHAT = 'users/removeChat';
+const RECIEVE_CHATS = 'users/receiveChats';
+const RECIEVE_FRIENDS = 'users/receiveFriends';
+const RECEIVE_FRIEND_REQUESTS = 'users/receiveFriendRequests';
+ 
 
-const removeFriendAction = (friend) => {
-    return {
-        type: REMOVE_FRIEND,
-        payload: friend
-    }
-}
-
-const requestFriend = (request) => {
-    return {
-        type: SEND_FRIEND_REQUEST,
-        payload: request
-    }
-}
-
-const recieveUsers = (users) => {
+const getUsers = (users) => {
     return {
         type: RECIEVE_USERS,
         payload: users
     }
 }
 
-const createUser = (user) => {
+const getFriends = (friends) => {
     return {
-        type: CREATE_USER,
-        payload: user
+        type: RECIEVE_FRIENDS,
+        payload: friends
     }
 }
 
-const deleteUser = (userId) => {
+const getFriendRequests = (friendRequests) => {
     return {
-        type: DELETE_USER,
-        userId: userId
+        type: RECEIVE_FRIEND_REQUESTS,
+        payload: friendRequests
     }
 }
 
-const acceptRequest = (request) => {
+const getChats = (chats) => {
     return {
-        type: ACCEPT_FRIEND_REQUEST,
-        payload: request
-    }
-
-}
-
-const removeChat = (chatId) => {
-    return {
-        type: REMOVE_CHAT,
-        payload: chatId
+        type: RECIEVE_CHATS,
+        payload: chats
     }
 }
 
@@ -74,7 +50,7 @@ export const addUserToDatabase = (user) => async(dispatch) => {
 
     const data = await res.json();
     storeCurrentUser(data.user)
-    dispatch(createUser(data));
+    dispatch(getUsers(data));
 
     return res;
 }
@@ -83,7 +59,7 @@ export const fetchAllUsers = () => async(dispatch) => {
     const res = await csrfFetch('/api/users');
     const data = await res.json();
 
-    dispatch(recieveUsers(data));
+    dispatch(getUsers(data));
 
     return data;
 }
@@ -99,7 +75,7 @@ export const sendFriendRequest = ({requester_id, requestee_id}) => async(dispatc
 
     const data = await res.json();
     console.log('sendFriendRequest data: ', data)
-    dispatch(requestFriend(data));
+    dispatch(getFriendRequests(data));
 
     return data;
 }
@@ -114,7 +90,7 @@ export const acceptFriendRequest = ({requester_id, requestee_id}) => async(dispa
     })
 
     const data = await res.json();
-    dispatch(acceptFriendRequest(data));
+    dispatch(getFriendRequests(data));
 
     return data;
 }
@@ -129,7 +105,7 @@ export const removeFriend = ({id_a, id_b}) => async(dispatch) => {
     })
 
     const data = await res.json();
-    dispatch(removeFriendAction(data));
+    dispatch(getFriends(data));
     return data;
 }
 
@@ -138,15 +114,20 @@ export const deleteChat = chatId => async dispatch => {
         method: 'DELETE'
     })
 
-    dispatch(removeChat(chatId));
+    dispatch(getChats(chatId));
 }
 
 const usersReducer = (state = {}, action) => {
     switch (action.type) {
         case RECIEVE_USERS:
-            return {...state, users: action.payload}
-        case CREATE_USER:
-            return {...state, user: action.payload}
+            return {users: action.payload}
+        case RECIEVE_FRIENDS:
+            return {friends: action.payload}
+        case RECEIVE_FRIEND_REQUESTS:
+            return {friendRequests: action.payload}
+        case RECIEVE_CHATS:
+            return {chats: action.payload}
+        
         default:
             return state
     }

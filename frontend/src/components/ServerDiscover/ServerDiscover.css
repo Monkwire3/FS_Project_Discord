@@ -1,0 +1,11 @@
+#server-discover {
+    position: fixed;
+    top: 100px;
+    left: calc(50% - 250px);
+    background-color: #FFF;
+    height: 500px;
+    width: 500px;
+    z-index: 2;
+    border-radius: 8px;
+    color: royalblue
+}
