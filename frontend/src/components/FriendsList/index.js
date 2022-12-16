@@ -61,7 +61,7 @@ function FriendsList() {
             if (!sessionUser) {
                 friendsList = ''
             } else {
-                const incommingRequests = pendingRequests ? pendingRequests.map((req) => <PendingRequestItem request={req} incoming={true} />) : ''
+                const incommingRequests = pendingRequests.length > 0 ? pendingRequests.map((req) => <PendingRequestItem request={req} incoming={true} />) : ''
                 // const outgoingRequests = sessionUser.sentFriendRequests.map((req) => <PendingRequestItem request={req} incoming={false} />)
                 friendsList = [];
                 friendsList.push(incommingRequests);

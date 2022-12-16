@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { acceptFriendRequest, removeFriend } from "../../store/users";
 
 
-function PendingRequestItem({request, incoming}) {
+function PendingRequestItem({request}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-
+    const incoming = request.requestee.id == sessionUser.id
     
 
 
@@ -19,7 +19,7 @@ function PendingRequestItem({request, incoming}) {
     }
 
     return (
-        <div className="friend-request-list-item"><div className="left"><div className="icon"></div><div className="request-content"><div>{request.username}</div><div className="request-description">{incoming ? 'Incoming' : 'Outgoing'} Friend Request</div></div></div>
+        <div className="friend-request-list-item"><div className="left"><div className="icon"></div><div className="request-content"><div>{incoming ? request.requester.username : request.requestee.username}</div><div className="request-description">{incoming ? 'Incoming' : 'Outgoing'} Friend Request</div></div></div>
         <div className="right">
         {incoming ? <div className="accept-request-button request-button" onClick={acceptRequest}>
             <svg viewBox="0 0 24 24">
