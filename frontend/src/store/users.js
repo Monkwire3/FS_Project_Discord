@@ -125,6 +125,13 @@ export const fetchPendingRequests = () => async(dispatch) => {
     return data
 }
 
+export const fetchFriends = () => async(dispatch)  => {
+    const res = await csrfFetch('/api/friends');
+    const data = await res.json();
+    dispatch(getFriends(data));
+    return data;
+}
+
 
 
 const usersReducer = (state = {}, action) => {

@@ -44,6 +44,11 @@ class Api::UsersController < ApplicationController
 
     render :index
   end
+
+  def friends
+    @users = User.find(Friend.where(requester_id: current_user.id, accepted: true).pluck(:requestee_id)) + (User.find(Friend.where(requestee_id: current_user.id, accepted: true).pluck(:requester_id)))
+    render :index
+  end
   
 
 

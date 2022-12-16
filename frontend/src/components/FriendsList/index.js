@@ -2,7 +2,7 @@ import './FriendsList.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import FriendsListIndexItem from './FriendsListIndexItem';
-import { fetchAllUsers, fetchPendingRequests } from '../../store/users';
+import { fetchAllUsers, fetchFriends, fetchPendingRequests } from '../../store/users';
 import AddFriendIndexItem from '../AddFriendIndexItem';
 import PendingRequestItem from './PendingRequestItem';
 import { Redirect } from 'react-router-dom';
@@ -11,22 +11,25 @@ function FriendsList() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
     const allUsers = useSelector(state => state.users.allUsers);
-    const friends = useSelector(state => state.users.friends)
+    const friends = useSelector(state => state.users.friends);
     const pendingRequests = useSelector(state => state.users.requests)
 
     let [friendSelection, setFriendSelection] = useState('all')
 
     useEffect(() => {
-        fetchPendingRequests();
-        debugger
+        dispatch(fetchPendingRequests());
+        dispatch(fetchFriends());
     }, [])
+
     useEffect(() => {
+        dispatch(fetchFriends())
 
     }, [setFriendSelection])
 
     useEffect(() => {
         dispatch(fetchAllUsers())
         dispatch(fetchPendingRequests())
+        dispatch(fetchFriends)
     }, [friendSelection])
 
     useEffect(() => {
@@ -54,7 +57,8 @@ function FriendsList() {
             if (!sessionUser) {
                 friendsList = ''
             } else {
-                friendsList = sessionUser.friends.map((friend) => <FriendsListIndexItem friend={friend} />)
+                friendsList = friends.length > 0 ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : ''
+                // friendsList = sessionUser.friends.map((friend) => <FriendsListIndexItem friend={friend} />)
             }
             break
         case 'pending':
