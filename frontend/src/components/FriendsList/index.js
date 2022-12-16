@@ -2,7 +2,7 @@ import './FriendsList.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import FriendsListIndexItem from './FriendsListIndexItem';
-import { fetchAllUsers } from '../../store/users';
+import { fetchAllUsers, fetchPendingRequests } from '../../store/users';
 import AddFriendIndexItem from '../AddFriendIndexItem';
 import PendingRequestItem from './PendingRequestItem';
 import { Redirect } from 'react-router-dom';
@@ -10,15 +10,23 @@ import { Redirect } from 'react-router-dom';
 function FriendsList() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
-    const allUsers = useSelector(state => state.users.users);
+    const allUsers = useSelector(state => state.users.allUsers);
+    const friends = useSelector(state => state.users.friends)
+    const pendingRequests = useSelector(state => state.users.requests)
+
     let [friendSelection, setFriendSelection] = useState('all')
 
+    useEffect(() => {
+        fetchPendingRequests();
+        debugger
+    }, [])
     useEffect(() => {
 
     }, [setFriendSelection])
 
     useEffect(() => {
         dispatch(fetchAllUsers())
+        dispatch(fetchPendingRequests())
     }, [friendSelection])
 
     useEffect(() => {
@@ -53,11 +61,11 @@ function FriendsList() {
             if (!sessionUser) {
                 friendsList = ''
             } else {
-                const incommingRequests = sessionUser.receivedFriendRequests.map((req) => <PendingRequestItem request={req} incoming={true} />)
-                const outgoingRequests = sessionUser.sentFriendRequests.map((req) => <PendingRequestItem request={req} incoming={false} />)
+                const incommingRequests = pendingRequests ? pendingRequests.map((req) => <PendingRequestItem request={req} incoming={true} />) : ''
+                // const outgoingRequests = sessionUser.sentFriendRequests.map((req) => <PendingRequestItem request={req} incoming={false} />)
                 friendsList = [];
                 friendsList.push(incommingRequests);
-                friendsList.push(outgoingRequests);
+                // friendsList.push(outgoingRequests);
             }
             break
         default:

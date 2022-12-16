@@ -117,17 +117,31 @@ export const deleteChat = chatId => async dispatch => {
     dispatch(getChats(chatId));
 }
 
+export const fetchPendingRequests = () => async(dispatch) => {
+    const res = await csrfFetch('/api/friendRequests/')
+    const data = await res.json();
+
+    dispatch(getFriendRequests(data))
+    return data
+}
+
+
+
 const usersReducer = (state = {}, action) => {
+    let newState = {...state}
     switch (action.type) {
         case RECIEVE_USERS:
-            return {users: action.payload}
+            newState['allUsers'] = action.payload
+            return newState
         case RECIEVE_FRIENDS:
-            return {friends: action.payload}
+            newState['friends'] = action.payload
+            return newState
         case RECEIVE_FRIEND_REQUESTS:
-            return {friendRequests: action.payload}
+            newState['requests'] = action.payload
+            return newState
         case RECIEVE_CHATS:
-            return {chats: action.payload}
-        
+            newState['chats'] = action.payload
+            return newState
         default:
             return state
     }

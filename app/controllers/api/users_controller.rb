@@ -17,6 +17,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def get_friend_requests
+    @requests = Friend.where(requester_id: current_user.id, accepted: false).or(Friend.where(requestee_id: current_user.id, accepted: false))
+    render :friend_requests
+  end
+
   def send_friend_request
     @request = Friend.new(requester_id: params[:requester_id], requestee_id: params[:requestee_id])
     @request.save!
