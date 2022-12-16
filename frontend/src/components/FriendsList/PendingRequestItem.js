@@ -7,15 +7,14 @@ function PendingRequestItem({request}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const incoming = request.requestee.id == sessionUser.id
-    
 
 
     const cancelRequest = () => {
-        dispatch(removeFriend({id_a: sessionUser.id, id_b: request.id}));
+        dispatch(removeFriend({id_a: sessionUser.id, id_b: request.requester.id}));
     }
 
     const acceptRequest = () => {
-        dispatch(acceptFriendRequest({requester_id: request.id, requestee_id: sessionUser.id }));
+        dispatch(acceptFriendRequest({requester_id: request.requester.id, requestee_id: sessionUser.id }));
     }
 
     return (
