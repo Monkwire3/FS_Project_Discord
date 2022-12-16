@@ -6,7 +6,7 @@ import { acceptFriendRequest, removeFriend } from "../../store/users";
 function PendingRequestItem({request}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const incoming = request.requestee.id == sessionUser.id
+    const incoming = request.requester.id == sessionUser.id
 
 
     const cancelRequest = () => {
