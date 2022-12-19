@@ -20,6 +20,7 @@ function LeftSidebar({serverId}) {
     const sessionUser = useSelector(state => state.session.user);
     const channels = useSelector(channelActions.getChannels(serverId));
     const [channelsChanged, setChannelsChanged] = useState(false);
+    const [serverChanged, setServerChanged] = useState(false)
     const server = useSelector(serverActions.getServer(serverId));
 
 
@@ -36,7 +37,7 @@ function LeftSidebar({serverId}) {
 
     useEffect(() => {
 
-    }, [channels, channelsChanged, setChannelsChanged])
+    }, [channels, channelsChanged, setChannelsChanged, setServerChanged])
 
   
 
@@ -52,7 +53,7 @@ function LeftSidebar({serverId}) {
     return (
         <div id="leftSidebar">
             <div id='channels'>
-                <ServerDropDownModal serverId={serverId} />
+                <ServerDropDownModal onClick={() => setServerChanged(true) }setServerChanged={setServerChanged} serverId={serverId} />
                 
                 <div className='channelHeaderTextBox'>
                     <div>Text channels</div>

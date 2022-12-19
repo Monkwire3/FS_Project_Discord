@@ -154,7 +154,7 @@ const serversReducer = (state = {}, action) => {
             nextState['undiscovered'] = [...action.payload]
             return nextState;
         case EDIT_SERVER:
-            nextState.filter((server) => server.id === action.serverId)[0] = action.payload
+            nextState['discovered'][action.payload.serverId] = action.payload
             return nextState
         case DELETE_SERVER:
             delete nextState[action.serverId]

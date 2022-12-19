@@ -7,7 +7,7 @@ import './EditServerForm.css';
 
 
 
-function EditServerForm({server}) {
+function EditServerForm({server, onClose}) {
     const dispatch = useDispatch();
 
     const [serverName, setServerName] = useState(server.serverName);
@@ -17,23 +17,24 @@ function EditServerForm({server}) {
     
     function handleSubmit(e) {
         e.preventDefault();
-        return dispatch(serverActions.editServer({server_name: serverName, id: server.id}))
-        .catch(async (res) => {
-            let data;
-            try {
-                data = await res.clone.json();
-            } catch {
-                data = await res.text()
-            }
+        dispatch(serverActions.editServer({server_name: serverName, id: server.id}))
+        onClose();
+        // .catch(async (res) => {
+        //     let data;
+        //     try {
+        //         data = await res.clone.json();
+        //     } catch {
+        //         data = await res.text()
+        //     }
 
-            if (data?.errors) {
-                setErrors([JSON.parse(data.errors)]);
-            } else if (data) {
-                setErrors([JSON.parse(data)]);
-            } else {
-                setErrors([res.statusText]);
-            }
-        })
+        //     if (data?.errors) {
+        //         setErrors([JSON.parse(data.errors)]);
+        //     } else if (data) {
+        //         setErrors([JSON.parse(data)]);
+        //     } else {
+        //         setErrors([res.statusText]);
+        //     }
+        // })
     }
 
     

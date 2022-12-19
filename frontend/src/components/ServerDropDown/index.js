@@ -9,7 +9,7 @@ import CreateChannelFormModal from "../CreateChannelModal";
 import { flushSync } from "react-dom";
 
 
-function ServerDropDown({serverId, setShowModal, onClose}) {
+function ServerDropDown({serverId, setShowModal, onClose, setServerChanged}) {
     const dispatch = useDispatch();
     const id = serverId
     const server = useSelector(serverActions.getServer(id))
@@ -27,6 +27,7 @@ function ServerDropDown({serverId, setShowModal, onClose}) {
 
     function handleDeleteServer() {
         dispatch(serverActions.deleteServer(id))
+        setServerChanged(true)
         history.push(`@me`)
     }
 
