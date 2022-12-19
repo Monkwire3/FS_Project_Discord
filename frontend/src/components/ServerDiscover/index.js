@@ -13,7 +13,7 @@ function ServerDiscover() {
         dispatch(fetchUndiscovered());
     }, [])
 
-    const unjoined = unjoinedServers.map((server) => <ServerDiscoverItem server={server} />)
+    const unjoined = unjoinedServers ? unjoinedServers.map((server) => <ServerDiscoverItem server={server} />) : ''
 
     return (
         <div id='server-discover'>

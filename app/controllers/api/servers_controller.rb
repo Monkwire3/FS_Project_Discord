@@ -50,7 +50,11 @@ class Api::ServersController < ApplicationController
     end
 
     def join
-        debugger
+        @server_user = ServerUser.new(server_id: params[:server_id], user_id: current_user.id)
+        if @server_user.save!
+            @servers = Server.all.select{|server| server.members.include?(current_user)} 
+            return :index
+        end
     end
 
     private

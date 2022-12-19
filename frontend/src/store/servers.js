@@ -129,6 +129,16 @@ export const fetchUndiscovered = () => async dispatch => {
     return data;
 }
 
+export const joinServer = ({serverId}) => async dispatch => {
+    const res = await csrfFetch(`/api/servers/join`, {
+        method: 'POST',
+        body: JSON.stringify({serverId: serverId})});
+
+    const data = await res.json();
+    dispatch(receiveServers(data));
+    return data;
+}
+
 
 const serversReducer = (state = {}, action) => {
     const nextState = {...state};
