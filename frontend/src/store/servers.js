@@ -90,7 +90,7 @@ export const editServer = (server) => async(dispatch) => {
     })
 
     const data = await res.json();
-    dispatch(editServerAction(data.server))
+    dispatch(receiveServers(data))
 }
 
 export const fetchServers = () => async(dispatch) => {

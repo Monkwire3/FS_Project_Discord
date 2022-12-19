@@ -18,7 +18,7 @@ function PendingRequestItem({request}) {
     }
 
     return (
-        <div className="friend-request-list-item"><div className="left"><div className="icon"></div><div className="request-content"><div>{incoming ? request.requester.username : request.requestee.username}</div><div className="request-description">{incoming ? 'Incoming' : 'Outgoing'} Friend Request</div></div></div>
+        <div className="friend-request-list-item"><div className="left"><div className="icon"></div><div className="request-content"><div>{incoming ? request.requestee.username : request.requester.username}</div><div className="request-description">{incoming ? 'Incoming' : 'Outgoing'} Friend Request</div></div></div>
         <div className="right">
         {incoming ? <div className="accept-request-button request-button" onClick={acceptRequest}>
             <svg viewBox="0 0 24 24">

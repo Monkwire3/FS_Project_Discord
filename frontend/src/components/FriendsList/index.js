@@ -22,14 +22,19 @@ function FriendsList() {
     }, [])
 
     useEffect(() => {
+        dispatch(fetchPendingRequests())
+    }, [friends])
+
+    useEffect(() => {
         dispatch(fetchFriends())
+        dispatch(fetchPendingRequests())
 
     }, [setFriendSelection])
 
     useEffect(() => {
         dispatch(fetchAllUsers())
         dispatch(fetchPendingRequests())
-        dispatch(fetchFriends)
+        dispatch(fetchFriends())
     }, [friendSelection])
 
     useEffect(() => {

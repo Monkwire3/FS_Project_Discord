@@ -32,7 +32,8 @@ class Api::ServersController < ApplicationController
         @server = Server.find(params[:id])
         if @server
             if @server.update(server_params)
-                render :show
+                @servers = Server.all.select{|server| server.members.include?(current_user)}
+                render 'api/servers/index' 
             end
         else
             render json: @server.errors.full_messages, status: 422

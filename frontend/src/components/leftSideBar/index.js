@@ -37,7 +37,7 @@ function LeftSidebar({serverId}) {
 
     useEffect(() => {
 
-    }, [channels, channelsChanged, setChannelsChanged, setServerChanged])
+    }, [channels, channelsChanged, setChannelsChanged, server])
 
   
 
