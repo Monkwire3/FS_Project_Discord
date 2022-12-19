@@ -54,8 +54,8 @@ const editServerAction = (server, serverId) => {
 
 
 export const getServer = serverId => ({servers}) => {
-    if (servers) {
-        return Object.values(servers).filter((server) => `${server.id}` === `${serverId}`)[0]
+    if (servers.discovered) {
+        return Object.values(servers.discovered).filter((server) => `${server.id}` === `${serverId}`)[0]
     }
     return null;
 }
@@ -134,6 +134,7 @@ export const joinServer = ({serverId}) => async dispatch => {
         method: 'POST',
         body: JSON.stringify({serverId: serverId})});
 
+    debugger
     const data = await res.json();
     dispatch(receiveServers(data));
     return data;

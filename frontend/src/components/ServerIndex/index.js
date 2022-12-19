@@ -24,6 +24,8 @@ function ServerIndex() {
 
     }, [])
 
+    useEffect(() => {}, [servers])
+
 
     const serverListItems = servers ? servers.discovered ? servers.discovered.map((server) => <ServerIndexItem server={server} />) : '' : ''
 
