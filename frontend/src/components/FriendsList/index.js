@@ -78,7 +78,7 @@ function FriendsList() {
 
     // const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
 
-    const usersList = allUsers.length > 0 ? allUsers.map((u) => <AddFriendIndexItem user={u} />) : 'loading...';
+    const usersList = allUsers ? allUsers.length > 0 ? allUsers.map((u) => <AddFriendIndexItem user={u} />) : 'loading...' : '';
 
 
 

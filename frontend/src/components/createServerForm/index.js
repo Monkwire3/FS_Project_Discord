@@ -16,24 +16,24 @@ function CreateServerForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        return dispatch(serverActions.addServertoDatabase({server_name: serverName}))
+        dispatch(serverActions.addServertoDatabase({server_name: serverName}))
         .then(setSubmitted(true))
-        .catch(async (res) => {
-            let data;
-            try {
-                data = await res.clone.json();
-            } catch {
-                data = await res.text()
-            }
+        // .catch(async (res) => {
+        //     let data;
+        //     try {
+        //         data = await res.clone.json();
+        //     } catch {
+        //         data = await res.text()
+        //     }
 
-            if (data?.errors) {
-                setErrors([JSON.parse(data.errors)]);
-            } else if (data) {
-                setErrors([JSON.parse(data)]);
-            } else {
-                setErrors([res.statusText]);
-            }
-        })
+        //     if (data?.errors) {
+        //         setErrors([JSON.parse(data.errors)]);
+        //     } else if (data) {
+        //         setErrors([JSON.parse(data)]);
+        //     } else {
+        //         setErrors([res.statusText]);
+        //     }
+        // })
 
 
     }

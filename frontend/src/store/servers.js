@@ -74,7 +74,7 @@ export const addServertoDatabase = (server) => async(dispatch) => {
     })
 
     const data = await res.json();
-    dispatch(createServer(data.server))
+    dispatch(receiveServers(data))
 
 
     return res
@@ -148,6 +148,7 @@ const serversReducer = (state = {}, action) => {
             // nextState[action.payload.id] = action.payload
             return nextState
         case RECEIVE_SERVERS:
+            debugger
             nextState['discovered'] = [...action.payload]
             return nextState;
         case RECEIVE_UNDISCOVERED_SERVERS:
