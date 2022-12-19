@@ -34,6 +34,7 @@ function ServerFull() {
     if (!sessionUser) {
         return <Redirect to='/login' />
     }
+
     return (
         <>
         <ServerIndex />

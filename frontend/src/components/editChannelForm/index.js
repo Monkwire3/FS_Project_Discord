@@ -9,6 +9,7 @@ import './EditChannelForm.css';
 function EditChannelForm({onClose, channel, server, onChange}) {
     const dispatch = useDispatch();
     const [channelName, setChannelName] = useState(channel.name);
+    const history = useHistory();
 
 
     function handleSubmit(e) {
@@ -20,7 +21,11 @@ function EditChannelForm({onClose, channel, server, onChange}) {
 
     function handleDeleteChannel(e) {
         onClose();
-        dispatch(channelActions.deleteChannel(channel.id));
+        dispatch(channelActions.deleteChannel(channel.id))
+        .then(() => 
+            history.push(`/channels/${server.channels.length > 1 ? server.channels[0].id === channel.id ? server.channels[1].id : server.channels[0].id : '@me'}`)
+        )
+
     }
 
     return (

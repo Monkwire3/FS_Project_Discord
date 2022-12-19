@@ -148,7 +148,6 @@ const serversReducer = (state = {}, action) => {
             // nextState[action.payload.id] = action.payload
             return nextState
         case RECEIVE_SERVERS:
-            debugger
             nextState['discovered'] = [...action.payload]
             return nextState;
         case RECEIVE_UNDISCOVERED_SERVERS:
