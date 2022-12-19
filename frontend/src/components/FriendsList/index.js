@@ -15,6 +15,9 @@ function FriendsList() {
     const pendingRequests = useSelector(state => state.users.requests)
 
     let [friendSelection, setFriendSelection] = useState('all')
+    useEffect(() => {
+
+    }, [])
 
     useEffect(() => {
         dispatch(fetchPendingRequests());

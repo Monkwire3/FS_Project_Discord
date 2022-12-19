@@ -30,7 +30,8 @@ class Api::UsersController < ApplicationController
   end
 
   def accept_friend_request
-    @request = Friend.where(requester_id: params[:requestee_id], requestee_id: params[:requester_id])
+    debugger
+    @request = Friend.where(requestee_id: params[:requestee_id], requester_id: params[:requester_id])
     @request.update(accepted: true)
     @requests = Friend.where(requester_id: current_user.id, accepted: false).or(Friend.where(requestee_id: current_user.id, accepted: false)) 
     render :friend_requests

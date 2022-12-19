@@ -14,7 +14,7 @@ function PendingRequestItem({request}) {
     }
 
     const acceptRequest = () => {
-        dispatch(acceptFriendRequest({requester_id: request.requester.id, requestee_id: sessionUser.id }));
+        dispatch(acceptFriendRequest({requestee_id: sessionUser.id, requester_id: request.requestee.id}));
     }
 
     return (
