@@ -7,5 +7,32 @@
     width: 500px;
     z-index: 2;
     border-radius: 8px;
-    color: royalblue
+    color: royalblue;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+}
+
+.server-discover-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 5px;
+    align-items: center;
+    height: 60px;
+}
+
+.server-discover-item button {
+    margin: 0 5px;
+    padding: 0;
+}
+
+.server-discover-item:hover {
+    background-color: lightblue;
+}
+
+.server-discover-item .title {
+    font-weight: 700px;
+    color: darkblue
 }

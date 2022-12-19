@@ -57,7 +57,7 @@ function FriendsList() {
             if (!sessionUser) {
                 friendsList = ''
             } else {
-                friendsList = friends.length > 0 ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : ''
+                friendsList = friends ? friends.length > 0 ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '' : ''
                 // friendsList = sessionUser.friends.map((friend) => <FriendsListIndexItem friend={friend} />)
             }
             break

@@ -36,6 +36,7 @@ class Api::ServersController < ApplicationController
     end
 
 
+
     def destroy
         @server = Server.find(params[:id])
         if @server
@@ -46,6 +47,10 @@ class Api::ServersController < ApplicationController
         else
             render json: { errors: @server.errors.full_messages}
         end
+    end
+
+    def join
+        debugger
     end
 
     private

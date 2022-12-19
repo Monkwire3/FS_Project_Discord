@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post '/api/test', to: 'application#test'
   # post '/api/users/:user_id/chats/', to 'chats#create'
 
+  post '/api/servers/join', to: 'api/servers#join'
+
   get '/api/friends', to: 'api/users#friends'
   get  '/api/friendRequests', to: 'api/users#get_friend_requests';
   post '/api/friends', to: 'api/users#send_friend_request'

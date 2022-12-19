@@ -8,7 +8,8 @@ function ServerDiscoverItem({server}) {
     }
     return (
         <div className="server-discover-item">
-            server discover item placeholder
+            <div><div className="title">{server.serverName}</div><div>{`${server.members.length} members`}</div></div>
+            <div><button onClick={joinServer}>Join</button></div>
 
         </div>
 
