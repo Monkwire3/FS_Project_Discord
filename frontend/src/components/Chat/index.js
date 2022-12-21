@@ -17,6 +17,7 @@ function Chat({ chatId, cable }) {
 
 
     useEffect(() => {
+        document.querySelector('#bottom-div').scrollIntoView();
 
     }, [chat])
 
