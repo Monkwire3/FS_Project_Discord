@@ -69,7 +69,7 @@ const chatsReducer = (state = {}, action) => {
         case RECEIVE_CHAT:
             return {...action.payload}
         case RECEIVE_MESSAGE:
-            return {...state, ...action.payload}
+            nextState['messages'].push(action.payload)
             return nextState;
         default:
             return state;
