@@ -27,31 +27,31 @@ function Chat({ chatId, cable }) {
 
 
     // Listen on websocket
-    useEffect(() => {
-        cable.subscriptions.create(
-            {
-                channel: 'ChatsChannel',
-                user_id: sessionUser.id,
-                chat_id: chatId
-            },
-            {
-                received: (message) => {
-                    messages.length > 0 ? setMessages([...messages, <Message message={message} />]) : setMessages([<Message message={message} />]);
-                    document.querySelector('#bottom-div').scrollIntoView();
-                }
-            }
-        )
+    // useEffect(() => {
+    //     cable.subscriptions.create(
+    //         {
+    //             channel: 'ChatsChannel',
+    //             user_id: sessionUser.id,
+    //             chat_id: chatId
+    //         },
+    //         {
+    //             received: (message) => {
+    //                 messages.length > 0 ? setMessages([...messages, <Message message={message} />]) : setMessages([<Message message={message} />]);
+    //                 document.querySelector('#bottom-div').scrollIntoView();
+    //             }
+    //         }
+    //     )
 
-        return () => {
-            if (cable.subscriptions) {
-                let ws = cable.connection.webSocket;
-                ws.onclose();
-            }
-        }
+    //     return () => {
+    //         if (cable.subscriptions) {
+    //             let ws = cable.connection.webSocket;
+    //             ws.onclose();
+    //         }
+    //     }
 
 
 
-    }, [])
+    // }, [])
 
 
     // Send message

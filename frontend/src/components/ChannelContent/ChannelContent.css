@@ -2,6 +2,9 @@
     left: 312px;
     top: 48px;
     height: calc(100% - 116px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 }
 
 #input-container {

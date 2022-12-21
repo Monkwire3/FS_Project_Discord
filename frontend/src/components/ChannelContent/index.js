@@ -16,6 +16,7 @@ function ChannelContent() {
         e.preventDefault();
         dispatch(createChannelMessage({body: messageBody, sender_id: sessionUser.id, channel_id: id}))
         setMessageBody('')
+        document.querySelector('#bottom-div').scrollIntoView();
     }
 
     useEffect(() => {
@@ -28,7 +29,10 @@ function ChannelContent() {
 
     return (
         <>
-        <div id='chat-box'>{messages}</div>
+        <div id='chat-box'>
+            {messages}
+            <div id='bottom-div'></div>
+        </div>
         <div id='input-container'>
             <form onSubmit={sendMessage}>
                 <input type='text' value={messageBody} onChange={(e) => setMessageBody(e.target.value)}></input>
