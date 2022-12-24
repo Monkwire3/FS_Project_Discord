@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/api/servers/undiscovered', to: 'api/servers#undiscovered';
 
   namespace :api, defaults: { format: :json } do
-    resources :messages, only: [:create]
+    resources :messages, only: [:create, :destroy, :update]
     resources :chats, only: [:create, :index, :show, :destroy]
     resources :users, only: [:index, :show, :create, :destroy]
     resources :servers, only: [:index, :show, :create, :update, :destroy] do

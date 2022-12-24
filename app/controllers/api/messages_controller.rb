@@ -6,6 +6,28 @@ class Api::MessagesController < ApplicationController
         end
     end
 
+    # def update
+    #     @message = Message.find(params[:id])
+
+    #     if @message
+    #         if @message(update(message_params))
+    #             render json: @message, status: :updated
+    #         else
+    #             render json: { errors: @message.errors.full_messages}
+    #         end
+    #     end
+    # end
+
+    def destroy
+        @message = Message.find(params[:id])
+        if @message
+            @message.destroy
+            render json: {mesage: 'message deleted'}
+        else
+            render json: { errors: @message.errors.full_messages }
+        end
+    end
+
     private
 
     def message_params

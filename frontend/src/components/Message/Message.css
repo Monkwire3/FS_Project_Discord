@@ -54,3 +54,7 @@
 .message-menus div {
     width: 32px;
 }
+
+.message-menus div:hover {
+    background-color: #3d3f46;
+}
