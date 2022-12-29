@@ -4,9 +4,14 @@
     align-items: center;
     margin-top: 17px;
     color: #fff;
+    width: 90%;
 }
 
 .message:hover {
+    background-color: #33353a;
+}
+
+.message-container:hover {
     background-color: #33353a;
 }
 
@@ -32,22 +37,29 @@
 }
 
 
+
 .message-menus {
     position: relative;
-    height: 32px;
+    /* height: 32px; */
+    margin: 0px;
     width: 64px;
     background-color: #37393f;
-    /* left: calc(100% - 60px) */
-    left: calc(100% - 176px) ;
-    top: -20px;
+    left: 90%;
+    /* right: 10%; */
     display: none;
+    top: -60px;
     border-radius: 4px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.message:hover .message-menus { 
+.message-container {
+    height: 45px;
+
+}
+
+.message-container:hover .message-menus { 
     display: flex;
 }
 
