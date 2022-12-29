@@ -88,7 +88,8 @@ const chatsReducer = (state = {}, action) => {
             nextState['messages'].push(action.payload)
             return nextState; 
         case DELETE_MESSAGE:
-            return nextState['messages'].filter((m) => m.id != action.payload)
+            nextState['messages'] = nextState['messages'].filter((m) => m.id != action.payload)
+            return nextState
         default:
             return state;
     }
