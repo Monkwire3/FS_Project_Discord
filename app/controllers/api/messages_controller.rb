@@ -10,10 +10,10 @@ class Api::MessagesController < ApplicationController
         @message = Message.find(params[:id])
 
         if @message
-            if @message(update(message_params))
-                render json: @message, status: :updated
-            else
-                render json: { errors: @message.errors.full_messages}
+            if @message.update(message_params)
+                render :index
+            # else
+            #     render json: { errors: @message.errors.full_messages}
             end
         end
     end

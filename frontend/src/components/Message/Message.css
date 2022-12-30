@@ -78,3 +78,11 @@
 .message-edit-form input {
     height: 85%;
 }
+
+.message-edit-form a {
+    color: #14a2e3;
+}
+
+.message-edit-form a:hover {
+    cursor: pointer;
+}

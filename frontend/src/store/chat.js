@@ -78,6 +78,19 @@ export const deleteMessage = (message) => async(dispatch) => {
 
 }
 
+export const editMessage = (message) => async(dispatch) => {
+    const res = await csrfFetch(`/api/messages/${message.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            body: message.body
+        })
+    })
+
+    const data = await res.json();
+
+    // dispatch(receiveMessage(data));
+}
+
 const chatsReducer = (state = {}, action) => {
     const nextState = {...state};
 

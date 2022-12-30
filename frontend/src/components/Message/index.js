@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteChannelMessage } from '../../store/channels';
-import { deleteMessage } from '../../store/chat';
+import { deleteMessage, editMessage } from '../../store/chat';
 import './Message.css';
 import { useState } from 'react';
 
@@ -11,6 +11,7 @@ function Message({ message }) {
     const [messageBodyClassList, setMessageBodyClassList] = useState('message-body')
     const [messageFormClassList, setMessageFormClassList] = useState('message-edit-form hidden')
     const [editingMessage, setEditingMessage] = useState(false);
+    const [isEdited, setIsEdited] = useState(message.created_at != message.updated_at)
     const dispatch = useDispatch();
 
 
@@ -37,8 +38,19 @@ function Message({ message }) {
         }
     }
 
-    const handleEditMessage = () => {
-        console.log('edit message func')
+    const closeEditForm = () => {
+        setMessageBodyClassList('message-body')
+        setMessageFormClassList('message-edit-form hidden')
+        setEditingMessage(false)
+    }
+
+    const handleEditMessage = (e) => {
+        e.preventDefault();
+        if (messageBody != message.body) {
+            setIsEdited(true)
+            dispatch(editMessage({body: messageBody, id: message.id}))
+        }
+        closeEditForm();
     }
 
 
@@ -56,13 +68,14 @@ function Message({ message }) {
                 <div className='message-right'>
                     <div className='message-top'><div className='message-username'>{message.sender ? message.sender.username : message.sender_id === sessionUser.id ? sessionUser.username : ''}</div><div className='message-timestamp'></div></div>
                     <div className='message-bottom'>
-                        <div className={messageBodyClassList}>{message.body}</div>
+                        <div className={messageBodyClassList}>{messageBody}</div>
                         <div className={messageFormClassList}>
                             <form onSubmit={handleEditMessage}>
                                 <input value={messageBody} onChange={(e) => setMessageBody(e.target.value) }></input>
+                                <div>escape to <a onClick={closeEditForm}>cancel</a> · enter to <a onClick={handleEditMessage}>save</a></div>
                             </form>
                         </div>
-                        <div className='message-edited-tag'>{message.created_at != message.updated_at ? '(edited)' : ''}
+                        <div className='message-edited-tag'>{isEdited ? '(edited)' : ''}
                         </div>
                     </div>
                 </div>
