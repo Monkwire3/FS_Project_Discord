@@ -1,3 +1,4 @@
+import { deleteMessage } from "./chat";
 import csrfFetch from "./csrfFetch";
 
 const RECEIVE_CHANNEL = 'channels/receiveChannel';
@@ -6,6 +7,7 @@ const CREATE_CHANNEL = 'channels/createChannel';
 const EDIT_CHANNEL = 'channels/editChannel';
 const DELETE_CHANNEL = 'channels/deleteChannel';
 const ADD_CHANNEL_MESSAGE = 'channels/addMessage';
+const REMOVE_CHANNEL_MESSAGE = 'channels/removeMessage  '
 
 
 const addMessageToChannel = (message) => {
@@ -47,6 +49,13 @@ const receiveChannels = (channels) => {
     return {
         type: RECEIVE_CHANNELS,
         payload: channels
+    }
+}
+
+const deleteMessageAction = (message) => {
+    return {
+        type: REMOVE_CHANNEL_MESSAGE,
+        payload: message
     }
 }
 
@@ -135,6 +144,13 @@ export const editChannel = (channel) => async(dispatch) => {
     return res;
 }
 
+export const deleteChannelMessage = (message) => async(dispatch) => {
+    const res = await csrfFetch(`/api/messages/${message.id}`, {method: 'DELETE'})
+    const data = await res.json();
+
+    dispatch(deleteMessageAction(message))
+}
+
 const channelsReducer = (state = {}, action) => {
 
 
@@ -155,6 +171,9 @@ const channelsReducer = (state = {}, action) => {
         case ADD_CHANNEL_MESSAGE:
             nextState[action.message.channel_id].messages.push(action.message)
             return nextState;
+        case REMOVE_CHANNEL_MESSAGE:
+            nextState[action.message.channel_id].messages.filter((m) => m.id != action.payload.id)
+            return nextState
         default:
             return state;
     }

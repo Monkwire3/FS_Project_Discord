@@ -70,3 +70,11 @@
 .message-menus div:hover {
     background-color: #3d3f46;
 }
+
+.hidden {
+    display: none;
+}
+
+.message-edit-form input {
+    height: 85%;
+}
