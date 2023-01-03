@@ -11,13 +11,13 @@ function Message({ message }) {
     const [messageBodyClassList, setMessageBodyClassList] = useState('message-body')
     const [messageFormClassList, setMessageFormClassList] = useState('message-edit-form hidden')
     const [editingMessage, setEditingMessage] = useState(false);
-    const [isEdited, setIsEdited] = useState(message.createdAt != message.updatedAt)
+    const [isEdited, setIsEdited] = useState(message.createdAt !== message.updatedAt)
     const dispatch = useDispatch();
 
 
     const handleDelete = () => {
-        if (message.channel_id) {
-            deleteChannelMessage(message)
+        if (message.channelId) {
+            dispatch(deleteChannelMessage(message))
         } else if (message.chatId) {
             dispatch(deleteMessage(message))
         }

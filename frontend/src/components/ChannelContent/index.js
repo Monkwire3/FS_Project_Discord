@@ -11,6 +11,7 @@ function ChannelContent() {
     const [messageBody, setMessageBody] = useState('')
     const sessionUser = useSelector(store => store.session.user);
     const channel = useSelector(store => store.channels[id]);
+    
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -21,7 +22,7 @@ function ChannelContent() {
 
     useEffect(() => {
 
-    }, [sendMessage])
+    }, [sendMessage, channel.messages])
 
 
     const messages = channel.messages ? channel.messages.map((m) => <Message message={m} />) : '';

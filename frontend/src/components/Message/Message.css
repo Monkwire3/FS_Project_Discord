@@ -2,9 +2,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 17px;
+    /* margin-top: 17px; */
     color: #fff;
     width: 90%;
+    /* height: 100%; */
 }
 
 .message:hover {
@@ -55,7 +56,7 @@
 }
 
 .message-container {
-    height: 45px;
+    /* min-height: 45px; */
 
 }
 
@@ -90,4 +91,8 @@
 .message-edited-tag {
     font-size: small;
     color: rgba(225, 225, 225, 0.5)
+}
+
+.message-menus-container {
+    height: 0px;
 }

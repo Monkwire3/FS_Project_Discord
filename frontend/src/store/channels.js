@@ -172,7 +172,7 @@ const channelsReducer = (state = {}, action) => {
             nextState[action.message.channel_id].messages.push(action.message)
             return nextState;
         case REMOVE_CHANNEL_MESSAGE:
-            nextState[action.message.channel_id].messages.filter((m) => m.id != action.payload.id)
+            nextState[action.payload.channelId]['messages'] = nextState[action.payload.channelId]['messages'].filter((m) => m.id != action.payload.id)
             return nextState
         default:
             return state;
