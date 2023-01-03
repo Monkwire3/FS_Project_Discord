@@ -13,7 +13,7 @@ class Api::ChatsController < ApplicationController
 
     def show
         @chat = Chat.find(params[:id])
-        @chat.messages = @chat.messages.sort_by {|m| m.created_at}
+        @messages = @chat.messages.order('messages.created_at')
         render :show
     end
 
