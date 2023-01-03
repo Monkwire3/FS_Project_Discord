@@ -11,14 +11,12 @@ function Message({ message }) {
     const [messageBodyClassList, setMessageBodyClassList] = useState('message-body')
     const [messageFormClassList, setMessageFormClassList] = useState('message-edit-form hidden')
     const [editingMessage, setEditingMessage] = useState(false);
-    const [isEdited, setIsEdited] = useState(message.created_at != message.updated_at)
+    const [isEdited, setIsEdited] = useState(message.createdAt != message.updatedAt)
     const dispatch = useDispatch();
 
 
     const handleDelete = () => {
-        console.log('delete actoin on ', message)
         if (message.channel_id) {
-            console.log('attempting to delete channel message')
             deleteChannelMessage(message)
         } else if (message.chatId) {
             dispatch(deleteMessage(message))

@@ -86,3 +86,8 @@
 .message-edit-form a:hover {
     cursor: pointer;
 }
+
+.message-edited-tag {
+    font-size: small;
+    color: rgba(225, 225, 225, 0.5)
+}
