@@ -1,7 +1,7 @@
 import './ChannelContent.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createChannelMessage } from '../../store/channels';
+import { createChannelMessage, fetchChannel } from '../../store/channels';
 import { useEffect, useState } from 'react';
 import Message from '../Message';
 
@@ -21,8 +21,9 @@ function ChannelContent() {
     }
 
     useEffect(() => {
+        dispatch(fetchChannel)
 
-    }, [sendMessage, channel.messages])
+    }, [sendMessage, channel])
 
 
     const messages = channel.messages ? channel.messages.map((m) => <Message message={m} />) : '';

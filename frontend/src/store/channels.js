@@ -147,8 +147,8 @@ export const editChannel = (channel) => async(dispatch) => {
 export const deleteChannelMessage = (message) => async(dispatch) => {
     const res = await csrfFetch(`/api/messages/${message.id}`, {method: 'DELETE'})
     const data = await res.json();
-
     dispatch(deleteMessageAction(message))
+    return(data)
 }
 
 const channelsReducer = (state = {}, action) => {
@@ -172,7 +172,12 @@ const channelsReducer = (state = {}, action) => {
             nextState[action.message.channel_id].messages.push(action.message)
             return nextState;
         case REMOVE_CHANNEL_MESSAGE:
-            nextState[action.payload.channelId]['messages'] = nextState[action.payload.channelId]['messages'].filter((m) => m.id != action.payload.id)
+            if (action.payload.channel_id) {
+                nextState[action.payload.channel_id]['messages'] = nextState[action.payload.channel_id]['messages'].filter((m) => m.id != action.payload.id)
+            } else {
+                nextState[action.payload.channelId]['messages'] = nextState[action.payload.channelId]['messages'].filter((m) => m.id != action.payload.id)
+            }
+            debugger
             return nextState
         default:
             return state;
