@@ -177,7 +177,6 @@ const channelsReducer = (state = {}, action) => {
             } else {
                 nextState[action.payload.channelId]['messages'] = nextState[action.payload.channelId]['messages'].filter((m) => m.id != action.payload.id)
             }
-            debugger
             return nextState
         default:
             return state;
