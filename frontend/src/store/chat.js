@@ -72,10 +72,9 @@ export const createMessage = (message) => async(dispatch) => {
 
 export const deleteMessage = (message) => async(dispatch) => {
     const res = await csrfFetch(`/api/messages/${message.id}`, {method: 'DELETE'})
-    const data = await res.json();
 
     dispatch(deleteMessageAction(message.id));
-
+    return res;
 }
 
 export const editMessage = (message) => async(dispatch) => {
@@ -101,6 +100,7 @@ const chatsReducer = (state = {}, action) => {
             nextState['messages'].push(action.payload)
             return nextState; 
         case DELETE_MESSAGE:
+            debugger
             nextState['messages'] = nextState['messages'].filter((m) => m.id != action.payload)
             return nextState
         default:
