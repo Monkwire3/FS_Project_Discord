@@ -1,33 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createMessage, fetchChat } from '../../store/chat';
+import { fetchChat } from '../../store/chat';
 import './Chat.css';
 import Message from '../Message';
-import { fetchMessages } from '../../store/messages';
+import { createMessage, fetchMessages } from '../../store/messages';
 
 function Chat({ chatId, cable }) {
     const dispatch = useDispatch();
-    const oldMessages = useSelector(state => state.chats.messages);
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
-    const chat = useSelector(state => state.chats)
     const messages = useSelector(state => state.messages)
     
-    
-
-    // Store messages sent and recieved through websockets
-
+    // 
 
     useEffect(() => {
         document.querySelector('#bottom-div').scrollIntoView();
-
     }, [messages])
 
     // Load messages from database
     useEffect(() => {
-        dispatch(fetchChat(chatId));
         dispatch(fetchMessages({channelId: 1, chatId: chatId}))
     }, [])
+    
 
 
     // Listen on websocket
@@ -58,22 +52,22 @@ function Chat({ chatId, cable }) {
     // }, [])
 
 
-    // Send message
+    // Send message adsflkjads
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log('in handle submit, e: ', e)
         setOutgoingMessage("")
-        dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId }))
+        dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId, channelId: 1 }))
     }
 
+    useEffect(() => {}, [messages, handleSubmit, messages.length, outgoingMessage])
 
     // Format messages from database
-    const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : '';
-    const formattedMessages = messages ? messages.map((message) => <Message message={message} />) : '';
+    const formattedMessages = messages.length > 0 ? messages.map((message) => <Message message={message} />) : '';
 
     return (
         <div id='chat'>
             <div id='chat-messages-container'>
-                {/* {oldMessagesFormatted} */}
                 {formattedMessages}
                 <div id='bottom-div'></div>
             </div>

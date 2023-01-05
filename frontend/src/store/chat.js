@@ -1,7 +1,7 @@
 import csrfFetch from "./csrfFetch";
 
 const RECEIVE_CHAT = 'chats/receiveChat';
-const RECEIVE_MESSAGE = 'chats/receieveMessage';
+const RECEIVE_MESSAGE = 'chats/receiveMessage';
 const DELETE_MESSAGE = 'chats/deleteMessage';
 
 
@@ -54,41 +54,41 @@ export const createChat = (chat) => async(dispatch) => {
     return data;
 }
 
-export const createMessage = (message) => async(dispatch) => {
-    const res = await csrfFetch(`/api/messages`, {
-        method: 'POST',
-        body: JSON.stringify({
-            message: {
-                body: message.body,
-                senderId: message.senderId,
-                chatId: message.chatId
-            }
-        })
-    })
+// export const createMessage = (message) => async(dispatch) => {
+//     const res = await csrfFetch(`/api/messages`, {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             message: {
+//                 body: message.body,
+//                 senderId: message.senderId,
+//                 chatId: message.chatId
+//             }
+//         })
+//     })
 
-    const data = await res.json()
-    dispatch(receiveMessage(data));
-}
+//     const data = await res.json()
+//     dispatch(receiveMessage(data));
+// }
 
-export const deleteMessage = (message) => async(dispatch) => {
-    const res = await csrfFetch(`/api/messages/${message.id}`, {method: 'DELETE'})
+// export const deleteMessage = (message) => async(dispatch) => {
+//     const res = await csrfFetch(`/api/messages/${message.id}`, {method: 'DELETE'})
 
-    dispatch(deleteMessageAction(message.id));
-    return res;
-}
+//     dispatch(deleteMessageAction(message.id));
+//     return res;
+// }
 
-export const editMessage = (message) => async(dispatch) => {
-    const res = await csrfFetch(`/api/messages/${message.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({
-            body: message.body
-        })
-    })
+// export const editMessage = (message) => async(dispatch) => {
+//     const res = await csrfFetch(`/api/messages/${message.id}`, {
+//         method: 'PATCH',
+//         body: JSON.stringify({
+//             body: message.body
+//         })
+//     })
 
-    const data = await res.json();
+//     const data = await res.json();
 
-    // dispatch(receiveMessage(data));
-}
+//     // dispatch(receiveMessage(data));
+// }
 
 const chatsReducer = (state = {}, action) => {
     const nextState = {...state};
@@ -96,13 +96,13 @@ const chatsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_CHAT:
             return {...action.payload}
-        case RECEIVE_MESSAGE:
-            nextState['messages'].push(action.payload)
-            return nextState; 
-        case DELETE_MESSAGE:
-            debugger
-            nextState['messages'] = nextState['messages'].filter((m) => m.id != action.payload)
-            return nextState
+        // case RECEIVE_MESSAGE:
+        //     nextState['messages'].push(action.payload)
+        //     return nextState; 
+        // case DELETE_MESSAGE:
+        //     debugger
+        //     nextState['messages'] = nextState['messages'].filter((m) => m.id != action.payload)
+        //     return nextState
         default:
             return state;
     }

@@ -2,7 +2,8 @@ class Api::MessagesController < ApplicationController
     def create
         @message = Message.new_message(message_params)
         if @message.save!
-            render json: @message, status: :created
+            render :show
+            # render json: @message, status: :created
         end
     end
 
@@ -11,7 +12,7 @@ class Api::MessagesController < ApplicationController
 
         if @message
             if @message.update(message_params)
-                render :index
+                render :show
             # else
             #     render json: { errors: @message.errors.full_messages}
             end

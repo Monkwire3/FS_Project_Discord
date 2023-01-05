@@ -1,9 +1,8 @@
 import csrfFetch from "./csrfFetch";
 
-const RECEIVE_MESSAGES = 'messages/receiveMessages'
-const ADD_MESSAGE = 'messages/addMessage'
-const REMOVE_MESSAGE = 'messages/removeMessage'
-const UPDATE_MESSAGE = 'messages/updateMessage'
+const RECEIVE_MESSAGES = 'messages/receiveMessages';
+const RECEIVE_MESSAGE = 'messages/receiveMessage';
+const REMOVE_MESSAGE = 'messages/removeMessage';
 
 const getMessages = (messages) => {
     return {
@@ -12,10 +11,10 @@ const getMessages = (messages) => {
     }
 }
 
-const addMessage = (messages) => {
+const receiveMessage = (message) => {
     return {
-        type: ADD_MESSAGE,
-        payload: messages
+        type: RECEIVE_MESSAGE,
+        payload: message
     }
 }
 
@@ -25,14 +24,6 @@ const removeMessage = (messageId) => {
         payload: messageId
     }
 }
-
-const updateMessage = (message) => {
-    return {
-        type: UPDATE_MESSAGE,
-        payload: message
-    }
-}
-
 
 
 export const fetchMessages = ({channelId, chatId}) => async(dispatch) => {
@@ -66,7 +57,9 @@ export const createMessage = (message) => async(dispatch) => {
     })
 
     const data = await res.json();
-    dispatch(addMessage(data))
+    console.log('data inside create message: ', data)
+    dispatch(receiveMessage(data))
+    return res;
 }
 
 export const deleteMessage = (message) => async(dispatch) => {
@@ -85,22 +78,20 @@ export const editMessage = (message) => async(dispatch) => {
     })
 
     const data = await res.json();
-    dispatch(updateMessage(data))
+    dispatch(receiveMessage(data))
 }
 
 const messagesReducer = (state = {}, action) => {
-    const nextState = {...state};
+    let nextState = {...state};
 
     switch (action.type) {
         case RECEIVE_MESSAGES:
             return action.payload;
-        case ADD_MESSAGE:
-            return {...state, ...action.payload};
+        case RECEIVE_MESSAGE:
+            nextState[action.payload.id] = action.payload
+            return nextState
         case REMOVE_MESSAGE:
             delete nextState.action.payload.id;
-            return nextState;
-        case UPDATE_MESSAGE:
-            nextState[action.payload.id] = action.payload;
             return nextState;
         default:
             return state

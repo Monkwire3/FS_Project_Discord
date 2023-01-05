@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteChannelMessage } from '../../store/channels';
-import { deleteMessage, editMessage } from '../../store/chat';
+// import { deleteChannelMessage } from '../../store/channels';
+// import { deleteMessage, editMessage } from '../../store/chat';
 import './Message.css';
 import { useState } from 'react';
+import { deleteMessage, editMessage } from '../../store/messages';
 
 
 function Message({ message }) {
@@ -17,11 +18,12 @@ function Message({ message }) {
 
     const handleDelete = () => {
         if (message.sender_id === sessionUser.id || message.sender.id === sessionUser.id) {
-            if (message.chatId === 1 || message.channel_id) {
-                dispatch(deleteChannelMessage(message))
-            } else if (message.chatId) {
-                dispatch(deleteMessage(message))
-            }
+            dispatch(deleteMessage(message))
+            // if (message.chatId === 1 || message.channel_id) {
+            //     dispatch(deleteChannelMessage(message))
+            // } else if (message.chatId) {
+            //     dispatch(deleteMessage(message))
+            // }
         }
     }
 
@@ -50,7 +52,8 @@ function Message({ message }) {
         e.preventDefault();
         if (messageBody != message.body) {
             setIsEdited(true)
-            dispatch(editMessage({ body: messageBody, id: message.id }))
+            // dispatch(editMessage({ body: messageBody, id: message.id }))
+            dispatch(editMessage({body: messageBody, id: message.id}))
         }
         closeEditForm();
     }
