@@ -51,13 +51,16 @@ function Chat({ chatId, cable }) {
 
     // }, [])
 
+    //
 
     // Send message adsflkjads
-    const handleSubmit = (e) => {
+    const  handleSubmit = async(e) => {
         e.preventDefault();
         console.log('in handle submit, e: ', e)
         setOutgoingMessage("")
-        dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId, channelId: 1 }))
+        await dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId, channelId: 1 }))
+        dispatch(fetchMessages({channelId: 1, chatId: chatId}))
+
     }
 
     useEffect(() => {}, [messages, handleSubmit, messages.length, outgoingMessage])
