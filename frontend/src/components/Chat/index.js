@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createMessage, fetchChat } from '../../store/chat';
 import './Chat.css';
 import Message from '../Message';
+import { fetchMessages } from '../../store/messages';
 
 function Chat({ chatId, cable }) {
     const dispatch = useDispatch();
@@ -10,20 +11,22 @@ function Chat({ chatId, cable }) {
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
     const chat = useSelector(state => state.chats)
+    const messages = useSelector(state => state.messages)
+    
     
 
     // Store messages sent and recieved through websockets
-    const [messages, setMessages] = useState([]);
 
 
     useEffect(() => {
         document.querySelector('#bottom-div').scrollIntoView();
 
-    }, [chat])
+    }, [messages])
 
     // Load messages from database
     useEffect(() => {
         dispatch(fetchChat(chatId));
+        dispatch(fetchMessages({channelId: 1, chatId: chatId}))
     }, [])
 
 
@@ -65,12 +68,13 @@ function Chat({ chatId, cable }) {
 
     // Format messages from database
     const oldMessagesFormatted = oldMessages ? oldMessages.map((message) => <Message message={message} />) : '';
+    const formattedMessages = messages ? messages.map((message) => <Message message={message} />) : '';
 
     return (
         <div id='chat'>
             <div id='chat-messages-container'>
-                {oldMessagesFormatted}
-                {messages}
+                {/* {oldMessagesFormatted} */}
+                {formattedMessages}
                 <div id='bottom-div'></div>
             </div>
             <div id='chat-input-container'>

@@ -92,7 +92,7 @@ const messagesReducer = (state = {}, action) => {
     const nextState = {...state};
 
     switch (action.type) {
-        case RECIEVE_MESSAGES:
+        case RECEIVE_MESSAGES:
             return action.payload;
         case ADD_MESSAGE:
             return {...state, ...action.payload};
@@ -106,3 +106,5 @@ const messagesReducer = (state = {}, action) => {
             return state
     }
 }
+
+export default messagesReducer;

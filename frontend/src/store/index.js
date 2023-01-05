@@ -6,6 +6,7 @@ import serversReducer from './servers';
 import sessionReducer from './session';
 import usersReducer from './users';
 import chatsReducer from './chat';
+import messagesReducer from './messages';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   users: usersReducer,
   servers: serversReducer,
   channels: channelsReducer,
-  chats: chatsReducer
+  chats: chatsReducer,
+  messages: messagesReducer
 })
 
 let enhancer;
