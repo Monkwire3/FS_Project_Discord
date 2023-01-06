@@ -1,7 +1,7 @@
 json.id @channel.id
 json.serverId @channel.server_id
 json.name @channel.channel_name
-# json.messages @channel.messages
+# json.messages @channel.messages 
 json.messages do
     json.array! (@messages) do |message|
         json.id message.id
