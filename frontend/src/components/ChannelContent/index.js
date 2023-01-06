@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createChannelMessage, fetchChannel } from '../../store/channels';
 import { useEffect, useState } from 'react';
 import Message from '../Message';
+import { createMessage, fetchMessages } from '../../store/messages';
 
 function ChannelContent() {
     const { id } = useParams();
@@ -11,28 +12,44 @@ function ChannelContent() {
     const [messageBody, setMessageBody] = useState('')
     const sessionUser = useSelector(store => store.session.user);
     const channel = useSelector(store => store.channels[id]);
+    const messages = useSelector(store => store.messages);
+
+
+    useEffect(() => {
+        dispatch(fetchMessages({channelId: id, chatId: 1}))
+        document.querySelector('#bottom-div').scrollIntoView();
+    }, [])
+
+    useEffect(() => {
+        dispatch(fetchMessages({channelId: id, chatId: 1}))
+
+    }, [id, messages.length])
+
     
 
     const sendMessage = (e) => {
         e.preventDefault();
-        dispatch(createChannelMessage({body: messageBody, sender_id: sessionUser.id, channel_id: id}))
+        dispatch(createMessage({body: messageBody, senderId: sessionUser.id, channelId: id, chatId: 1}))
         setMessageBody('')
         document.querySelector('#bottom-div').scrollIntoView();
+        dispatch(fetchMessages({channelId: id, chatId: 1}))
     }
 
-    useEffect(() => {
-        dispatch(fetchChannel)
+    // useEffect(() => {
+    //     dispatch(fetchMessages({channelId: id, chatId: 1}))
 
-    }, [sendMessage, channel])
+    // }, [sendMessage])
 
 
-    const messages = channel.messages ? channel.messages.map((m) => <Message message={m} />) : '';
+    // const messages = channel.messages ? channel.messages.map((m) => <Message message={m} />) : '';
+
+    const formattedMessages = messages.length > 0 ? messages.map((m) => <Message message={m} />) : '';
 
 
     return (
         <>
         <div id='chat-box'>
-            {messages}
+            {formattedMessages}
             <div id='bottom-div'></div>
         </div>
         <div id='input-container'>
@@ -45,4 +62,4 @@ function ChannelContent() {
 
 }
 
-export default ChannelContent;
+export default ChannelContent
