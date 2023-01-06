@@ -21,6 +21,10 @@ function Chat({ chatId, cable }) {
     useEffect(() => {
         dispatch(fetchMessages({channelId: 1, chatId: chatId}))
     }, [])
+
+    useEffect(() => {
+        dispatch(fetchMessages({channelId: 1, chatId: chatId}))
+    }, [messages.length])
     
 
 

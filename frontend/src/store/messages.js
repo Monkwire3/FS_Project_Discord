@@ -91,7 +91,7 @@ const messagesReducer = (state = {}, action) => {
             nextState[action.payload.id] = action.payload
             return nextState
         case REMOVE_MESSAGE:
-            delete nextState.action.payload.id;
+            delete nextState[action.payload.id]
             return nextState;
         default:
             return state

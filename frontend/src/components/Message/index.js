@@ -16,6 +16,7 @@ function Message({ message }) {
     const dispatch = useDispatch();
 
 
+
     const handleDelete = () => {
         if (message.sender_id === sessionUser.id || message.sender.id === sessionUser.id) {
             dispatch(deleteMessage(message))
