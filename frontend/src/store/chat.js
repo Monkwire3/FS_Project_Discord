@@ -75,7 +75,6 @@ const chatsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_CHATS:
-            debugger
             return action.payload
         case RECEIVE_CHAT:
             return {...action.payload}

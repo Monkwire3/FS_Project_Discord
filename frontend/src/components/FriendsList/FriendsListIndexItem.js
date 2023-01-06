@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { createChat } from '../../store/chat';
+import { createChat, fetchChats } from '../../store/chat';
 import { Link, Redirect } from "react-router-dom";
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -9,12 +9,15 @@ import { removeFriend } from '../../store/users';
 function FriendsListIndexItem({ friend }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    const chats = useSelector(state => state.chats)
 
     const history = useHistory();
 
     useEffect(() => {
-
+        dispatch(fetchChats())
     }, [])
+
+
 
     const handleDeleteFriend = () => {
         
@@ -25,9 +28,9 @@ function FriendsListIndexItem({ friend }) {
 
     const openDirectMessage = async () => {
 
-        for (let i = 0; i < sessionUser.chats.length; i++) {
-            if ((sessionUser.chats[i].title = `${friend.username}, ${sessionUser.username}`) || (sessionUser.chats[i].title = `${sessionUser.username}, ${friend.username}`)) {
-                history.push(`@me/${sessionUser.chats[i].id}`)
+        for (let i = 0; i < chats.length; i++) {
+            if ((chats[i].title = `${friend.username}, ${sessionUser.username}`) || (chats[i].title = `${sessionUser.username}, ${friend.username}`)) {
+                history.push(`@me/${chats[i].id}`)
                 return
             }
         }
