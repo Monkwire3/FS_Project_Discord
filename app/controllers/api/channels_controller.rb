@@ -8,6 +8,7 @@ class Api::ChannelsController < ApplicationController
 
     def show
         @channel = Channel.find(params[:id])
+        @messages = @channel.messages.order('messages.created_at')
         render 'api/channels/show'
     end
 
