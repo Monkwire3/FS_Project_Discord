@@ -60,7 +60,6 @@ function Chat({ chatId, cable }) {
         setOutgoingMessage("")
         await dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId, channelId: 1 }))
         dispatch(fetchMessages({channelId: 1, chatId: chatId}))
-
     }
 
     useEffect(() => {}, [messages, handleSubmit, messages.length, outgoingMessage])
