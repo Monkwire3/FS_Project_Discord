@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteChat } from "../../store/users";
+// import { deleteChat } from "../../store/users";
+import { deleteChat } from "../../store/chat";
 
 function ChatIndexItem({ chat }) {
     const dispatch = useDispatch();

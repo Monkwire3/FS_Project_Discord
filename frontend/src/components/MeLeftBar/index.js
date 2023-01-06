@@ -5,20 +5,28 @@ import * as sessionActions from '../../store/session';
 import { Redirect } from 'react-router-dom';
 import ChatIndexItem from './ChatIndexItem';
 import UserSettingsModal from '../UserSettingsModal';
+import { fetchChats } from '../../store/chat';
 
 function MeLeftBar() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+    const chats = useSelector(state => state.chats)
 
     useEffect(() => {
+        dispatch(fetchChats())
     }, [])
+
+    useEffect(() => {
+
+
+    }, [chats])
 
     const logout = () =>  {
         return dispatch(sessionActions.logout());
     }
 
 
-    const directMessages = sessionUser ? sessionUser.chats.map((chat) => <ChatIndexItem chat={chat} />) : '';
+    const directMessages = chats.length > 0 ? chats.map((chat) => <ChatIndexItem chat={chat} />) : '';
 
 
 

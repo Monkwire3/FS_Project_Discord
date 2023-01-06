@@ -109,13 +109,13 @@ export const removeFriend = ({id_a, id_b}) => async(dispatch) => {
     return data;
 }
 
-export const deleteChat = chatId => async dispatch => {
-    const res = await csrfFetch(`/api/chats/${chatId}`, {
-        method: 'DELETE'
-    })
+// export const deleteChat = chatId => async dispatch => {
+//     const res = await csrfFetch(`/api/chats/${chatId}`, {
+//         method: 'DELETE'
+//     })
 
-    dispatch(getChats(chatId));
-}
+//     dispatch(getChats(chatId));
+// }
 
 export const fetchPendingRequests = () => async(dispatch) => {
     const res = await csrfFetch('/api/friendRequests/')

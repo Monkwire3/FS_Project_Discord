@@ -1,14 +1,13 @@
 import csrfFetch from "./csrfFetch";
 
 const RECEIVE_CHAT = 'chats/receiveChat';
-const RECEIVE_MESSAGE = 'chats/receiveMessage';
-const DELETE_MESSAGE = 'chats/deleteMessage';
+const REMOVE_CHAT = 'chats/removeChat';
+const RECEIVE_CHATS = 'chats/receiveChats';
 
-
-const receiveMessage = (message) => {
+const receiveChats = (chats) => {
     return {
-        type: RECEIVE_MESSAGE,
-        payload: message
+        type: RECEIVE_CHATS,
+        payload: chats
     }
 }
 
@@ -19,14 +18,21 @@ const receiveChat = (chat) => {
     }
 }
 
-const deleteMessageAction = (messageId) => {
+const removeChat = (chatId) => {
     return {
-    type: DELETE_MESSAGE,
-    payload: messageId
+        type: REMOVE_CHAT,
+        payload: chatId
     }
 }
 
 
+
+export const fetchChats = () => async(dispatch) => {
+    const res = await csrfFetch(`/api/chats`)
+    const data = await res.json();
+    dispatch(receiveChats(data))
+    return res
+}
 
 export const fetchChat = (chatId) => async(dispatch) => {
     
@@ -54,55 +60,28 @@ export const createChat = (chat) => async(dispatch) => {
     return data;
 }
 
-// export const createMessage = (message) => async(dispatch) => {
-//     const res = await csrfFetch(`/api/messages`, {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             message: {
-//                 body: message.body,
-//                 senderId: message.senderId,
-//                 chatId: message.chatId
-//             }
-//         })
-//     })
+export const deleteChat = (chatId) => async(dispatch) => {
+    const res = await csrfFetch(`/api/chats${chatId}`, {
+        method: 'DELETE'
+    })
 
-//     const data = await res.json()
-//     dispatch(receiveMessage(data));
-// }
+    dispatch(removeChat(chatId));
+    return res;
+}
 
-// export const deleteMessage = (message) => async(dispatch) => {
-//     const res = await csrfFetch(`/api/messages/${message.id}`, {method: 'DELETE'})
-
-//     dispatch(deleteMessageAction(message.id));
-//     return res;
-// }
-
-// export const editMessage = (message) => async(dispatch) => {
-//     const res = await csrfFetch(`/api/messages/${message.id}`, {
-//         method: 'PATCH',
-//         body: JSON.stringify({
-//             body: message.body
-//         })
-//     })
-
-//     const data = await res.json();
-
-//     // dispatch(receiveMessage(data));
-// }
 
 const chatsReducer = (state = {}, action) => {
     const nextState = {...state};
 
     switch (action.type) {
+        case RECEIVE_CHATS:
+            debugger
+            return action.payload
         case RECEIVE_CHAT:
             return {...action.payload}
-        // case RECEIVE_MESSAGE:
-        //     nextState['messages'].push(action.payload)
-        //     return nextState; 
-        // case DELETE_MESSAGE:
-        //     debugger
-        //     nextState['messages'] = nextState['messages'].filter((m) => m.id != action.payload)
-        //     return nextState
+        case REMOVE_CHAT:
+            delete nextState[action.payload.chatId]
+            return nextState;
         default:
             return state;
     }
