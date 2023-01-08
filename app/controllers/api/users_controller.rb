@@ -2,7 +2,8 @@ class Api::UsersController < ApplicationController
   wrap_parameters include: User.attribute_names + ['password']
 
   def index
-     @users = User.all
+     @friends = current_user.friends.pluck(:id)
+     @users = User.where('id NOT IN (?)', @friends).and(User.where.not(id: 1)).and(User.where.not(id: current_user.id))
      render :index
   end
 
