@@ -59,6 +59,11 @@ function Message({ message }) {
         closeEditForm();
     }
 
+    const cancelEdit = () => {
+        setMessageBody(message.body)
+        closeEditForm();
+    }
+
     let messageMenus;
     if (sessionUser.id === message.sender_id || sessionUser.id === message.sender.id) {
         messageMenus = (
@@ -102,7 +107,7 @@ function Message({ message }) {
                         <div className={messageFormClassList}>
                             <form onSubmit={handleEditMessage}>
                                 <input value={messageBody} onChange={(e) => setMessageBody(e.target.value)}></input>
-                                <div>escape to <a onClick={closeEditForm}>cancel</a> · enter to <a onClick={handleEditMessage}>save</a></div>
+                                <div>escape to <a onClick={cancelEdit}>cancel</a> · enter to <a onClick={handleEditMessage}>save</a></div>
                             </form>
                         </div>
                         <div className='message-edited-tag'>{isEdited ? '(edited)' : ''}
