@@ -20,7 +20,7 @@ function ServerDropDown({server, setShowModal, onClose, setServerChanged}) {
     function handleDeleteServer() {
         dispatch(serverActions.deleteServer(server.id))
         setServerChanged(true)
-        history.push(`@me`)
+        history.push(`/@me`)
     }
 
 
