@@ -61,8 +61,7 @@ export const createChat = (chat) => async(dispatch) => {
 }
 
 export const deleteChat = (chatId) => async(dispatch) => {
-    debugger
-    const res = await csrfFetch(`/api/chats${chatId}`, {
+    const res = await csrfFetch(`/api/chats/${chatId}`, {
         method: 'DELETE'
     })
 
