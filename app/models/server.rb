@@ -28,7 +28,8 @@ class Server < ApplicationRecord
 
     has_many :members,
         through: :user_connections,
-        source: :users
+        source: :users,
+        dependent: :destroy
 
 
     has_many :channels,

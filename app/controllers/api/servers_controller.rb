@@ -50,7 +50,7 @@ class Api::ServersController < ApplicationController
         @server = Server.find(params[:id])
         if @server
             if @server.owner_id == current_user.id
-                @server.delete()
+                @server.destroy()
             else
                 @server_user = ServerUser.find_by(server_id: params[:id], user_id: current_user.id)
                 @server_user.delete();
