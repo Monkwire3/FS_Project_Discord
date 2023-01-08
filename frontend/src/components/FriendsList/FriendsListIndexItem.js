@@ -29,7 +29,10 @@ function FriendsListIndexItem({ friend }) {
     const openDirectMessage = async () => {
 
         for (let i = 0; i < chats.length; i++) {
-            if ((chats[i].title = `${friend.username}, ${sessionUser.username}`) || (chats[i].title = `${sessionUser.username}, ${friend.username}`)) {
+            for (let j = 0; j < chats[i].members.length; j++) {
+                if (chats[i].members[j].id != sessionUser.id && chats[i].members[j].id != friend.id) {
+                    break
+                }
                 history.push(`@me/${chats[i].id}`)
                 return
             }
