@@ -13,11 +13,15 @@ class Api::ServersController < ApplicationController
     def create
         @server = Server.new(server_name: server_params[:server_name], owner: User.find(current_user.id))
         if @server.save!
-
-            @server_user = ServerUser.new(server_id: params[:server_id], user_id: current_user.id)
-
-            @servers = Server.all.select{|server| server.members.include?(current_user)} 
-            render :index
+            @channel = Channel.new(channel_name: 'General', server_id: @server.id)
+            
+            if @channel.save!
+                @server_user = ServerUser.new(server_id: @server.id, user_id: current_user.id)
+                if @server_user.save!
+                    @servers = Server.all.select{|server| server.members.include?(current_user)} 
+                    render :index
+                end
+            end
         else
             render json: { errors: @server.errors.full_messages }
         end
