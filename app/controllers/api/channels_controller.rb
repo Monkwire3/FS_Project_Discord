@@ -23,7 +23,6 @@ class Api::ChannelsController < ApplicationController
     end
 
     def update
-        debugger
         @channel = Channel.find(params[:id])
         if @channel
             if @channel.update(channel_params)
@@ -35,7 +34,6 @@ class Api::ChannelsController < ApplicationController
     end
 
     def destroy
-        debugger
         @channel = Channel.find(params[:id])
         if @channel
             @channel.destroy

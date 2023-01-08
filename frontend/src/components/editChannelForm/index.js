@@ -6,7 +6,7 @@ import { useState } from 'react';
 import './EditChannelForm.css';
 
 
-function EditChannelForm({onClose, channel, server, onChange}) {
+function EditChannelForm({onClose, channel, server}) {
     const dispatch = useDispatch();
     const [channelName, setChannelName] = useState(channel.name);
     const history = useHistory();
@@ -15,7 +15,6 @@ function EditChannelForm({onClose, channel, server, onChange}) {
     function handleSubmit(e) {
         dispatch(channelActions.editChannel({channel_name: channelName, id: channel.id}))
         onClose();
-        onChange(true);
    
     } 
 
