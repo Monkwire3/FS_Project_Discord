@@ -53,7 +53,7 @@ function LeftSidebar({serverId}) {
     return (
         <div id="leftSidebar">
             <div id='channels'>
-                <ServerDropDownModal onClick={() => setServerChanged(true) }setServerChanged={setServerChanged} serverId={serverId} />
+                <ServerDropDownModal onClick={() => setServerChanged(true) }setServerChanged={setServerChanged} server={server} />
                 
                 <div className='channelHeaderTextBox'>
                     <div>Text channels</div>

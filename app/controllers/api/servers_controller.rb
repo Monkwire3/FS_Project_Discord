@@ -49,10 +49,14 @@ class Api::ServersController < ApplicationController
     def destroy
         @server = Server.find(params[:id])
         if @server
-            if @server.owner == current_user
+            if @server.owner_id == current_user.id
                 @server.delete()
-                render json: {message: 'server successfully deleted'}
+            else
+                @server_user = ServerUser.find_by(server_id: params[:id], user_id: current_user.id)
+                @server_user.delete();
             end
+            @servers = Server.all.select{|server| server.members.include?(current_user)}
+            render :index
         else
             render json: { errors: @server.errors.full_messages}
         end

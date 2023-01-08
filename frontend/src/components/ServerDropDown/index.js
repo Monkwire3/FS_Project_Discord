@@ -9,24 +9,16 @@ import CreateChannelFormModal from "../CreateChannelModal";
 import { flushSync } from "react-dom";
 
 
-function ServerDropDown({serverId, setShowModal, onClose, setServerChanged}) {
+function ServerDropDown({server, setShowModal, onClose, setServerChanged}) {
     const dispatch = useDispatch();
-    const id = serverId
-    const server = useSelector(serverActions.getServer(id))
     const history = useHistory();
-
-
-
-
-    useEffect(() => {
-        dispatch(serverActions.fetchServer(id))
-    }, [])
+    const sessionUser = useSelector(state => state.session.user);
 
 
 
 
     function handleDeleteServer() {
-        dispatch(serverActions.deleteServer(id))
+        dispatch(serverActions.deleteServer(server.id))
         setServerChanged(true)
         history.push(`@me`)
     }
@@ -46,7 +38,7 @@ function ServerDropDown({serverId, setShowModal, onClose, setServerChanged}) {
                     <EditServerFormModal server={server} /></div>
             </div>
             <div className="dropDownGroupEnd">
-                <div onClick={handleDeleteServer} className="dropDownItem">Delete Server</div>
+                <div onClick={handleDeleteServer} className="dropDownItem">{server.owner.id === sessionUser.id ? 'Delete Server' : 'Leave Server'}</div>
             </div>
             </div>
     )

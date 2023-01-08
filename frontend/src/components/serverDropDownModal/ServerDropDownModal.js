@@ -7,12 +7,11 @@ import { fetchServer, getServer } from '../../store/servers';
 
 
 
-function ServerDropDownModal({ serverId, setServerChanged }) {
+function ServerDropDownModal({ server, setServerChanged }) {
     const dispatch = useDispatch();
-    const server = useSelector(getServer(serverId));
 
     useEffect(() => {
-        dispatch(fetchServer(serverId));
+        dispatch(fetchServer(server.id));
     }, []);
 
 
@@ -36,7 +35,7 @@ function ServerDropDownModal({ serverId, setServerChanged }) {
         </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <ServerDropDown onClose={() => setShowModal(false)} serverId={serverId} setShowModal={setShowModal} setServerChanged={setServerChanged} />
+                    <ServerDropDown onClose={() => setShowModal(false)} server={server} setShowModal={setShowModal} setServerChanged={setServerChanged} />
                 </Modal>
             )}
 
