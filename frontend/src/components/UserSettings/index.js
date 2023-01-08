@@ -1,10 +1,12 @@
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
 import './UserSettings.css';
 
 
 function UserSettings({onClose}) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const removeUser = () => {
         dispatch(logout())

@@ -40,7 +40,6 @@ function FriendsListIndexItem({ friend }) {
 
         dispatch(createChat({ title: `${friend.username}, ${sessionUser.username}`, user_1: sessionUser.id, user_2: friend.id }))
 
-        openDirectMessage();
         // const res = await dispatch(createChat({ title: `${friend.username}, ${sessionUser.username}`, user_1: sessionUser.id, user_2: friend.id }))
 
         // history.push(`@me/${res.id}`)
