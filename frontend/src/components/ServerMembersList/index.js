@@ -15,7 +15,7 @@ function ServerMembersList({serverId}) {
     }, [])
 
 
-    const serverMembers = server ? server.members.map((member) => <ServerMemberListItem member ={member} />) : ''
+    const serverMembers = server ? server.members.map((member) => <ServerMemberListItem key={`member_id${member.id}`} member ={member} />) : ''
 
     return (
         <div id='server-members-list-container'>
