@@ -1,4 +1,13 @@
 class Api::MessagesController < ApplicationController
+    def chat_index
+        @messages = Message.where(chat_id: params[:id]).order('messages.created_at')
+    end
+
+    def channel_index
+        @messages = Message.where(channel_id: params[:id]).order('messages.created_at')
+        render :index
+
+    end
     def create
         @message = Message.new_message(message_params)
         if @message.save!

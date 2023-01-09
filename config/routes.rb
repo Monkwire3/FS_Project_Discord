@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post '/api/servers/join', to: 'api/servers#join'
 
+  get '/api/messages/chat/:id', to: 'api/messages#chat_index'
+  get '/api/messages/channel/:id', to: 'api/messages#channel_index'
   get '/api/friends', to: 'api/users#friends'
   get  '/api/friendRequests', to: 'api/users#get_friend_requests';
   post '/api/friends', to: 'api/users#send_friend_request'
