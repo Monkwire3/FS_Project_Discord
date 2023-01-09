@@ -28,16 +28,16 @@ const removeMessage = (messageId) => {
 
 export const fetchMessages = ({channelId, chatId}) => async(dispatch) => {
     if (channelId === 1) {
-        const res = await csrfFetch(`/api/chats/${chatId}`)
+        const res = await csrfFetch(`/api/messages/chat/${chatId}`)
         const data = await res.json();
 
-        dispatch(getMessages(data.messages));
+        dispatch(getMessages(data));
         return res;
     } else if (chatId === 1) {
-        const res = await csrfFetch(`/api/channels/${channelId}`);
+        const res = await csrfFetch(`/api/messages/channel/${channelId}`);
         const data = await res.json();
 
-        dispatch(getMessages(data.messages));
+        dispatch(getMessages(data));
         return res
     }
 }

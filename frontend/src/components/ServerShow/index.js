@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import * as channelActions from '../../store/channels';
+import { fetchChannel } from '../../store/channels';
 import './ServerShow.css'
 import { useDispatch } from 'react-redux';
 import ServerMembersList from '../ServerMembersList';
@@ -14,12 +14,9 @@ function ServerShow({serverId}) {
     const { id } = useParams();
     const channel = useSelector(state => state.channels)[id];
 
-    useEffect(() => {
-        dispatch(channelActions.fetchChannel(id))
-    }, [])
 
     useEffect(() => {
-        dispatch(channelActions.fetchChannel(id))
+        dispatch(fetchChannel(id))
     }, [id])
 
 
