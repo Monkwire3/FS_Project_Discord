@@ -38,7 +38,6 @@ function FriendsListIndexItem({ friend }) {
             }
         }
 
-        // dispatch(createChat({ title: `${friend.username}, ${sessionUser.username}`, user_1: sessionUser.id, user_2: friend.id }))
 
         const res = await dispatch(createChat({ title: `${friend.username}, ${sessionUser.username}`, user_1: sessionUser.id, user_2: friend.id }))
 
