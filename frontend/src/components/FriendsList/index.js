@@ -73,7 +73,7 @@ function FriendsList() {
             if (!sessionUser) {
                 friendsList = ''
             } else {
-                const incommingRequests = pendingRequests.length > 0 ? pendingRequests.map((req) => <PendingRequestItem request={req} incoming={true} />) : ''
+                const incommingRequests = pendingRequests.length > 0 ? pendingRequests.map((req) => <PendingRequestItem key={`request_${req.id}`} request={req} incoming={true} />) : ''
                 // const outgoingRequests = sessionUser.sentFriendRequests.map((req) => <PendingRequestItem request={req} incoming={false} />)
                 friendsList = [];
                 friendsList.push(incommingRequests);
@@ -86,7 +86,7 @@ function FriendsList() {
 
     // const friendsList = friendSelection === 'all' ? friends.map((friend) => <FriendsListIndexItem friend={friend} />) : '';
 
-    const usersList = allUsers ? allUsers.length > 0 ? allUsers.map((u) => <AddFriendIndexItem user={u} />) : 'loading...' : '';
+    const usersList = allUsers ? allUsers.length > 0 ? allUsers.map((u) => <AddFriendIndexItem key={`friend_${u.id}`} user={u} />) : 'loading...' : '';
 
 
 

@@ -1,6 +1,7 @@
 class Api::MessagesController < ApplicationController
     def chat_index
         @messages = Message.where(chat_id: params[:id]).order('messages.created_at')
+        render :index
     end
 
     def channel_index
