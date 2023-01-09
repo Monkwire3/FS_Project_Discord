@@ -86,7 +86,7 @@ const messagesReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_MESSAGES:
-            return action.payload;
+            return {...action.payload};
         case RECEIVE_MESSAGE:
             nextState[action.payload.id] = action.payload
             return nextState

@@ -12,18 +12,20 @@ function ChannelContent() {
     const [messageBody, setMessageBody] = useState('')
     const sessionUser = useSelector(store => store.session.user);
     const channel = useSelector(store => store.channels[id]);
-    const messages = useSelector(store => store.messages);
+    const messages = useSelector(store => Object.values(store.messages));
+    console.log('channelContent messages: ', messages)
 
 
-    useEffect(() => {
-        dispatch(fetchMessages({channelId: id, chatId: 1}))
-        document.querySelector('#bottom-div').scrollIntoView();
-    }, [])
+    // useEffect(() => {
+    //     dispatch(fetchMessages({channelId: id, chatId: 1}))
+    //     document.querySelector('#bottom-div').scrollIntoView();
+    // }, [])
 
     useEffect(() => {
         dispatch(fetchMessages({channelId: id, chatId: 1}))
 
     }, [id, messages.length])
+
 
     
 
@@ -43,7 +45,7 @@ function ChannelContent() {
 
     // const messages = channel.messages ? channel.messages.map((m) => <Message message={m} />) : '';
 
-    const formattedMessages = messages.length > 0 ? messages.map((m) => <Message message={m} />) : '';
+    const formattedMessages = messages.length > 0 ? messages.map((m) => <Message key={m.id} message={m} />) : '';
 
 
     return (
