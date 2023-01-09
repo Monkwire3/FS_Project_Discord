@@ -10,6 +10,7 @@ function Chat({ chatId, cable }) {
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
     const messages = useSelector(state => state.messages)
+    const chat = useSelector(state => state.chats[chatId])
     
     // 
 
@@ -19,6 +20,7 @@ function Chat({ chatId, cable }) {
 
     // Load messages from database
     useEffect(() => {
+        dispatch(fetchChat(chatId));
         dispatch(fetchMessages({channelId: 1, chatId: chatId}))
     }, [])
 

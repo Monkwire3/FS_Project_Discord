@@ -77,7 +77,7 @@ const chatsReducer = (state = {}, action) => {
         case RECEIVE_CHATS:
             return action.payload
         case RECEIVE_CHAT:
-            return {...action.payload}
+            nextState[action.payload.id] = action.payload
         case REMOVE_CHAT:
             delete nextState[action.payload.chatId]
             return nextState;

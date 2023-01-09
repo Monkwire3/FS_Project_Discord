@@ -11,7 +11,8 @@ function ServerDropDownModal({ server, setServerChanged }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchServer(server.id));
+        // error here
+        if (server) dispatch(fetchServer(server.id))
     }, []);
 
 
@@ -19,7 +20,7 @@ function ServerDropDownModal({ server, setServerChanged }) {
     const [showModal, setShowModal] = useState(false);
 
 
-    return (
+    return ( server.id &&
         <>
         <div onClick={() => setShowModal(true)} id='channelsHeader'>
             <div>{server ? server.serverName : ''}</div>
