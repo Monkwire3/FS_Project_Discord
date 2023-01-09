@@ -9,15 +9,15 @@ import ChannelContent from '../ChannelContent';
 
 
 
-function ServerShow({serverId}) {
+function ServerShow({serverId, channel}) {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const channel = useSelector(state => state.channels)[id];
+    // const channel = useSelector(state => state.channels)[id];
 
 
-    useEffect(() => {
-        dispatch(fetchChannel(id))
-    }, [id])
+    // useEffect(() => {
+    //     dispatch(fetchChannel(id))
+    // }, [id])
 
 
     return (

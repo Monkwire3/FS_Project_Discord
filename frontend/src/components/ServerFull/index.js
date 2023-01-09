@@ -14,21 +14,21 @@ function ServerFull() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const { id } = useParams();
-    const currentChannel = useSelector(state => state.channels)[id];
+    const currentChannel = useSelector(state => state.channels[id]);
 
 
-    useEffect(() => {
-        dispatch(fetchChannel(id));
-    }, [])
+    // useEffect(() => {
+    //     dispatch(fetchChannel(id));
+    // }, [])
 
     useEffect(() => {
         dispatch(fetchChannel(id))
     }, [id])
 
-    useEffect(() => {
+    // useEffect(() => {
 
 
-    }, [currentChannel])
+    // }, [currentChannel])
 
 
     if (!sessionUser) {
@@ -39,7 +39,7 @@ function ServerFull() {
         <>
         <ServerIndex />
         {currentChannel ? <LeftSidebar serverId={currentChannel.serverId} /> : '' }
-        {currentChannel ? <ServerShow serverId={currentChannel.serverId}/> : '' }
+        {currentChannel ? <ServerShow serverId={currentChannel.serverId} channel={currentChannel}/> : '' }
         </>
     )
 }
