@@ -9,7 +9,7 @@ function Chat({ chatId, cable }) {
     const dispatch = useDispatch();
     const [outgoingMessage, setOutgoingMessage] = useState('');
     const sessionUser = useSelector(state => state.session.user);
-    const messages = useSelector(state => state.messages)
+    const messages = useSelector(state => Object.values(state.messages))
     const chat = useSelector(state => state.chats[chatId])
     
     // 
