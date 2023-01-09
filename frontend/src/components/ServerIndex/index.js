@@ -27,7 +27,7 @@ function ServerIndex() {
     useEffect(() => {}, [servers])
 
 
-    const serverListItems = servers ? servers.discovered ? servers.discovered.map((server) => <ServerIndexItem server={server} />) : '' : ''
+    const serverListItems = servers ? servers.discovered ? servers.discovered.map((server) => <ServerIndexItem key={`server_id${server.id}`} server={server} />) : '' : ''
 
     return (
         <div id='serverIndex'>

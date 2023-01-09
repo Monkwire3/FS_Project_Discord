@@ -26,7 +26,7 @@ function MeLeftBar() {
     }
 
 
-    const directMessages = chats.length > 0 ? chats.map((chat) => <ChatIndexItem chat={chat} />) : '';
+    const directMessages = chats.length > 0 ? chats.map((chat) => <ChatIndexItem key={`chat_index_item_${chat.id}`} chat={chat} />) : '';
 
 
 
