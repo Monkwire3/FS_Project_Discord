@@ -3,7 +3,9 @@ class Api::UsersController < ApplicationController
 
   def index
      @friends = current_user.friends.pluck(:id)
-     @users = User.where('id NOT IN (?)', @friends).and(User.where.not(id: 1)).and(User.where.not(id: current_user.id))
+     @friends.push(1)
+     @friends.push(current_user.id)
+     @users = User.where('id NOT IN (?)', @friends)
      render :index
   end
 
