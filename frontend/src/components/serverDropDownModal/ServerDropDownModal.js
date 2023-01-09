@@ -20,7 +20,7 @@ function ServerDropDownModal({ server, setServerChanged }) {
     const [showModal, setShowModal] = useState(false);
 
 
-    return ( server.id &&
+    return ( server &&
         <>
         <div onClick={() => setShowModal(true)} id='channelsHeader'>
             <div>{server ? server.serverName : ''}</div>
