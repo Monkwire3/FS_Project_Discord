@@ -9,7 +9,7 @@ import { removeFriend } from '../../store/users';
 function FriendsListIndexItem({ friend }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const chats = useSelector(state => state.chats)
+    const chats = useSelector(state => Object.values(state.chats));
 
     const history = useHistory();
 
@@ -30,7 +30,7 @@ function FriendsListIndexItem({ friend }) {
 
         for (let i = 0; i < chats.length; i++) {
             for (let j = 0; j < chats[i].members.length; j++) {
-                if (chats[i].members[j].id != sessionUser.id && chats[i].members[j].id != friend.id) {
+                if (chats[i].members[j].id !== sessionUser.id && chats[i].members[j].id !== friend.id) {
                     break
                 }
                 history.push(`@me/${chats[i].id}`)

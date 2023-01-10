@@ -20,7 +20,7 @@ function Chat({ chatId, cable }) {
 
     // Load messages from database
     useEffect(() => {
-        dispatch(fetchChat(chatId));
+        // dispatch(fetchChat(chatId));
         dispatch(fetchMessages({channelId: 1, chatId: chatId}))
     }, [])
 
