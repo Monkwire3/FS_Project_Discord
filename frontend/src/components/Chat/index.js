@@ -71,7 +71,7 @@ function Chat({ chatId, cable }) {
     useEffect(() => {}, [messages, handleSubmit, messages.length, outgoingMessage])
 
     // Format messages from database
-    const formattedMessages = messages.length > 0 ? messages.map((message) => <Message message={message} />) : '';
+    const formattedMessages = messages.length > 0 ? messages.map((message) => <Message key={`message_${message.id}`} message={message} />) : '';
 
     return (
         <div id='chat'>
