@@ -10,7 +10,7 @@ import { fetchChats } from '../../store/chat';
 function MeLeftBar() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const chats = useSelector(state => state.chats)
+    const chats = useSelector(state => Object.values(state.chats))
 
     useEffect(() => {
         dispatch(fetchChats())
