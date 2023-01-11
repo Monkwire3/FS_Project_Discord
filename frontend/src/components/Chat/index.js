@@ -59,7 +59,7 @@ function Chat({ chatId, cable }) {
 
     //
 
-    // Send message adsflkjads
+    // Send message
     const  handleSubmit = async(e) => {
         e.preventDefault();
         setOutgoingMessage("")

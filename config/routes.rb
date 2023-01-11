@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  mount ActionCable.server => "/cable"
+  # mount ActionCable.server => "/cable"
 
-  post '/api/test', to: 'application#test'
+  # post '/api/test', to: 'application#test'
   # post '/api/users/:user_id/chats/', to 'chats#create'
 
   post '/api/servers/join', to: 'api/servers#join'
