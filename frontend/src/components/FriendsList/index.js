@@ -46,7 +46,6 @@ function FriendsList() {
     }, [friendSelection, setFriendSelection])
 
     const applySelectionClasses = () => {
-        console.log('in apply selection classes')
         for (let child of document.querySelector('#friends-list-options').children) {
             if (child.textContent.toLowerCase() === friendSelection) {
                 child.className = 'selected'

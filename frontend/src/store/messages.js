@@ -57,7 +57,6 @@ export const createMessage = (message) => async(dispatch) => {
     })
 
     const data = await res.json();
-    console.log('data inside create message: ', data)
     dispatch(receiveMessage(data))
     return res;
 }

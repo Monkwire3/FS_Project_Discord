@@ -62,7 +62,6 @@ function Chat({ chatId, cable }) {
     // Send message adsflkjads
     const  handleSubmit = async(e) => {
         e.preventDefault();
-        console.log('in handle submit, e: ', e)
         setOutgoingMessage("")
         await dispatch(createMessage({ body: outgoingMessage, senderId: sessionUser.id, chatId: chatId, channelId: 1 }))
         dispatch(fetchMessages({channelId: 1, chatId: chatId}))
