@@ -13,7 +13,6 @@ function ChannelContent() {
     const sessionUser = useSelector(store => store.session.user);
     const channel = useSelector(store => store.channels[id]);
     const messages = useSelector(store => Object.values(store.messages));
-    console.log('channelContent messages: ', messages)
 
 
     // useEffect(() => {

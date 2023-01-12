@@ -4,3 +4,8 @@
     height: 48px;
     box-sizing: border-box;
 }
+
+#direct-messages-header-right:hover {
+    cursor: not-allowed;
+
+}
